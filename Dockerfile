@@ -1,11 +1,11 @@
-FROM php:8.2-cli
-
-RUN docker-php-ext-install mysqli
+FROM node:18-alpine
 
 WORKDIR /app
+COPY package.json /app/package.json
+RUN npm ci || npm install
 COPY . /app
 
 EXPOSE 8080
 ENV PORT=8080
 
-CMD php -S 0.0.0.0:${PORT} -t /app
+CMD ["npm", "start"]
