@@ -120,8 +120,8 @@
 
       async function loadMyJobs(){
         console.log("=== LOAD MY JOBS START ===");
-        console.log("API URL being called:", API("jobs_list.php"));
-        console.log("Full API URL:", API("jobs_list.php"));
+        console.log("API URL being called:", API("jobs_list"));
+        console.log("Full API URL:", API("jobs_list"));
         
         const box = document.getElementById("myJobs");
         
@@ -130,7 +130,7 @@
         
         try{
           console.log("Fetch initiated, waiting for response...");
-          const res = await fetch(API(`jobs_list.php?created_by=${encodeURIComponent(user.id)}`));
+          const res = await fetch(API(`jobs_list?created_by=${encodeURIComponent(user.id)}`));
           // Read as text once; then try to parse JSON for robustness
           const responseText = await res.text();
           console.log("Response status:", res.status);
@@ -160,7 +160,7 @@
           // Fallback: if server-side filtering returned 0, fetch all and filter client-side
           if (jobs.length === 0) {
             console.log("No jobs from server-side filter. Falling back to client-side filter.");
-            const res2 = await fetch(API("jobs_list.php"));
+            const res2 = await fetch(API("jobs_list"));
             const text2 = await res2.text();
             let data2 = {};
             try { data2 = JSON.parse(text2); } catch(_) {}
@@ -219,7 +219,7 @@
           };
           console.log("Delete payload:", payload);
           
-          const response = await postJSON("jobs_delete.php", payload);
+          const response = await postJSON("jobs_delete", payload);
           console.log("Delete response:", response);
 
           if (response.ok) {
@@ -256,7 +256,7 @@
           };
           console.log("Status payload:", payload);
           
-          const response = await postJSON("jobs_status.php", payload);
+          const response = await postJSON("jobs_status", payload);
           console.log("Status response:", response);
 
           if (response.ok) {

@@ -190,7 +190,7 @@
         const decodedCategory = decodeURIComponent(category);
         params.set("category", decodedCategory);
 
-        const res = await fetch(API("jobs_list.php") + `?${params.toString()}`);
+        const res = await fetch(API("jobs_list") + `?${params.toString()}`);
         const data = await res.json();
 
         if (!data.ok){
@@ -239,7 +239,7 @@
       list.innerHTML = `<p class="meta">Loading all jobs...</p>`;
 
       try{
-        const res = await fetch(API("jobs_list.php"));
+        const res = await fetch(API("jobs_list"));
         const data = await res.json();
 
         if (!data.ok){

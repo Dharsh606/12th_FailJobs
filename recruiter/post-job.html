@@ -199,7 +199,7 @@
       console.log('Sending payload:', payload);
 
       try {
-        const data = await postJSON("jobs_create.php", payload);
+        const data = await postJSON("jobs_create", payload);
         console.log('Server response:', data);
 
         if(!data.ok){

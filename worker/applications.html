@@ -87,7 +87,7 @@
         const listElement = document.getElementById("applicationsList");
         
         try {
-          const response = await fetch(API("applications_list.php") + `?user_id=${encodeURIComponent(user.id)}`);
+          const response = await fetch(API("applications_list") + `?user_id=${encodeURIComponent(user.id)}`);
           const data = await response.json();
 
           if (!data.ok) {

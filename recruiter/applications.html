@@ -86,7 +86,7 @@
         console.log('Loading applications for job_id:', jobId);
         
         // Fetch applications for this specific job
-        const url = API("applications_list.php") + `?job_id=${encodeURIComponent(jobId)}`;
+        const url = API("applications_list") + `?job_id=${encodeURIComponent(jobId)}`;
         console.log('Fetching from URL:', url);
         
         const res = await fetch(url);

@@ -113,7 +113,7 @@
       if (category) params.set("category", category);
 
       try{
-        const res = await fetch(API("jobs_list.php") + (params.toString() ? `?${params.toString()}` : ""));
+        const res = await fetch(API("jobs_list") + (params.toString() ? `?${params.toString()}` : ""));
         const data = await res.json();
 
         if (!data.ok){
