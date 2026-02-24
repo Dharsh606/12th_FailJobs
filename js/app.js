@@ -192,12 +192,12 @@ async function postJSON(endpoint, payload) {
     body: JSON.stringify(payload),
   });
 
-  // if PHP prints warnings, it may break JSON. This helps debugging.
+  // if server prints warnings, it may break JSON. This helps debugging.
   const text = await res.text();
   try {
     return JSON.parse(text);
   } catch (e) {
     console.error("Invalid JSON from server:", text);
-    return { ok: false, message: "Server returned invalid response. Check PHP errors." };
+    return { ok: false, message: "Server returned invalid response. Check server logs." };
   }
 }
