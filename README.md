@@ -279,20 +279,19 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🔄 Updates in Version 2.0.0
 
 ### Major Features Added
-- ✅ **Dynamic Language Switching** - Real-time language updates
-- ✅ **Advanced Dashboard** - Analytics and insights
-- ✅ **AI Candidate Matching** - Smart recommendations
-- ✅ **Communication Hub** - Built-in messaging
-- ✅ **Performance Optimizations** - Faster loading
-- ✅ **Enhanced Security** - Better authentication
-- ✅ **Modern UI/UX** - Glassmorphism design
-- ✅ **Mobile Optimization** - Better mobile experience
+- ✅ **Complete PHP Removal** - Pure Node.js backend for Vercel compatibility
+- ✅ **Enhanced Security** - Rate limiting, input sanitization, XSS protection
+- ✅ **Improved Error Handling** - Better user feedback and debugging
+- ✅ **Cache Management** - Optimized static file delivery
+- ✅ **API Standardization** - Clean RESTful endpoints
 
-### Technical Improvements
-- 🔄 **Node.js Backend** - Replaced PHP with Node.js
-- 📊 **JSON Database** - Simplified data management
-- 🎨 **Component System** - Reusable partials
-- 📱 **Responsive Design** - Mobile-first approach
+### Critical Bug Fixes:
+- 🔧 **Fixed Authentication** - Resolved 401/403 login errors
+- 🔧 **Added Missing verifyPassword Function** - Login was failing due to missing function
+- � **Fixed Vercel Deployment** - Proper vercel.json configuration
+- � **Fixed Static File Serving** - CSS and JS now load correctly
+- 🔧 **Fixed Cache Issues** - Version-based cache busting (v=6)
+- � **Updated Error Messages** - Removed PHP references for Node.js context
 - 🔒 **Security Enhancements** - Input validation and sanitization
 
 ---
