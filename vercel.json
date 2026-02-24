@@ -4,6 +4,38 @@
     {
       "src": "server/index.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "**/*.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "**/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "**/*.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "assets/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "i18n/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "partials/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "worker/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "recruiter/**",
+      "use": "@vercel/static"
     }
   ],
   "rewrites": [
