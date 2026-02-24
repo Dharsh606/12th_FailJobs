@@ -1,0 +1,36 @@
+/* Telugu Language Specific Styles */
+
+/* Font adjustments for Telugu */
+[data-lang="te"] body {
+  font-family: 'Noto Sans Telugu', 'Gautami', sans-serif;
+}
+
+/* Text direction adjustments */
+[data-lang="te"] .language-select,
+[data-lang="te"] .language-label {
+  font-family: 'Noto Sans Telugu', 'Gautami', sans-serif;
+}
+
+/* Button styling for Telugu */
+[data-lang="te"] .btn {
+  font-family: 'Noto Sans Telugu', 'Gautami', sans-serif;
+  font-weight: 500;
+}
+
+/* Adjust spacing for Telugu text */
+[data-lang="te"] .card,
+[data-lang="te"] .job-card,
+[data-lang="te"] .candidate-card {
+  line-height: 1.6;
+}
+
+/* Hero text adjustments */
+[data-lang="te"] .hero h1 {
+  font-size: 5.2rem; /* Smaller for Telugu text */
+  line-height: 1.3;
+}
+
+[data-lang="te"] .hero p {
+  font-size: 15px;
+  line-height: 1.6;
+}

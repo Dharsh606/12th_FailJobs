@@ -1,0 +1,29 @@
+# 12thFailJobs - Quick Start Guide
+
+## 🚀 ONE-CLICK START:
+
+### Method 1: Double-click the file
+1. Go to your project folder: `c:/xampp/htdocs/12thfailjob`
+2. **Double-click `start.bat`**
+3. Wait for "Server running on http://localhost:3000"
+4. Open browser: `http://localhost:3000`
+
+### Method 2: Simple commands
+1. Open Command Prompt
+2. Type: `cd c:/xampp/htdocs/12thfailjob`
+3. Type: `node server/index.js`
+4. Open browser: `http://localhost:3000`
+
+## 👤 Login Accounts:
+- **Worker**: `rahul@example.com` / `password123`
+- **Recruiter**: `priya@example.com` / `password123`
+
+## 🌐 Website URL:
+**http://localhost:3000**
+
+## ⚠️ If it doesn't work:
+1. Make sure Node.js is installed
+2. Try: `npm install` (one time only)
+3. Close other programs using port 3000
+
+That's it! Simple! 🎉

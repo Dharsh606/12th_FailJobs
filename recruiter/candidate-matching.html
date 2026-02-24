@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candidate Matching - Recruiter</title>
+  <link rel="stylesheet" href="../styles-new.css" />
+  <style>
+    .matching-grid{display:grid;grid-template-columns:1fr 2fr;gap:20px;margin-top:20px}
+    .filters-sidebar{display:flex;flex-direction:column;gap:15px}
+    .candidates-main{display:flex;flex-direction:column;gap:20px}
+    .filter-card{background:white;padding:15px;border-radius:8px}
+    .filter-title{font-weight:bold;margin-bottom:10px}
+    .candidate-card{background:white;padding:20px;border-radius:8px;border-left:4px solid var(--accent-orange);margin-bottom:15px}
+    .candidate-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:15px}
+    .candidate-name{font-size:18px;font-weight:bold;color:var(--primary)}
+    .match-score{background:var(--action-green);color:white;padding:6px 12px;border-radius:20px;font-weight:bold;font-size:14px}
+    .candidate-info{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:15px}
+    .info-item{font-size:14px}
+    .info-label{font-weight:bold;color:var(--text-muted)}
+    .skills-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .skill-tag{background:var(--glass-bg);padding:4px 8px;border-radius:12px;font-size:12px}
+    .match-details{background:#f8f9fa;padding:10px;border-radius:6px;margin-top:10px}
+    .action-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+    .ai-suggestions{background:linear-gradient(135deg,var(--primary),var(--accent-orange));color:white;padding:15px;border-radius:8px;margin-bottom:20px}
+    .location-filter{margin-bottom:10px}
+    .radius-slider{width:100%;margin:10px 0}
+    .experience-levels{display:flex;flex-direction:column;gap:8px}
+    .level-option{display:flex;align-items:center;gap:8px}
+    .availability-calendar{background:white;padding:15px;border-radius:8px}
+    .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:10px}
+    .calendar-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;border-radius:4px;font-size:12px;cursor:pointer}
+    .calendar-day.available{background:var(--action-green);color:white}
+    .calendar-day.unavailable{background:#dc3545;color:white}
+    .stats-overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:20px}
+    .stat-card{background:var(--glass-bg);padding:15px;border-radius:8px;text-align:center}
+    .stat-number{font-size:2rem;font-weight:900;color:var(--primary)}
+    .stat-label{font-size:12px;color:var(--text-muted);margin-top:5px}
+  </style>
+</head>
+<body>
+  <div data-include="header"></div>
+
+  <main class="page-main">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="dashboard.html" class="btn">← Back</a>
+      <button class="btn" id="logoutBtn">Logout</button>
+    </div>
+
+    <h1 class="section-title" style="margin-top:14px;">Enhanced Candidate Matching</h1>
+    <p class="meta mb-2">AI-powered candidate recommendations and advanced filtering</p>
+
+    <!-- Statistics Overview -->
+    <div class="stats-overview">
+      <div class="stat-card">
+        <div class="stat-number" id="totalCandidates">0</div>
+        <div class="stat-label">Total Candidates</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="highMatchCandidates">0</div>
+        <div class="stat-label">High Match (80%+)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="newCandidates">0</div>
+        <div class="stat-label">New This Week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="activeCandidates">0</div>
+        <div class="stat-label">Actively Seeking</div>
+      </div>
+    </div>
+
+    <!-- AI Suggestions -->
+    <div class="ai-suggestions">
+      <h3 style="margin:0 0 10px;">🤖 AI Recommendations</h3>
+      <p style="margin:0;">Based on your job postings, we recommend focusing on candidates with Security experience and valid licenses. The current market shows high demand for workers with 2-5 years of experience.</p>
+    </div>
+
+    <div class="matching-grid">
+      <!-- Filters Sidebar -->
+      <div class="filters-sidebar">
+        <!-- Skills Filter -->
+        <div class="filter-card">
+          <div class="filter-title">Required Skills</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <label><input type="checkbox" checked> Security License</label>
+            <label><input type="checkbox" checked> Driving License</label>
+            <label><input type="checkbox"> Cooking Experience</label>
+            <label><input type="checkbox"> Construction Skills</label>
+            <label><input type="checkbox"> Communication Skills</label>
+          </div>
+        </div>
+
+        <!-- Location Filter -->
+        <div class="filter-card">
+          <div class="filter-title">Location Preferences</div>
+          <div class="location-filter">
+            <input type="text" placeholder="City or area..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;margin-bottom:10px;">
+            <label>Search Radius: <span id="radiusValue">25</span> km</label>
+            <input type="range" class="radius-slider" min="5" max="100" value="25" oninput="document.getElementById('radiusValue').textContent = this.value">
+          </div>
+        </div>
+
+        <!-- Experience Filter -->
+        <div class="filter-card">
+          <div class="filter-title">Experience Level</div>
+          <div class="experience-levels">
+            <div class="level-option">
+              <input type="checkbox" checked> Fresher (0-1 year)
+            </div>
+            <div class="level-option">
+              <input type="checkbox" checked> Junior (1-3 years)
+            </div>
+            <div class="level-option">
+              <input type="checkbox" checked> Mid-level (3-5 years)
+            </div>
+            <div class="level-option">
+              <input type="checkbox"> Senior (5+ years)
+            </div>
+          </div>
+        </div>
+
+        <!-- Availability Filter -->
+        <div class="filter-card availability-calendar">
+          <div class="filter-title">Available for Interview</div>
+          <div style="margin-bottom:10px;">
+            <select style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;">
+              <option>This Week</option>
+              <option>Next Week</option>
+              <option>This Month</option>
+              <option>Flexible</option>
+            </select>
+          </div>
+          <div class="calendar-grid">
+            <!-- Generate calendar for current week -->
+            <div class="calendar-day available">Mon</div>
+            <div class="calendar-day available">Tue</div>
+            <div class="calendar-day unavailable">Wed</div>
+            <div class="calendar-day available">Thu</div>
+            <div class="calendar-day available">Fri</div>
+            <div class="calendar-day available">Sat</div>
+            <div class="calendar-day unavailable">Sun</div>
+          </div>
+        </div>
+
+        <!-- Education Filter -->
+        <div class="filter-card">
+          <div class="filter-title">Education</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <label><input type="checkbox" checked> 8th Pass</label>
+            <label><input type="checkbox" checked> 10th Pass</label>
+            <label><input type="checkbox" checked> 12th Pass</label>
+            <label><input type="checkbox"> Diploma</label>
+            <label><input type="checkbox"> Graduate</label>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" style="width:100%;" onclick="applyFilters()">Apply Filters</button>
+      </div>
+
+      <!-- Candidates Main -->
+      <div class="candidates-main">
+        <!-- Sort Options -->
+        <div class="card" style="padding:15px;margin-bottom:20px;">
+          <div style="display:flex;gap:10px;align-items:center;">
+            <label>Sort by:</label>
+            <select id="sortCandidates" style="padding:8px;border:1px solid #ddd;border-radius:6px;">
+              <option value="match">Best Match</option>
+              <option value="experience">Experience</option>
+              <option value="location">Location</option>
+              <option value="availability">Availability</option>
+              <option value="recent">Recently Active</option>
+            </select>
+            <button class="btn" onclick="refreshCandidates()">🔄 Refresh</button>
+          </div>
+        </div>
+
+        <!-- Candidates List -->
+        <div id="candidatesList">
+          <p class="meta">Loading candidates...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/partials-unified.js"></script>
+
+  <script>
+    (function () {
+      const user = getUser();
+
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      if (user.role !== "recruiter") {
+        alert("Recruiter access only.");
+        window.location.href = "../index.html";
+        return;
+      }
+
+      document.getElementById("logoutBtn").addEventListener("click", logout);
+
+      let candidates = [];
+      let filteredCandidates = [];
+
+      function esc(s) {
+        return String(s || "").replace(/[&<>"']/g, m => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+        })[m]);
+      }
+
+      function calculateMatchScore(candidate) {
+        let score = 50; // Base score
+        
+        // Skills matching
+        if (candidate.skills && candidate.skills.includes('Security')) score += 20;
+        if (candidate.skills && candidate.skills.includes('Driving')) score += 15;
+        if (candidate.experience >= 2) score += 15;
+        if (candidate.education === '12th Pass' || candidate.education === 'Graduate') score += 10;
+        
+        // Location proximity (mock calculation)
+        if (candidate.location && candidate.location.includes('Mumbai')) score += 10;
+        
+        return Math.min(score, 100);
+      }
+
+      function candidateCard(candidate) {
+        const matchScore = calculateMatchScore(candidate);
+        const scoreColor = matchScore >= 80 ? 'var(--action-green)' : 
+                           matchScore >= 60 ? 'var(--accent-orange)' : '#dc3545';
+        
+        return `
+          <div class="candidate-card">
+            <div class="candidate-header">
+              <div>
+                <div class="candidate-name">${esc(candidate.name)}</div>
+                <div class="info-item">
+                  <span class="info-label">Location:</span> ${esc(candidate.location)}
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Experience:</span> ${candidate.experience} years
+                </div>
+              </div>
+              <div class="match-score" style="background:${scoreColor};">
+                ${matchScore}% Match
+              </div>
+            </div>
+            
+            <div class="candidate-info">
+              <div class="info-item">
+                <span class="info-label">Education:</span> ${esc(candidate.education)}
+              </div>
+              <div class="info-item">
+                <span class="info-label">Phone:</span> ${esc(candidate.phone)}
+              </div>
+              <div class="info-item">
+                <span class="info-label">Email:</span> ${esc(candidate.email)}
+              </div>
+              <div class="info-item">
+                <span class="info-label">Applied:</span> ${candidate.applications_count || 0} jobs
+              </div>
+            </div>
+            
+            <div class="skills-tags">
+              ${candidate.skills ? candidate.skills.split(',').map(skill => 
+                `<span class="skill-tag">${esc(skill.trim())}</span>`
+              ).join('') : ''}
+            </div>
+            
+            <div class="match-details">
+              <strong>Match Analysis:</strong><br>
+              ${matchScore >= 80 ? '✅ Excellent match for your requirements' :
+                matchScore >= 60 ? '⚠️ Good match, consider for interview' :
+                '❌ Low match, may not meet all requirements'}
+            </div>
+            
+            <div class="action-buttons">
+              <button class="btn btn-primary" onclick="viewProfile(${candidate.id})">👤 View Profile</button>
+              <button class="btn" onclick="sendMessage(${candidate.id})">💬 Message</button>
+              <button class="btn" onclick="scheduleInterview(${candidate.id})">📅 Schedule Interview</button>
+              <button class="btn" onclick="shortlistCandidate(${candidate.id})">⭐ Shortlist</button>
+            </div>
+          </div>
+        `;
+      }
+
+      function loadCandidates() {
+        // Mock candidate data
+        candidates = [
+          {
+            id: 1,
+            name: 'Rahul Kumar',
+            location: 'Mumbai, Maharashtra',
+            experience: 3,
+            education: '12th Pass',
+            phone: '+91 9876543210',
+            email: 'rahul@example.com',
+            skills: 'Security, Driving, Communication, First Aid',
+            applications_count: 5,
+            last_active: new Date(Date.now() - 86400000).toISOString()
+          },
+          {
+            id: 2,
+            name: 'Priya Sharma',
+            location: 'Delhi, Delhi',
+            experience: 2,
+            education: 'Graduate',
+            phone: '+91 9876543211',
+            email: 'priya@example.com',
+            skills: 'Cooking, Cleaning, Time Management',
+            applications_count: 8,
+            last_active: new Date(Date.now() - 172800000).toISOString()
+          },
+          {
+            id: 3,
+            name: 'Amit Singh',
+            location: 'Mumbai, Maharashtra',
+            experience: 5,
+            education: 'Diploma',
+            phone: '+91 9876543212',
+            email: 'amit@example.com',
+            skills: 'Security, Driving, Construction, Leadership',
+            applications_count: 3,
+            last_active: new Date(Date.now() - 259200000).toISOString()
+          },
+          {
+            id: 4,
+            name: 'Sunita Patel',
+            location: 'Bangalore, Karnataka',
+            experience: 1,
+            education: '10th Pass',
+            phone: '+91 9876543213',
+            email: 'sunita@example.com',
+            skills: 'Cooking, Cleaning, Child Care',
+            applications_count: 12,
+            last_active: new Date(Date.now() - 432000000).toISOString()
+          }
+        ];
+
+        filteredCandidates = [...candidates];
+        updateStatistics();
+        renderCandidates();
+      }
+
+      function updateStatistics() {
+        const totalCandidates = candidates.length;
+        const highMatchCandidates = filteredCandidates.filter(c => calculateMatchScore(c) >= 80).length;
+        const newCandidates = candidates.filter(c => {
+          const daysSinceActive = (Date.now() - new Date(c.last_active)) / (86400000);
+          return daysSinceActive <= 7;
+        }).length;
+        const activeCandidates = candidates.filter(c => c.applications_count > 0).length;
+
+        document.getElementById('totalCandidates').textContent = totalCandidates;
+        document.getElementById('highMatchCandidates').textContent = highMatchCandidates;
+        document.getElementById('newCandidates').textContent = newCandidates;
+        document.getElementById('activeCandidates').textContent = activeCandidates;
+      }
+
+      function renderCandidates() {
+        const candidatesList = document.getElementById('candidatesList');
+        if (filteredCandidates.length === 0) {
+          candidatesList.innerHTML = '<p class="meta">No candidates found matching your criteria.</p>';
+        } else {
+          candidatesList.innerHTML = filteredCandidates.map(candidateCard).join('');
+        }
+      }
+
+      function applyFilters() {
+        // In a real implementation, this would filter based on the selected criteria
+        alert('Filters applied! In a real system, this would filter candidates based on skills, location, experience, and availability.');
+        renderCandidates();
+      }
+
+      function refreshCandidates() {
+        alert('Refreshing candidate list with latest data...');
+        loadCandidates();
+      }
+
+      function viewProfile(candidateId) {
+        alert(`Viewing full profile for candidate ID: ${candidateId}\n\nThis would show complete profile with resume, work history, and detailed information.`);
+      }
+
+      function sendMessage(candidateId) {
+        const candidate = candidates.find(c => c.id === candidateId);
+        if (candidate) {
+          alert(`Opening message composer for ${candidate.name}\n\nYou can send personalized messages to candidates directly.`);
+        }
+      }
+
+      function scheduleInterview(candidateId) {
+        const candidate = candidates.find(c => c.id === candidateId);
+        if (candidate) {
+          alert(`Scheduling interview with ${candidate.name}\n\nAvailable slots will be shown based on candidate availability.`);
+        }
+      }
+
+      function shortlistCandidate(candidateId) {
+        const candidate = candidates.find(c => c.id === candidateId);
+        if (candidate) {
+          alert(`${candidate.name} added to shortlist!\n\nYou can review shortlisted candidates later.`);
+        }
+      }
+
+      // Sort candidates
+      document.getElementById('sortCandidates').addEventListener('change', function() {
+        const sortBy = this.value;
+        
+        filteredCandidates.sort((a, b) => {
+          switch(sortBy) {
+            case 'match':
+              return calculateMatchScore(b) - calculateMatchScore(a);
+            case 'experience':
+              return b.experience - a.experience;
+            case 'location':
+              return a.location.localeCompare(b.location);
+            case 'availability':
+              return new Date(b.last_active) - new Date(a.last_active);
+            case 'recent':
+              return new Date(b.last_active) - new Date(a.last_active);
+            default:
+              return 0;
+          }
+        });
+        
+        renderCandidates();
+      });
+
+      // Initialize
+      loadCandidates();
+    })();
+  </script>
+
+  <div data-include="footer"></div>
+</body>
+</html>

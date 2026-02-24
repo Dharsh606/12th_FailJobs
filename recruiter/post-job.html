@@ -4,93 +4,131 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Post Job - Recruiter</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../styles-new.css" />
 </head>
 <body>
   <div data-include="header"></div>
 
   <main>
-    <h1 class="section-title">Post a Job</h1>
-    <p class="meta mb-2">Select category properly so workers can find easily.</p>
+    <div class="hero" style="text-align: left; padding: var(--spacing-xl) var(--spacing-lg); margin-bottom: var(--spacing-lg);">
+      <h1 style="margin-bottom: var(--spacing-md); background: linear-gradient(135deg, var(--primary-blue), var(--accent-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Post a Job</h1>
+      <p class="meta" style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 0;">Find the perfect worker for your needs. Fill in the details below to post your job opening.</p>
+    </div>
 
-    <div class="card narrow">
+    <div class="card" style="max-width: 600px; margin: 0 auto; padding: var(--spacing-xl);">
       <form id="postJobForm">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+          <div class="form-group">
+            <label for="category" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+              <span>🏷️</span> Category *
+            </label>
+            <select id="category" required style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
+              <option value="">Select category</option>
+              <option value="Carpenter">🔨 Carpenter</option>
+              <option value="Mason">🧱 Mason</option>
+              <option value="Plumber">🔧 Plumber</option>
+              <option value="Electrician">⚡ Electrician</option>
+              <option value="Painter">🎨 Painter</option>
+              <option value="Driver">🚗 Driver</option>
+              <option value="Cook">👨‍🍳 Cook</option>
+              <option value="Cleaner">🧹 Cleaner</option>
+              <option value="Gardener">🌱 Gardener</option>
+              <option value="Security Guard">🛡️ Security Guard</option>
+              <option value="General Worker">👷 General Worker</option>
+              <option value="Helper">🤝 Helper</option>
+              <option value="Home Maid">🏠 Home Maid</option>
+              <option value="Warehouse Helper">📦 Warehouse Helper</option>
+              <option value="Delivery">🚚 Delivery</option>
+              <option value="Cleaning">🧽 Cleaning</option>
+            </select>
+          </div>
 
-        <div class="form-group">
-          <label for="category">Category *</label>
-          <select id="category" required>
-            <option value="">Select</option>
-            <option value="Home Maid">Home Maid</option>
-            <option value="Security Guard">Security Guard</option>
-            <option value="Helper">Helper</option>
-            <option value="Warehouse Helper">Warehouse Helper</option>
-            <option value="Delivery">Delivery</option>
-            <option value="Driver">Driver</option>
-            <option value="Cook">Cook</option>
-            <option value="Cleaning">Cleaning</option>
-          </select>
+          <div class="form-group">
+            <label for="jobType" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+              <span>⏰</span> Job Type *
+            </label>
+            <select id="jobType" required style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Contract">Contract</option>
+            </select>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="jobTitle">Job title *</label>
-          <input type="text" id="jobTitle" required placeholder="e.g. Home Maid - Morning Shift">
+          <label for="jobTitle" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+            <span>📝</span> Job Title *
+          </label>
+          <input type="text" id="jobTitle" required placeholder="e.g. Home Maid - Morning Shift" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
         </div>
 
         <div class="form-group">
-          <label for="companyName">Recruiter/Company name *</label>
-          <input type="text" id="companyName" required placeholder="Your name or company">
+          <label for="companyName" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+            <span>🏢</span> Recruiter/Company Name *
+          </label>
+          <input type="text" id="companyName" required placeholder="Your name or company" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--spacing-md);">
+          <div class="form-group">
+            <label for="location" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+              <span>📍</span> Location *
+            </label>
+            <input type="text" id="location" required placeholder="e.g. Chennai, Velachery" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
+          </div>
+
+          <div class="form-group">
+            <label for="education" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+              <span>🎓</span> Education *
+            </label>
+            <select id="education" required style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
+              <option value="">Select</option>
+              <option value="18+">18+ student</option>
+              <option value="12th">12th fail</option>
+              <option value="18+/12th">18+ or 12th fail</option>
+            </select>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="location">Location *</label>
-          <input type="text" id="location" required placeholder="e.g. Chennai, Velachery">
+          <label for="salary" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--accent-orange); font-weight: var(--font-weight-semibold);">
+            <span>💰</span> Salary Range
+          </label>
+          <input type="text" id="salary" placeholder="₹10,000 - ₹14,000" style="background: var(--glass-white); border: 2px solid var(--accent-orange); color: var(--text-primary);">
         </div>
 
         <div class="form-group">
-          <label for="education">Education required *</label>
-          <select id="education" required>
-            <option value="">Select</option>
-            <option value="18+">18+ student</option>
-            <option value="12th">12th fail</option>
-            <option value="18+/12th">18+ or 12th fail</option>
-          </select>
+          <label for="description" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+            <span>📋</span> Job Description *
+          </label>
+          <textarea id="description" required placeholder="Describe the work details, responsibilities, and what the worker will be doing..." style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary); min-height: 100px;"></textarea>
         </div>
 
         <div class="form-group">
-          <label for="salary">Salary range</label>
-          <input type="text" id="salary" placeholder="₹10,000 - ₹14,000">
+          <label for="requirements" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+            <span>✅</span> Requirements
+          </label>
+          <textarea id="requirements" placeholder="List requirements (one per line)&#10;Good behavior&#10;Basic experience&#10;Hardworking" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary); min-height: 80px;"></textarea>
         </div>
 
         <div class="form-group">
-          <label for="jobType">Job type *</label>
-          <select id="jobType" required>
-            <option value="Full-time">Full-time</option>
-            <option value="Part-time">Part-time</option>
-            <option value="Contract">Contract</option>
-          </select>
+          <label for="contact" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--accent-green); font-weight: var(--font-weight-semibold);">
+            <span>📞</span> Contact (Phone Preferred) *
+          </label>
+          <input type="text" id="contact" required placeholder="e.g. 9876543210" style="background: var(--glass-white); border: 2px solid var(--accent-green); color: var(--text-primary);">
         </div>
 
-        <div class="form-group">
-          <label for="description">Job description *</label>
-          <textarea id="description" required placeholder="Work details..."></textarea>
+        <div style="display: flex; gap: var(--spacing-md); margin-top: var(--spacing-xl);">
+          <button type="button" class="btn btn-outline" onclick="window.location.href='dashboard.html'" style="flex: 1;">Cancel</button>
+          <button type="submit" class="btn btn-primary" style="flex: 2; background: linear-gradient(135deg, var(--primary-blue), var(--accent-orange));">
+            <span style="margin-right: var(--spacing-xs);">🚀</span> Post Job
+          </button>
         </div>
-
-        <div class="form-group">
-          <label for="requirements">Requirements (one per line)</label>
-          <textarea id="requirements" placeholder="Good behavior&#10;Basic experience"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="contact">Contact (phone preferred) *</label>
-          <input type="text" id="contact" required placeholder="e.g. 9876543210">
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-block">Post Job</button>
       </form>
     </div>
   </main>
 <script src="../js/app.js"></script>
-<script src="../js/partials.js"></script>
+<script src="../js/partials-unified.js"></script>
 
 <script>
 (function () {
@@ -111,29 +149,70 @@
     .addEventListener("submit", async function(e){
       e.preventDefault();
 
-      const payload = {
-        category: document.getElementById("category").value,
-        title: document.getElementById("jobTitle").value.trim(),
-        company: document.getElementById("companyName").value.trim(),
-        location: document.getElementById("location").value.trim(),
-        education: document.getElementById("education").value,
-        salary: document.getElementById("salary").value.trim(),
-        job_type: document.getElementById("jobType").value,
-        description: document.getElementById("description").value.trim(),
-        requirements: document.getElementById("requirements").value.trim(),
-        contact: document.getElementById("contact").value.trim(),
-        created_by: user.id
-      };
+      // Validate required fields
+      const category = document.getElementById("category").value;
+      const title = document.getElementById("jobTitle").value.trim();
+      const company = document.getElementById("companyName").value.trim();
+      const location = document.getElementById("location").value.trim();
+      const education = document.getElementById("education").value;
+      const jobType = document.getElementById("jobType").value;
+      const description = document.getElementById("description").value.trim();
 
-      const data = await postJSON("jobs_create.php", payload);
-
-      if(!data.ok){
-        alert(data.message || "Failed to post job");
+      if (!category) {
+        alert("Please select a category");
+        return;
+      }
+      if (!title) {
+        alert("Please enter a job title");
+        return;
+      }
+      if (!company) {
+        alert("Please enter company name");
+        return;
+      }
+      if (!location) {
+        alert("Please enter location");
+        return;
+      }
+      if (!education) {
+        alert("Please select education requirement");
+        return;
+      }
+      if (!description) {
+        alert("Please enter job description");
         return;
       }
 
-      alert("Job posted successfully ✅");
-      window.location.href = "dashboard.html";
+      const payload = {
+        category: category,
+        title: title,
+        company: company,
+        location: location,
+        education: education,
+        salary: document.getElementById("salary").value.trim(),
+        job_type: jobType,
+        description: description,
+        requirements: document.getElementById("requirements").value.trim(),
+        posted_by: user.id
+      };
+
+      console.log('Sending payload:', payload);
+
+      try {
+        const data = await postJSON("jobs_create.php", payload);
+        console.log('Server response:', data);
+
+        if(!data.ok){
+          alert(data.message || "Failed to post job");
+          return;
+        }
+
+        alert("Job posted successfully ✅");
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        console.error('Error posting job:', error);
+        alert("Error posting job: " + error.message);
+      }
     });
 })();
 </script>

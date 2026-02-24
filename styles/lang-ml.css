@@ -1,0 +1,36 @@
+/* Malayalam Language Specific Styles */
+
+/* Font adjustments for Malayalam */
+[data-lang="ml"] body {
+  font-family: 'Noto Sans Malayalam', 'Rachana', sans-serif;
+}
+
+/* Text direction adjustments */
+[data-lang="ml"] .language-select,
+[data-lang="ml"] .language-label {
+  font-family: 'Noto Sans Malayalam', 'Rachana', sans-serif;
+}
+
+/* Button styling for Malayalam */
+[data-lang="ml"] .btn {
+  font-family: 'Noto Sans Malayalam', 'Rachana', sans-serif;
+  font-weight: 500;
+}
+
+/* Adjust spacing for Malayalam text */
+[data-lang="ml"] .card,
+[data-lang="ml"] .job-card,
+[data-lang="ml"] .candidate-card {
+  line-height: 1.7;
+}
+
+/* Hero text adjustments */
+[data-lang="ml"] .hero h1 {
+  font-size: 5rem; /* Smaller for Malayalam text */
+  line-height: 1.3;
+}
+
+[data-lang="ml"] .hero p {
+  font-size: 14px;
+  line-height: 1.7;
+}

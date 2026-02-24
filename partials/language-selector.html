@@ -1,0 +1,230 @@
+<!-- Global Language Selector Component -->
+<div class="language-selector" id="languageSelector">
+  <div class="language-current" onclick="toggleLanguageDropdown()">
+    <span class="language-flag" id="currentLangFlag">🇬🇧</span>
+    <span class="language-name" id="currentLangName">English</span>
+    <span class="language-arrow">▼</span>
+  </div>
+  
+  <div class="language-dropdown" id="languageDropdown" style="display: none;">
+    <div class="language-options">
+      <div class="language-option" data-lang="en" onclick="changeLanguage('en')">
+        <span class="flag">🇬🇧</span>
+        <span class="name">English</span>
+      </div>
+      <div class="language-option" data-lang="hi" onclick="changeLanguage('hi')">
+        <span class="flag">🇮🇳</span>
+        <span class="name">हिंदी</span>
+      </div>
+      <div class="language-option" data-lang="ta" onclick="changeLanguage('ta')">
+        <span class="flag">🇱🇰</span>
+        <span class="name">தமிழ்</span>
+      </div>
+      <div class="language-option" data-lang="te" onclick="changeLanguage('te')">
+        <span class="flag">🇮🇳</span>
+        <span class="name">తెలుగు</span>
+      </div>
+      <div class="language-option" data-lang="ml" onclick="changeLanguage('ml')">
+        <span class="flag">🇮🇳</span>
+        <span class="name">മലയാളം</span>
+      </div>
+      <div class="language-option" data-lang="kn" onclick="changeLanguage('kn')">
+        <span class="flag">🇮🇳</span>
+        <span class="name">ಕನ್ನಡ</span>
+      </div>
+      <div class="language-option" data-lang="bn" onclick="changeLanguage('bn')">
+        <span class="flag">🇧🇩</span>
+        <span class="name">বাংলা</span>
+      </div>
+      <div class="language-option" data-lang="mr" onclick="changeLanguage('mr')">
+        <span class="flag">🇮🇳</span>
+        <span class="name">मराठी</span>
+      </div>
+      <div class="language-option" data-lang="gu" onclick="changeLanguage('gu')">
+        <span class="flag">🇮🇳</span>
+        <span class="name">ગુજરાતી</span>
+      </div>
+      <div class="language-option" data-lang="pa" onclick="changeLanguage('pa')">
+        <span class="flag">🇮🇳</span>
+        <span class="name">ਪੰਜਾਬੀ</span>
+      </div>
+      <div class="language-option" data-lang="or" onclick="changeLanguage('or')">
+        <span class="flag">🇮🇳</span>
+        <span class="name">ଓଡ଼ିଆ</span>
+      </div>
+      <div class="language-option" data-lang="as" onclick="changeLanguage('as')">
+        <span class="flag">🇮🇳</span>
+        <span class="name">অসমীয়া</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.language-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.language-current {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.language-current:hover {
+  background: var(--accent-orange);
+  color: white;
+}
+
+.language-flag {
+  font-size: 18px;
+}
+
+.language-name {
+  font-weight: 500;
+}
+
+.language-arrow {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.language-selector:hover .language-arrow {
+  transform: rotate(180deg);
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.language-options {
+  padding: 8px 0;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.language-option:hover {
+  background: var(--glass-bg);
+}
+
+.language-option:last-child {
+  border-bottom: none;
+}
+
+.language-option .flag {
+  font-size: 20px;
+}
+
+.language-option .name {
+  font-weight: 500;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .language-dropdown {
+    right: -50px;
+    transform: translateX(50%);
+  }
+  
+  .language-option {
+    padding: 10px 12px;
+  }
+  
+  .language-option .name {
+    font-size: 14px;
+  }
+}
+</style>
+
+<script>
+// Global language selector functionality
+function toggleLanguageDropdown() {
+  const dropdown = document.getElementById('languageDropdown');
+  const isVisible = dropdown.style.display !== 'none';
+  
+  // Close all other dropdowns
+  document.querySelectorAll('.language-dropdown').forEach(d => {
+    if (d !== dropdown) d.style.display = 'none';
+  });
+  
+  dropdown.style.display = isVisible ? 'none' : 'block';
+}
+
+function changeLanguage(lang) {
+  // Use the enhanced language system
+  if (typeof setLang === 'function') {
+    setLang(lang);
+  } else {
+    // Fallback for pages without enhanced system
+    localStorage.setItem('failjob_lang', lang);
+    location.reload();
+  }
+}
+
+// Update current language display
+function updateCurrentLanguageDisplay() {
+  const currentLang = getLang ? getLang() : 'en';
+  const flagElement = document.getElementById('currentLangFlag');
+  const nameElement = document.getElementById('currentLangName');
+  
+  const langInfo = {
+    'en': { flag: '🇬🇧', name: 'English' },
+    'hi': { flag: '🇮🇳', name: 'हिंदी' },
+    'ta': { flag: '🇱🇰', name: 'தமிழ்' },
+    'te': { flag: '🇮🇳', name: 'తెలుగు' },
+    'ml': { flag: '🇮🇳', name: 'മലയാളം' },
+    'kn': { flag: '🇮🇳', name: 'ಕನ್ನಡ' },
+    'bn': { flag: '🇧🇩', name: 'বাংলা' },
+    'mr': { flag: '🇮🇳', name: 'मराठी' },
+    'gu': { flag: '🇮🇳', name: 'ગુજરાતી' },
+    'pa': { flag: '🇮🇳', name: 'ਪੰਜਾਬੀ' },
+    'or': { flag: '🇮🇳', name: 'ଓଡ଼ିଆ' },
+    'as': { flag: '🇮🇳', name: 'অসমীয়া' }
+  };
+  
+  const info = langInfo[currentLang] || langInfo['en'];
+  
+  if (flagElement) flagElement.textContent = info.flag;
+  if (nameElement) nameElement.textContent = info.name;
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('.language-selector')) {
+    document.querySelectorAll('.language-dropdown').forEach(d => {
+      d.style.display = 'none';
+    });
+  }
+});
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  updateCurrentLanguageDisplay();
+});
+</script>

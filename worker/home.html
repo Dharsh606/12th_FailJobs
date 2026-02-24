@@ -4,13 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Worker - 12failjob.com</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../styles-new.css" />
 
   <style>
     .tile-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 12px;
+    }
+    @media (max-width: 768px) {
+      .tile-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 520px) {
       .tile-grid { grid-template-columns: 1fr; }
@@ -58,6 +61,8 @@
     <div class="top-row">
       <a class="btn btn-primary" href="profile.html">My Profile</a>
       <a class="btn btn-primary" href="applications.html">My Applications</a>
+      <a class="btn btn-primary" href="tracking.html">📊 Tracking</a>
+      <a class="btn btn-primary" href="messages.html">💬 Messages</a>
       <button class="btn btn-primary" onclick="showAllJobs()">📋 Show All Jobs</button>
       <button class="btn" id="logoutBtn">Logout</button>
       <a href="../index.html" class="btn btn-primary">Change Language</a>
@@ -67,29 +72,29 @@
     <p class="meta" id="pageSub">Tap a category to see jobs near you</p>
 
     <div id="categoriesSection" class="tile-grid mt-2">
-      <div class="card tile" data-category="Home%20Maid">
-        <p class="tile-title">Home Maid</p>
-        <p class="meta tile-sub">🏠</p>
+      <div class="card tile" data-category="Carpenter">
+        <p class="tile-title">Carpenter</p>
+        <p class="meta tile-sub">🔨</p>
       </div>
 
-      <div class="card tile" data-category="Security%20Guard">
-        <p class="tile-title">Security Guard</p>
-        <p class="meta tile-sub">🛡</p>
+      <div class="card tile" data-category="Mason">
+        <p class="tile-title">Mason</p>
+        <p class="meta tile-sub">🧱</p>
       </div>
 
-      <div class="card tile" data-category="Helper">
-        <p class="tile-title">Helper</p>
-        <p class="meta tile-sub">🧰</p>
+      <div class="card tile" data-category="Plumber">
+        <p class="tile-title">Plumber</p>
+        <p class="meta tile-sub">🔧</p>
       </div>
 
-      <div class="card tile" data-category="Warehouse%20Helper">
-        <p class="tile-title">Warehouse Helper</p>
-        <p class="meta tile-sub">📦</p>
+      <div class="card tile" data-category="Electrician">
+        <p class="tile-title">Electrician</p>
+        <p class="meta tile-sub">⚡</p>
       </div>
 
-      <div class="card tile" data-category="Delivery">
-        <p class="tile-title">Delivery</p>
-        <p class="meta tile-sub">🚚</p>
+      <div class="card tile" data-category="Painter">
+        <p class="tile-title">Painter</p>
+        <p class="meta tile-sub">🎨</p>
       </div>
 
       <div class="card tile" data-category="Driver">
@@ -99,12 +104,47 @@
 
       <div class="card tile" data-category="Cook">
         <p class="tile-title">Cook</p>
-        <p class="meta tile-sub">🍲</p>
+        <p class="meta tile-sub">👨‍🍳</p>
       </div>
 
-      <div class="card tile" data-category="Cleaning">
-        <p class="tile-title">Cleaning</p>
+      <div class="card tile" data-category="Cleaner">
+        <p class="tile-title">Cleaner</p>
         <p class="meta tile-sub">🧹</p>
+      </div>
+
+      <div class="card tile" data-category="Gardener">
+        <p class="tile-title">Gardener</p>
+        <p class="meta tile-sub">🌱</p>
+      </div>
+
+      <div class="card tile" data-category="Security Guard">
+        <p class="tile-title">Security Guard</p>
+        <p class="meta tile-sub">🛡️</p>
+      </div>
+
+      <div class="card tile" data-category="General Worker">
+        <p class="tile-title">General Worker</p>
+        <p class="meta tile-sub">👷</p>
+      </div>
+
+      <div class="card tile" data-category="Helper">
+        <p class="tile-title">Helper</p>
+        <p class="meta tile-sub">🤝</p>
+      </div>
+
+      <div class="card tile" data-category="Home Maid">
+        <p class="tile-title">Home Maid</p>
+        <p class="meta tile-sub">🏠</p>
+      </div>
+
+      <div class="card tile" data-category="Warehouse Helper">
+        <p class="tile-title">Warehouse Helper</p>
+        <p class="meta tile-sub">📦</p>
+      </div>
+
+      <div class="card tile" data-category="Delivery">
+        <p class="tile-title">Delivery</p>
+        <p class="meta tile-sub">🚚</p>
       </div>
     </div>
 
@@ -120,7 +160,7 @@
   </main>
 
   <script src="../js/app.js"></script>
-  <script src="../js/partials.js"></script>
+  <script src="../js/partials-unified.js"></script>
 
   <script>
     function esc(s){
@@ -192,6 +232,32 @@
       document.querySelector(".back-btn").style.display = "block";
       
       loadAllJobs();
+    }
+
+    async function loadAllJobs() {
+      const list = document.getElementById("jobsList");
+      list.innerHTML = `<p class="meta">Loading all jobs...</p>`;
+
+      try{
+        const res = await fetch(API("jobs_list.php"));
+        const data = await res.json();
+
+        if (!data.ok){
+          list.innerHTML = `<p class="meta">Failed to load jobs.</p>`;
+          return;
+        }
+
+        const jobs = data.jobs || [];
+        if (jobs.length === 0){
+          list.innerHTML = `<p class="meta">No jobs found.</p>`;
+          return;
+        }
+
+        list.innerHTML = jobs.map(jobCard).join("");
+      }catch(e){
+        console.error(e);
+        list.innerHTML = `<p class="meta">Server error. Check XAMPP.</p>`;
+      }
     }
 
     function showCategories() {

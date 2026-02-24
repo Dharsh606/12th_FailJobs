@@ -1,0 +1,167 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Rahul Kumar",
+      "email": "rahul@example.com",
+      "password": "$2a$10$T8g0v1cm02awghIIa7pwgONGRZ9S6gYJRfqZGNvHjFGGZHdS8imlG",
+      "role": "worker",
+      "phone": "9876543210",
+      "education": "12th Pass",
+      "skills": "Computer Basics, Data Entry",
+      "experience": "Fresher",
+      "created_at": "2026-02-23T15:53:54.900Z"
+    },
+    {
+      "id": 2,
+      "name": "Priya Sharma",
+      "email": "priya@example.com",
+      "password": "$2a$10$9CMeW35LW3qqc0fb4jR99OYpqMM9F3lnf9m.hvfnhgcviO8yR05Oi",
+      "role": "recruiter",
+      "phone": "9876543211",
+      "company": "Tech Solutions Pvt Ltd",
+      "created_at": "2026-02-23T15:53:54.961Z"
+    },
+    {
+      "id": 3,
+      "name": "Amit Singh",
+      "email": "amit@example.com",
+      "password": "$2a$10$.m5LsDdcl53zQW02WRQKIuVxDf6Ihth4fwhVtGat4Be2O4vuGky/O",
+      "role": "worker",
+      "phone": "9876543212",
+      "education": "10th Pass",
+      "skills": "Driving, Delivery",
+      "experience": "2 years",
+      "created_at": "2026-02-23T15:53:55.030Z"
+    },
+    {
+      "id": 4,
+      "name": "dr",
+      "email": "d@gmail.com",
+      "password": "$2a$10$yJI7wdAeCeyEeNz8FG5aq.QrYNpyDI/zw42458r8GTJ35YKGZKbNS",
+      "role": "recruiter",
+      "phone": "",
+      "education": "",
+      "skills": "",
+      "experience": "",
+      "company": "",
+      "created_at": "2026-02-23T16:02:23.991Z"
+    },
+    {
+      "id": 5,
+      "name": "rr",
+      "email": "r@gamil.com",
+      "password": "$2a$10$toqdGYSRpxiLDY6BcU8CjO6p12fDFknRmnJuH7jVLjjbhSKf7Hqo6",
+      "role": "worker",
+      "phone": "",
+      "education": "",
+      "skills": "",
+      "experience": "",
+      "company": "",
+      "created_at": "2026-02-24T06:24:39.230Z"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Data Entry Operator",
+      "company": "Tech Solutions Pvt Ltd",
+      "description": "Looking for a data entry operator with basic computer knowledge. Must be able to type quickly and accurately.",
+      "requirements": "Basic computer skills, 10th pass, good typing speed",
+      "salary": "₹15,000 - ₹20,000 per month",
+      "location": "Delhi",
+      "education": "10th Pass",
+      "job_type": "Full Time",
+      "category": "Data Entry",
+      "status": "active",
+      "posted_by": 2,
+      "created_at": "2026-02-23T15:53:55.030Z"
+    },
+    {
+      "id": 2,
+      "title": "Delivery Boy",
+      "company": "Quick Delivery Services",
+      "description": "Urgent requirement for delivery boys. Must have own bike and valid driving license.",
+      "requirements": "Valid driving license, know local area, hardworking",
+      "salary": "₹12,000 - ₹18,000 per month",
+      "location": "Mumbai",
+      "education": "8th Pass",
+      "job_type": "Full Time",
+      "category": "Delivery",
+      "status": "active",
+      "posted_by": 2,
+      "created_at": "2026-02-23T15:53:55.030Z"
+    },
+    {
+      "id": 3,
+      "title": "Office Assistant",
+      "company": "Business Solutions",
+      "description": "Need an office assistant for daily administrative tasks. Good communication skills required.",
+      "requirements": "12th pass, basic computer knowledge, good communication",
+      "salary": "₹18,000 - ₹25,000 per month",
+      "location": "Bangalore",
+      "education": "12th Pass",
+      "job_type": "Full Time",
+      "category": "Office Work",
+      "status": "active",
+      "posted_by": 2,
+      "created_at": "2026-02-23T15:53:55.030Z"
+    },
+    {
+      "id": 4,
+      "title": "dfdf",
+      "company": "fdfdfd",
+      "description": "fdfdfd",
+      "requirements": "dfdfdf",
+      "salary": "1000",
+      "location": "fdfdfdfd",
+      "education": "18+",
+      "job_type": "Part-time",
+      "category": "Security Guard",
+      "status": "active",
+      "posted_by": 4,
+      "created_at": "2026-02-24T07:03:34.833Z"
+    }
+  ],
+  "applications": [
+    {
+      "id": 1,
+      "job_id": 1,
+      "user_id": 1,
+      "status": "pending",
+      "applied_at": "2026-02-23T15:53:55.030Z"
+    },
+    {
+      "id": 2,
+      "job_id": 2,
+      "user_id": 3,
+      "status": "pending",
+      "applied_at": "2026-02-23T15:53:55.030Z"
+    },
+    {
+      "id": 3,
+      "job_id": 4,
+      "user_id": 5,
+      "status": "pending",
+      "applied_at": "2026-02-24T06:44:28.356Z"
+    },
+    {
+      "id": 4,
+      "job_id": 2,
+      "user_id": 5,
+      "status": "pending",
+      "applied_at": "2026-02-24T06:45:18.266Z"
+    },
+    {
+      "id": 5,
+      "job_id": 5,
+      "user_id": 5,
+      "applicant_name": "Test Worker",
+      "applicant_phone": "9876543210",
+      "applicant_email": "worker@example.com",
+      "message": "I am interested in this Security Guard job.",
+      "status": "pending",
+      "applied_at": "2026-02-24T06:53:45.650Z"
+    }
+  ]
+}

@@ -1,67 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Recruiter Login</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12thFailJobs - Choose Your Role</title>
+  <link rel="stylesheet" href="styles-new.css">
 </head>
 <body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-container">
+        <a href="index.html" class="logo-link">
+          <img src="assets/logo.png" alt="12thFailJobs Logo">
+        </a>
+        <div class="site-title">
+          <span>12thFailJobs</span>
+          <div class="slogan">Empowering India's Real Workforce</div>
+        </div>
+      </div>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="worker/login.html">Worker Login</a></li>
+          <li><a href="recruiter/login.html">Recruiter Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
   <main class="auth-page">
     <div class="auth-card">
-      <div class="brand" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <h2 style="margin:0">12failjob.com</h2>
-        <span class="pill">RECRUITER</span>
+      <!-- Logo Section -->
+      <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+        <img src="assets/logo.png" alt="12thFailJobs" style="height: 60px; margin-bottom: var(--spacing);">
+        <h1 style="font-size: 1.5rem; color: var(--primary); margin-bottom: var(--spacing-sm);">Welcome to 12thFailJobs</h1>
+        <p style="color: var(--text-light); margin-bottom: var(--spacing-lg);">Choose your role to get started</p>
       </div>
 
-      <div class="auth-tabs">
-        <button type="button" class="auth-tab active" data-tab="login">Login</button>
-        <button type="button" class="auth-tab" data-tab="register">Register</button>
+      <!-- Role Selection -->
+      <div class="grid grid-2" style="margin-bottom: var(--spacing-xl);">
+        <a href="worker/login.html" class="card animate-slide-in-left" style="text-decoration: none; display: block;">
+          <div style="text-align: center; padding: var(--spacing-lg) 0;">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing);">👷</div>
+            <h3 style="font-size: 1.25rem; color: var(--primary); margin-bottom: var(--spacing-sm);">I'm a Worker</h3>
+            <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: var(--spacing);">Find jobs, apply easily, connect with recruiters</p>
+            <div class="tag">Jobs • Apply • Connect</div>
+          </div>
+        </a>
+
+        <a href="recruiter/login.html" class="card animate-slide-in-right" style="text-decoration: none; display: block;">
+          <div style="text-align: center; padding: var(--spacing-lg) 0;">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing);">👔</div>
+            <h3 style="font-size: 1.25rem; color: var(--accent); margin-bottom: var(--spacing-sm);">I'm a Recruiter</h3>
+            <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: var(--spacing);">Post jobs, manage applications, hire trusted workers</p>
+            <div class="tag" style="background: var(--accent-light); color: var(--accent);">Post • Manage • Hire</div>
+          </div>
+        </a>
       </div>
 
-      <div id="loginPanel" class="auth-panel active">
-        <form id="loginForm">
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="loginEmail" required>
+      <!-- Quick Stats -->
+      <div style="text-align: center; padding: var(--spacing-lg); border-top: 1px solid var(--border); margin-top: var(--spacing-lg);">
+        <div style="display: flex; justify-content: space-around; gap: var(--spacing-lg);">
+          <div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">500+</div>
+            <div style="font-size: 0.875rem; color: var(--text-light);">Active Jobs</div>
           </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" id="loginPassword" required>
+          <div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">1000+</div>
+            <div style="font-size: 0.875rem; color: var(--text-light);">Workers</div>
           </div>
-          <div class="auth-actions">
-            <button class="btn btn-primary btn-block" type="submit">Login</button>
-          </div>
-        </form>
+        </div>
       </div>
 
-      <div id="registerPanel" class="auth-panel">
-        <form id="registerForm">
-          <div class="form-group">
-            <label>Name / Company *</label>
-            <input type="text" id="regName" required>
-          </div>
-          <div class="form-group">
-            <label>Email *</label>
-            <input type="email" id="regEmail" required>
-          </div>
-          <div class="form-group">
-            <label>Password *</label>
-            <input type="password" id="regPassword" required minlength="6">
-          </div>
-          <div class="form-group">
-            <label>Confirm Password *</label>
-            <input type="password" id="regConfirm" required>
-          </div>
-          <div class="auth-actions">
-            <button class="btn btn-primary btn-block" type="submit">Register</button>
-          </div>
-        </form>
+      <!-- Language Selection -->
+      <div style="text-align: center;">
+        <label style="font-weight: 600; margin-bottom: var(--spacing-sm); display: block;">Choose Language</label>
+        <select id="langSelect" style="padding: var(--spacing); border-radius: var(--radius); border: 2px solid var(--border); width: 100%; max-width: 200px;">
+          <option value="en">English</option>
+          <option value="hi">हिंदी</option>
+          <option value="ta">தமிழ்</option>
+          <option value="te">తెలుగు</option>
+          <option value="ml">മലയാളം</option>
+          <option value="kn">ಕನ್ನಡ</option>
+          <option value="bn">বাংলা</option>
+          <option value="mr">मराठी</option>
+          <option value="gu">ગુજરાતી</option>
+          <option value="pa">ਪੰਜਾਬੀ</option>
+          <option value="or">ଓଡ଼ିଆ</option>
+          <option value="as">অসমীয়া</option>
+        </select>
+        <p style="color: var(--text-light); font-size: 0.875rem; margin-top: var(--spacing-sm);">Language preference will be saved</p>
       </div>
     </div>
   </main>
 
-  <div data-include="footer"></div>
-  <script src="js/partials.js"></script>
+  <footer class="site-footer">
+    <p>&copy; 2024 12thFailJobs. Empowering India's Real Workforce.</p>
+    <p>
+      <a href="index.html" style="color: var(--primary);">Home</a> •
+      <a href="worker/login.html" style="color: var(--primary);">Worker Login</a> •
+      <a href="recruiter/login.html" style="color: var(--primary);">Recruiter Login</a>
+    </p>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/partials-unified.js"></script>
+  <script>
+    (async function(){
+      // Load language preference
+      await loadLangRoot();
+      applyI18n();
+
+      // Set language dropdown
+      const sel = document.getElementById("langSelect");
+      if (sel) {
+        sel.value = getLang();
+        sel.addEventListener("change", () => setLang(sel.value));
+      }
+    })();
+  </script>
 </body>
 </html>

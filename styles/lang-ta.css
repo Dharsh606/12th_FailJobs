@@ -1,0 +1,36 @@
+/* Tamil Language Specific Styles */
+
+/* Font adjustments for Tamil */
+[data-lang="ta"] body {
+  font-family: 'Noto Sans Tamil', 'Lohit Tamil', sans-serif;
+}
+
+/* Text direction adjustments */
+[data-lang="ta"] .language-select,
+[data-lang="ta"] .language-label {
+  font-family: 'Noto Sans Tamil', 'Lohit Tamil', sans-serif;
+}
+
+/* Button styling for Tamil */
+[data-lang="ta"] .btn {
+  font-family: 'Noto Sans Tamil', 'Lohit Tamil', sans-serif;
+  font-weight: 500;
+}
+
+/* Adjust spacing for Tamil text */
+[data-lang="ta"] .card,
+[data-lang="ta"] .job-card,
+[data-lang="ta"] .candidate-card {
+  line-height: 1.7;
+}
+
+/* Hero text adjustments */
+[data-lang="ta"] .hero h1 {
+  font-size: 5rem; /* Smaller for Tamil text */
+  line-height: 1.3;
+}
+
+[data-lang="ta"] .hero p {
+  font-size: 14px;
+  line-height: 1.7;
+}

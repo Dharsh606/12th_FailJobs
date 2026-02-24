@@ -2,9 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
   <title>12thFailJobs</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles-new.css" />
+  <style>
+    /* Override inline styles to use main CSS properly */
+    .wrap { 
+      max-width: 1200px !important; 
+      margin: 0 auto !important; 
+      padding: 20px !important;
+    }
+    .hero {
+      background: var(--glass-bg) !important;
+      backdrop-filter: blur(12px) !important;
+      color: var(--text) !important;
+      border-radius: var(--radius) !important;
+      padding: 60px 20px !important;
+      text-align: center !important;
+    }
+    .hero h1 {
+      font-size: 6.5rem !important;
+      color: var(--primary) !important;
+      margin-bottom: 15px !important;
+    }
+    .hero p {
+      color: var(--text-muted) !important;
+      margin-bottom: 20px !important;
+    }
+    .card {
+      background: var(--glass-bg) !important;
+      backdrop-filter: blur(12px) !important;
+      border: var(--glass-border) !important;
+      border-radius: var(--radius) !important;
+      box-shadow: var(--glass-shadow) !important;
+      color: var(--text) !important;
+    }
+    .bigcard {
+      background: var(--glass-bg) !important;
+      backdrop-filter: blur(12px) !important;
+      border: var(--glass-border) !important;
+      border-radius: var(--radius) !important;
+      box-shadow: var(--glass-shadow) !important;
+      color: var(--text) !important;
+      transition: transform 0.3s ease !important;
+    }
+    .bigcard:hover {
+      transform: translateY(-5px) !important;
+      background: var(--glass-bg-hover) !important;
+    }
+    .tag {
+      background: rgba(0, 78, 146, 0.15) !important;
+      color: var(--primary) !important;
+    }
+    .langcard {
+      background: var(--glass-bg) !important;
+      backdrop-filter: blur(12px) !important;
+      border: var(--glass-border) !important;
+      border-radius: var(--radius) !important;
+      box-shadow: var(--glass-shadow) !important;
+      color: var(--text) !important;
+    }
+    /* Ensure navigation works */
+    .site-header {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 1000 !important;
+      background: var(--glass-bg) !important;
+      backdrop-filter: blur(3px) !important;
+      border-bottom: var(--glass-border) !important;
+      box-shadow: var(--glass-shadow) !important;
+    }
+    .nav-menu a {
+      color: var(--text) !important;
+      font-weight: 600 !important;
+      text-decoration: none !important;
+    }
+    .nav-menu a:hover {
+      color: var(--accent) !important;
+      background: rgba(255, 140, 0, 0.1) !important;
+    }
+  </style>
 
   <style>
     /* Removed the transparent body background to allow styles.css to load the image */
@@ -32,60 +109,71 @@
 </head>
 
 <body>
+  <div class="floating-particles"></div>
   <div data-include="header"></div>
 
   <div class="wrap">
 
-    <section class="hero">
+    <section class="hero animate-fade-in-up">
       <div>
-        <h1 data-i18n="project_name">12thFailJobs</h1>
+        <h1 class="gradient-text" data-i18n="project_name">12thFailJobs</h1>
         <p data-i18n="project_tagline">Empowering India's Real Workforce</p>
       </div>
     </section>
 
-    <div class="card langcard reveal" style="margin-top:14px;">
-      <label style="font-weight:800;display:block;margin-bottom:8px;" data-i18n="choose_language">Choose Language</label>
-      <select id="langSelect" style="width:100%;padding:12px;font-size:18px;border-radius:12px;">
-        <option value="en">English</option>
-        <option value="hi">हिंदी</option>
-        <option value="ta">தமிழ்</option>
-        <option value="te">తెలుగు</option>
-        <option value="ml">മലയാളം</option>
-        <option value="kn">ಕನ್ನಡ</option>
-        <option value="bn">বাংলা</option>
-        <option value="mr">मराठी</option>
-        <option value="gu">ગુજરાતી</option>
-        <option value="pa">ਪੰਜਾਬੀ</option>
-        <option value="or">ଓଡ଼ିଆ</option>
-        <option value="as">অসমীয়া</option>
-      </select>
-      <p class="meta" style="margin-top:10px;" data-i18n="lang_hint">
-        Language will be saved for all pages.
-      </p>
-    </div>
+    <div class="section-chooser">
+      <h2 class="section-title" data-i18n="choose_role">Choose Your Path</h2>
 
-    <h2 data-i18n="choose_role" style="font-size:22px;margin:16px 0 10px;">Choose Your Section</h2>
+      <div class="role-cards">
+        <a href="worker/login.html" class="role-card worker">
+          <span class="role-icon">👷</span>
+          <h3 class="role-title" data-i18n="i_am_worker">I am a Worker</h3>
+          <p class="role-description" data-i18n="worker_sub">Find nearby jobs easily and start working today</p>
+          <div class="role-features">
+            <span class="role-feature">� Simple Apply</span>
+            <span class="role-feature">� Direct Call</span>
+            <span class="role-feature">⚡ Quick Jobs</span>
+          </div>
+        </a>
 
-    <div class="grid2">
-      <a href="worker/login.html" class="card bigcard">
-        <div class="bigtitle" data-i18n="i_am_worker">I am a Worker</div>
-        <div class="meta" data-i18n="worker_sub">Find nearby jobs easily</div>
-        <span class="tag" data-i18n="worker_tag">Jobs • Call • Simple</span>
-      </a>
-
-      <a href="recruiter/login.html" class="card bigcard">
-        <div class="bigtitle" data-i18n="i_am_recruiter">I am a Recruiter</div>
-        <div class="meta" data-i18n="recruiter_sub">Hire trusted workers fast</div>
-        <span class="tag" data-i18n="recruiter_tag">Post • Manage • Hire</span>
-      </a>
+        <a href="recruiter/login.html" class="role-card recruiter">
+          <span class="role-icon">👔</span>
+          <h3 class="role-title" data-i18n="i_am_recruiter">I am a Recruiter</h3>
+          <p class="role-description" data-i18n="recruiter_sub">Hire trusted workers fast and grow your business</p>
+          <div class="role-features">
+            <span class="role-feature">📝 Post Jobs</span>
+            <span class="role-feature">👥 Manage Applications</span>
+            <span class="role-feature">🎯 Hire Smart</span>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 
   <div data-include="footer"></div>
 
   <script src="js/i18n.js"></script>
-  <script src="js/partials.js"></script>
+  <script src="js/partials-unified.js"></script>
   <script>
+    // Mobile Navigation Toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('open');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
+            navMenu.classList.remove('open');
+          }
+        });
+      }
+    });
+
     (async function(){
       await loadLangRoot();   // root page loader
       applyI18n();
@@ -93,6 +181,10 @@
       const sel = document.getElementById("langSelect");
       sel.value = getLang();
       sel.addEventListener("change", () => setLang(sel.value));
+      
+      // Initialize language buttons
+      updateLanguageButtons(getLang());
+      updatePageLanguage(getLang());
     })();
   </script>
   <script>

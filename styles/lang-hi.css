@@ -1,0 +1,36 @@
+/* Hindi Language Specific Styles */
+
+/* Font adjustments for Hindi */
+[data-lang="hi"] body {
+  font-family: 'Kohino Devanagari', 'Noto Sans Devanagari', sans-serif;
+}
+
+/* Text direction adjustments */
+[data-lang="hi"] .language-select,
+[data-lang="hi"] .language-label {
+  font-family: 'Kohino Devanagari', 'Noto Sans Devanagari', sans-serif;
+}
+
+/* Button styling for Hindi */
+[data-lang="hi"] .btn {
+  font-family: 'Kohino Devanagari', 'Noto Sans Devanagari', sans-serif;
+  font-weight: 500;
+}
+
+/* Adjust spacing for Devanagari text */
+[data-lang="hi"] .card,
+[data-lang="hi"] .job-card,
+[data-lang="hi"] .candidate-card {
+  line-height: 1.6;
+}
+
+/* Hero text adjustments */
+[data-lang="hi"] .hero h1 {
+  font-size: 5.5rem; /* Slightly smaller for Hindi text */
+  line-height: 1.2;
+}
+
+[data-lang="hi"] .hero p {
+  font-size: 15px;
+  line-height: 1.6;
+}

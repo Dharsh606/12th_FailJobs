@@ -8,7 +8,7 @@
 
 ## 🎯 Slogan
 
-*"Your Skills Matter More Than Your Marks"*
+*"Empowering India's Real Workforce"*
 
 ## 🏢 Company Details
 
@@ -16,25 +16,33 @@
 - **Company**: Yuga Yatra Retail OPC Limited
 - **Developer**: Dharshan V
 - **Email**: dharshan.vreddy2819@gmail.com
-- **Version**: 1.0.0
+- **Version**: 2.0.0
 - **License**: MIT
 
 ## ✨ Features
 
-### For Job Seekers
+### For Job Seekers (Workers)
 - 📝 Easy registration and profile creation
-- 🔍 Advanced job search functionality
+- 🔍 Advanced job search with filters (location, education, category)
 - 📱 Mobile-responsive design
-- 🌐 Multi-language support (12+ Indian languages)
+- 🌐 **Dynamic Multi-language support (12+ Indian languages)**
 - 📊 Application tracking system
 - 💼 Job details and company information
+- 📞 Direct contact with recruiters
+- 🎯 Personalized job recommendations
+- 📈 Interview tracking
 
 ### For Recruiters
-- 👥 Dashboard for managing job postings
-- 📋 Application management system
+- 👥 **Advanced Dashboard** with analytics
+- 📋 **Application Management System**
 - 🔐 Secure authentication
-- 📈 Application status tracking
-- 📝 Job creation and deletion tools
+- 📈 **Application Status Tracking**
+- 📝 **Job Creation and Management Tools**
+- 🎯 **AI-Powered Candidate Matching**
+- 📊 **Hiring Analytics Dashboard**
+- 💬 **Communication Tools** with candidates
+- 📱 **Candidate Management**
+- 🎨 **Modern UI/UX Design**
 
 ## 🛠️ Technology Stack
 
@@ -43,124 +51,187 @@
 - **CSS3** - Modern styling with animations
 - **JavaScript (ES6+)** - Interactive functionality
 - **Responsive Design** - Mobile-first approach
+- **Glassmorphism UI** - Modern design system
 
 ### Backend
-- **PHP** - Server-side logic
-- **MySQL** - Database management
+- **Node.js** - Server-side runtime
+- **Express.js** - Web framework
+- **JSON Database** - In-memory storage with persistence
 - **RESTful API** - Clean data handling
 
 ### Features
-- **i18n Support** - 12+ Indian languages
+- **Dynamic i18n Support** - 12+ Indian languages with real-time switching
 - **Multi-role System** - Worker, Recruiter, Admin
 - **Secure Authentication** - Login/Registration system
+- **Real-time Updates** - Dynamic content without page reload
+- **Performance Optimizations** - Lazy loading, caching
 
 ## 🌍 Multi-Language Support
 
-Supported Languages:
-- हिन्दी (Hindi)
-- বাংলা (Bengali)
-- ગુજરાતી (Gujarati)
-- ಕನ್ನಡ (Kannada)
-- മലയാളം (Malayalam)
-- मराठी (Marathi)
-- ଓଡ଼ିଆ (Odia)
-- ਪੰਜਾਬੀ (Punjabi)
-- தமிழ் (Tamil)
-- తెలుగు (Telugu)
-- اردو (Urdu)
-- English
+**Supported Languages with Dynamic Switching:**
+- 🇬🇧 English (en)
+- 🇮🇳 हिन्दी (Hindi)
+- 🇧🇩 বাংলা (Bengali)
+- 🇮🇳 ગુજરાતી (Gujarati)
+- 🇮🇳 ಕನ್ನಡ (Kannada)
+- 🇮🇳 മലയാളം (Malayalam)
+- 🇮🇳 मराठी (Marathi)
+- 🇮🇳 ଓଡ଼ିଆ (Odia)
+- 🇮🇳 ਪੰਜਾਬੀ (Punjabi)
+- 🇱🇰 தமிழ் (Tamil)
+- 🇮🇳 తెలుగు (Telugu)
+- 🇮🇳 অসমীয়া (Assamese)
+
+**Features:**
+- 🔄 **Real-time language switching** without page reload
+- 🎨 **Language-specific CSS** for proper font rendering
+- 💾 **Persistent language preference** in localStorage
+- 🌐 **Global language selector** in header
+- 📱 **Mobile-optimized** language dropdown
 
 ## 📁 Project Structure
 
 ```
 12thfailjob/
 ├── 📄 index.html              # Main landing page
-├── 📄 login.html              # Login page
-├── 📄 styles.css              # Main stylesheet
-├── 📁 js/                     # JavaScript files
-│   ├── app.js                 # Main application logic
-│   ├── i18n.js                # Internationalization
-│   ├── partials.js            # Template management
-│   └── script.js              # Utility functions
-├── 📁 backend/                # PHP backend
-│   ├── config.php             # Database configuration
-│   ├── auth_login.php         # Login authentication
-│   ├── auth_register.php      # User registration
-│   ├── jobs_list.php          # Job listings
-│   ├── jobs_create.php        # Job creation
-│   ├── jobs_delete.php        # Job deletion
-│   ├── apply_create.php       # Job application
-│   └── ...                    # Other backend files
-├── 📁 assets/                 # Static assets
-│   ├── logo.png               # Company logo
-│   └── bg.png                 # Background images
-├── 📁 i18n/                   # Language files
-│   ├── en.json                # English
-│   ├── hi.json                # Hindi
-│   └── ...                    # Other language files
-├── 📁 worker/                 # Worker panel
-│   ├── home.html              # Worker dashboard
-│   ├── jobs.html              # Job listings
-│   ├── job-details.html       # Job details
-│   └── login.html             # Worker login
-├── 📁 recruiter/              # Recruiter panel
-│   ├── dashboard.html          # Recruiter dashboard
-│   ├── post-job.html          # Post new job
-│   ├── applications.html      # View applications
-│   └── login.html             # Recruiter login
-└── 📁 partials/               # Reusable components
-    ├── header.html            # Header template
-    └── footer.html            # Footer template
+├── 📄 login.html              # Main login page
+├── 📄 start.bat               # Quick start script
+├── 📄 package.json           # Node.js dependencies
+├── 📄 QUICK_START.txt         # Quick start instructions
+├── 📁 styles/                # Stylesheets
+│   ├── styles.css            # Main styles
+│   ├── styles-new.css        # Modern glassmorphism design
+│   ├── styles-premium.css    # Premium styling
+│   └── lang-*.css            # Language-specific styles
+├── 📁 js/                    # JavaScript files
+│   ├── app.js                # Main application logic
+│   ├── i18n.js               # Enhanced internationalization
+│   ├── partials-unified.js   # Template management
+│   └── partials.js           # Legacy partials
+├── 📁 server/                # Node.js backend
+│   ├── index.js              # Main server file
+│   ├── database.js           # Database management
+│   └── data.json             # Data storage
+├── 📁 assets/                # Static assets
+│   ├── logo.png              # Company logo
+│   └── bg.png                # Background images
+├── 📁 i18n/                  # Language files
+│   ├── en.json               # English translations
+│   ├── hi.json               # Hindi translations
+│   ├── bn.json               # Bengali translations
+│   └── ...                   # Other language files
+├── 📁 worker/                # Worker panel
+│   ├── home.html             # Worker dashboard
+│   ├── jobs.html             # Job listings
+│   ├── job-details.html      # Job details
+│   ├── login.html            # Worker login
+│   ├── applications.html     # My applications
+│   ├── profile.html          # Worker profile
+│   ├── tracking.html         # Application tracking
+│   └── messages.html         # Messages
+├── 📁 recruiter/             # Recruiter panel
+│   ├── dashboard.html        # Recruiter dashboard
+│   ├── post-job.html         # Post new job
+│   ├── applications.html     # View applications
+│   ├── login.html            # Recruiter login
+│   ├── job-management.html   # Advanced job management
+│   ├── candidate-matching.html # AI candidate matching
+│   ├── analytics.html        # Hiring analytics
+│   └── communication.html    # Communication tools
+└── 📁 partials/              # Reusable components
+    ├── header.html           # Header template
+    ├── footer.html           # Footer template
+    └── language-selector.html # Global language selector
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- PHP 7.4 or higher
-- MySQL 5.7 or higher
-- Web server (Apache/Nginx)
+- **Node.js** 14.0 or higher
+- **npm** 6.0 or higher
+- **Web browser** (Chrome, Firefox, Safari, Edge)
 
-### Installation
+### Quick Start (Recommended)
 
-1. **Clone the repository**
+1. **Download the project**
    ```bash
-   git clone https://github.com/Dharsh606/12th_FailJobs.git
-   cd 12th_FailJobs
+   # Clone or download the project
+   cd 12thfailjob
    ```
 
-2. **Database Setup**
-   ```sql
-   CREATE DATABASE 12thfailjobs;
-   -- Import the database schema
+2. **Run the quick start script**
+   ```bash
+   # Windows
+   start.bat
+   
+   # Or manually:
+   npm install
+   node server/index.js
    ```
 
-3. **Configure Database**
-   - Edit `backend/config.php`
-   - Update database credentials
+3. **Access the application**
+   - Open your browser
+   - Navigate to: `http://localhost:3001`
 
-4. **Run the Application**
-   - Deploy to web server
-   - Access via browser
+### Manual Installation
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Start the server**
+   ```bash
+   node server/index.js
+   ```
+
+3. **Access the application**
+   - Open browser to: `http://localhost:3001`
 
 ## 🔧 Configuration
 
-### Database Configuration
-```php
-// backend/config.php
-$servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "12thfailjobs";
+### Server Configuration
+```javascript
+// server/index.js
+const PORT = process.env.PORT || 3001;
+const HOST = process.env.HOST || 'localhost';
 ```
+
+### Database Configuration
+The application uses a JSON-based database for simplicity:
+- **Data File**: `server/data.json`
+- **Auto-backup**: Automatic saving on changes
+- **Sample Data**: Pre-populated with demo users and jobs
 
 ## 🌐 Live Demo
 
 - **Live Site**: [12thfailjobs.gt.tc](https://12thfailjobs.gt.tc)
-- **GitHub Repository**: [12th_FailJobs](https://github.com/Dharsh606/12th_FailJobs)
+- **GitHub Repository**: [12th_FailJobs](https://github.com/Dharsh606/12th_FailJobs.git)
 
-## 📱 Screenshots
+## 👥 Default Login Credentials
 
-*(Add screenshots of your application here)*
+### Worker Account
+- **Email**: `worker@12thfailjob.com`
+- **Password**: `worker123`
+
+### Recruiter Account
+- **Email**: `recruiter@12thfailjob.com`
+- **Password**: `recruiter123`
+
+## 📱 Features Showcase
+
+### Dynamic Language Switching
+- 🔄 **Real-time Updates**: Language changes instantly without page reload
+- 🌐 **Global Access**: Language selector available on all pages
+- 💾 **Persistent Choice**: Language preference saved automatically
+- 🎨 **Optimized Rendering**: Language-specific fonts and styling
+
+### Advanced Features
+- 📊 **Analytics Dashboard**: Track hiring metrics and job performance
+- 🎯 **AI Matching**: Smart candidate recommendations
+- 💬 **Communication**: Built-in messaging system
+- 📈 **Performance**: Optimized loading and caching
+- 🔒 **Security**: Enhanced authentication and data protection
 
 ## 🤝 Contributing
 
@@ -188,7 +259,30 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Thanks to all job seekers who inspire this platform
 - Open-source community for the amazing tools and libraries
 - Everyone who believes in skills over certificates
+- Node.js and Express.js communities
+- All contributors and testers
+
+## 🔄 Updates in Version 2.0.0
+
+### Major Features Added
+- ✅ **Dynamic Language Switching** - Real-time language updates
+- ✅ **Advanced Dashboard** - Analytics and insights
+- ✅ **AI Candidate Matching** - Smart recommendations
+- ✅ **Communication Hub** - Built-in messaging
+- ✅ **Performance Optimizations** - Faster loading
+- ✅ **Enhanced Security** - Better authentication
+- ✅ **Modern UI/UX** - Glassmorphism design
+- ✅ **Mobile Optimization** - Better mobile experience
+
+### Technical Improvements
+- 🔄 **Node.js Backend** - Replaced PHP with Node.js
+- 📊 **JSON Database** - Simplified data management
+- 🎨 **Component System** - Reusable partials
+- 📱 **Responsive Design** - Mobile-first approach
+- 🔒 **Security Enhancements** - Input validation and sanitization
 
 ---
 
 **"Every job seeker deserves a chance to showcase their true potential"** 💼✨
+
+**Built with ❤️ for India's Real Workforce**

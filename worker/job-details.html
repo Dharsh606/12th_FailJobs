@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Job Details - Worker</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../styles-new.css" />
   <style>
     .big-btn{padding:14px 16px;font-size:18px;border-radius:12px}
     .title{font-size:28px;font-weight:900;margin:0}
@@ -46,8 +46,7 @@
   </main>
 
   <script src="../js/app.js"></script>
-  <script src="../js/i18n.js"></script>
-  <script src="../js/partials.js"></script>
+  <script src="../js/partials-unified.js"></script>
   <script>
     function esc(s){
       return String(s||"").replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[m]));
@@ -120,16 +119,48 @@
       const btn = this;
       btn.disabled = true;
       btn.textContent = "Submitting...";
+      
+      // Get current user
+      const user = getUser();
+      if (!user) {
+        alert("Please login to apply for jobs");
+        btn.disabled = false;
+        btn.textContent = "Submit Application";
+        return;
+      }
+      
+      // Validate form
+      const name = document.getElementById("appName").value.trim();
+      const phone = document.getElementById("appPhone").value.trim();
+      
+      if (!name) {
+        alert("Please enter your name");
+        btn.disabled = false;
+        btn.textContent = "Submit Application";
+        return;
+      }
+      
+      if (!phone) {
+        alert("Please enter your phone number");
+        btn.disabled = false;
+        btn.textContent = "Submit Application";
+        return;
+      }
+      
       const payload = {
         job_id: Number(jobId),
-        applicant_name: document.getElementById("appName").value.trim(),
-        applicant_phone: document.getElementById("appPhone").value.trim(),
+        user_id: user.id,
+        applicant_name: name,
+        applicant_phone: phone,
         applicant_email: "",
         message: document.getElementById("appMsg").value.trim()
       };
 
+      console.log('Sending application payload:', payload);
+
       try{
         const data = await postJSON("apply_create.php", payload);
+        console.log('Application response:', data);
 
         if (!data.ok){
           alert(data.message || "Failed to apply");
@@ -141,7 +172,8 @@
         alert(data.duplicate ? "You already applied for this job." : "Applied successfully ✅");
         document.getElementById("applyForm").reset();
       }catch(e){
-        alert("Server error. Please try again.");
+        console.error('Application error:', e);
+        alert("Server error: " + e.message);
       }finally{
         btn.disabled = false;
         btn.textContent = "Submit Application";

@@ -2,7 +2,7 @@
   "name": "12thfailjobs",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
+  "description": "Node/Express backend with in-memory database for 12th Fail Jobs platform",
   "scripts": {
     "start": "node server/index.js"
   },
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "express": "^4.19.2",
-    "mysql2": "^3.9.7"
+    "express": "^4.22.1"
   }
 }
+
