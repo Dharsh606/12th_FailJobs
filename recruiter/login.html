@@ -68,9 +68,16 @@
   </main>
 
   <script src="../js/app.js?v=6"></script>
+<script src="../js/i18n.js?v=6"></script>
 <script src="../js/partials-unified.js?v=6"></script>
 
 <script>
+  // Initialize language system
+  (async function() {
+    await loadLang();
+    applyI18n();
+  })();
+
 (function () {
 
   const existing = getUser();

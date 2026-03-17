@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frequently Asked Questions - 12thFailJobs</title>
+  <link rel="stylesheet" href="styles-new.css" />
+  <style>
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: var(--glass-white);
+      backdrop-filter: blur(12px);
+      border: var(--glass-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--glass-shadow);
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .faq-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .faq-header h1 {
+      color: var(--primary-blue);
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .faq-header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    
+    .faq-category {
+      margin-bottom: 40px;
+    }
+    
+    .faq-category h2 {
+      color: var(--primary-blue);
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--accent-orange);
+      padding-bottom: 8px;
+    }
+    
+    .faq-item {
+      margin-bottom: 20px;
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      box-shadow: var(--glass-shadow-hover);
+    }
+    
+    .faq-question {
+      background: rgba(0, 78, 146, 0.05);
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+    
+    .faq-question:hover {
+      background: rgba(0, 78, 146, 0.1);
+    }
+    
+    .faq-question.active {
+      background: var(--primary-blue);
+      color: white;
+    }
+    
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      color: white;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-question.active .faq-icon {
+      transform: rotate(45deg);
+    }
+    
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .faq-answer.active {
+      padding: 20px;
+      max-height: 500px;
+    }
+    
+    .highlight {
+      background: rgba(255, 140, 0, 0.1);
+      padding: 15px;
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-orange);
+      margin: 20px 0;
+    }
+    
+    .info-box {
+      background: rgba(0, 78, 146, 0.1);
+      padding: 15px;
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--primary-blue);
+      margin: 20px 0;
+    }
+    
+    .success-box {
+      background: rgba(40, 167, 69, 0.1);
+      padding: 15px;
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-green);
+      margin: 20px 0;
+    }
+    
+    .contact-info {
+      background: rgba(0, 78, 146, 0.05);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      margin-top: 30px;
+    }
+    
+    .back-to-home {
+      display: inline-block;
+      background: var(--primary-blue);
+      color: white;
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .back-to-home:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    
+    .search-box {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .search-input {
+      width: 100%;
+      max-width: 400px;
+      padding: 12px 20px;
+      border: 2px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      background: var(--glass-white);
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(0, 78, 146, 0.1);
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+    }
+    
+    @media (max-width: 768px) {
+      .faq-container {
+        margin: 10px;
+        padding: 20px 15px;
+      }
+      
+      .faq-header h1 {
+        font-size: 2rem;
+      }
+      
+      .faq-category h2 {
+        font-size: 1.5rem;
+      }
+      
+      .faq-question {
+        padding: 15px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="floating-particles"></div>
+  <div data-include="header"></div>
+
+  <div class="faq-container">
+    <div class="faq-header">
+      <h1>Frequently Asked Questions</h1>
+      <p>Find answers to common questions about 12thFailJobs</p>
+    </div>
+
+    <div class="search-box">
+      <input type="text" class="search-input" placeholder="Search FAQs..." id="faqSearch">
+    </div>
+
+    <div class="faq-category">
+      <h2>👷 For Workers</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I create a worker account?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Creating a worker account is simple and free:</p>
+          <ol>
+            <li>Click on "I am a Worker" on the homepage</li>
+            <li>Fill in your basic details (name, email, phone)</li>
+            <li>Verify your email address</li>
+            <li>Complete your profile with skills and experience</li>
+            <li>Start applying for jobs!</li>
+          </ol>
+          <div class="success-box">
+            <strong>Tip:</strong> Complete profiles get 3x more responses from employers.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is it really free for workers?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! All basic features for workers are completely free:</p>
+          <ul>
+            <li>✅ Profile creation and management</li>
+            <li>✅ Job search and browsing</li>
+            <li>✅ Job applications (unlimited)</li>
+            <li>✅ Direct messaging with employers</li>
+            <li>✅ Application status tracking</li>
+          </ul>
+          <p>Premium features like profile highlighting are available but optional.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I apply for a job?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Applying for jobs is quick and easy:</p>
+          <ol>
+            <li>Search for jobs using filters (location, job type, skills)</li>
+            <li>Click on any job to view details</li>
+            <li>Click "Apply Now" button</li>
+            <li>Add a brief message to the employer (optional)</li>
+            <li>Submit your application</li>
+          </ol>
+          <p>You can track all your applications in the "My Applications" section.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What types of jobs are available?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>We offer a wide range of job opportunities across various sectors:</p>
+          <ul>
+            <li><strong>Construction:</strong> Laborers, carpenters, electricians, plumbers</li>
+            <li><strong>Manufacturing:</strong> Factory workers, machine operators, quality control</li>
+            <li><strong>Retail:</strong> Sales staff, cashiers, store assistants</li>
+            <li><strong>Hospitality:</strong> Waiters, cooks, housekeeping, security</li>
+            <li><strong>Delivery:</strong> Drivers, delivery partners, logistics</li>
+            <li><strong>Services:</strong> Cleaning, gardening, maintenance, repairs</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I know if a job is legitimate?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>We verify all recruiters, but you should still be careful:</p>
+          <ul>
+            <li>Look for the "Verified Recruiter" badge</li>
+            <li>Check the recruiter's profile and company details</li>
+            <li>Read reviews from other workers</li>
+            <li>Never pay money to get a job</li>
+            <li>Meet in safe, public places for interviews</li>
+          </ul>
+          <div class="highlight">
+            <strong>Warning:</strong> If anyone asks for money for job placement, report them immediately.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <h2>👔 For Recruiters</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I post a job?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Posting a job is straightforward:</p>
+          <ol>
+            <li>Log in to your recruiter account</li>
+            <li>Click "Post New Job" button</li>
+            <li>Fill in job details (title, description, location, salary)</li>
+            <li>Select required skills and qualifications</li>
+            <li>Choose job visibility (free or featured)</li>
+            <li>Publish the job</li>
+          </ol>
+          <p>Jobs are typically live within minutes of posting.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What are the subscription plans?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>We offer flexible plans for different needs:</p>
+          <ul>
+            <li><strong>Free Plan:</strong> 1 job post per month</li>
+            <li><strong>Basic Plan (₹999/month):</strong> 5 job posts, basic applicant tracking</li>
+            <li><strong>Professional Plan (₹2,499/month):</strong> 15 job posts, advanced features</li>
+            <li><strong>Enterprise Plan (₹4,999/month):</strong> Unlimited posts, priority support</li>
+          </ul>
+          <p>All paid plans include applicant messaging and database access.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I find the right workers?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Use our platform features to find the best candidates:</p>
+          <ul>
+            <li>Search workers by skills, location, and experience</li>
+            <li>Use advanced filters for specific requirements</li>
+            <li>View worker profiles with photos and verification status</li>
+            <li>Post detailed job descriptions to attract relevant candidates</li>
+            <li>Use featured job listings for more visibility</li>
+          </ul>
+          <div class="info-box">
+            <strong>Pro Tip:</strong> Be specific in your job requirements to receive more relevant applications.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I contact workers directly?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, you can contact workers through our platform:</p>
+          <ul>
+            <li>Send messages to workers who match your requirements</li>
+            <li>Schedule interviews through our messaging system</li>
+            <li>Share job details and requirements directly</li>
+            <li>Track all communications in one place</li>
+          </ul>
+          <p>All contact happens through our secure messaging system to protect privacy.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <h2>🔧 General & Technical</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I reset my password?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Resetting your password is easy:</p>
+          <ol>
+            <li>Go to the login page</li>
+            <li>Click "Forgot Password?" link</li>
+            <li>Enter your registered email address</li>
+            <li>Check your email for reset instructions</li>
+            <li>Create a new password</li>
+          </ol>
+          <p>Password reset links are valid for 24 hours only.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Is my information secure?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, we take data security seriously:</p>
+          <ul>
+            <li>All data is encrypted with SSL technology</li>
+            <li>Passwords are securely hashed</li>
+            <li>We follow Indian data protection laws</li>
+            <li>Regular security audits and updates</li>
+            <li>Limited employee access to user data</li>
+          </ul>
+          <p>Read our Privacy Policy for detailed information.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How do I report a problem?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>If you encounter any issues, please contact us:</p>
+          <ul>
+            <li><strong>Email:</strong> support@12failjob.com</li>
+            <li><strong>Phone:</strong> +91-XXXXXXXXXX (9 AM - 6 PM, Mon-Sat)</li>
+            <li><strong>WhatsApp:</strong> +91-XXXXXXXXXX</li>
+            <li><strong>In-app:</strong> Use the "Help & Support" section</li>
+          </ul>
+          <p>We typically respond within 24 hours for most issues.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I delete my account?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, you can delete your account at any time:</p>
+          <ol>
+            <li>Go to Account Settings</li>
+            <li>Click "Delete Account" option</li>
+            <li>Confirm your decision</li>
+            <li>Enter your password for verification</li>
+          </ol>
+          <div class="highlight">
+            <strong>Note:</strong> Account deletion is permanent and cannot be undone. All your data will be removed.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <h2>💰 Payments & Billing</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What payment methods are accepted?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>We accept multiple payment methods:</p>
+          <ul>
+            <li>Credit/Debit Cards (Visa, Mastercard, RuPay)</li>
+            <li>UPI (Google Pay, PhonePe, PayTM)</li>
+            <li>Net Banking (all major banks)</li>
+            <li>Digital Wallets (PayTM Wallet, Amazon Pay)</li>
+          </ul>
+          <p>All payments are processed securely through trusted payment gateways.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I get a refund?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Refunds are available under certain conditions:</p>
+          <ul>
+            <li>7-day refund window for monthly subscriptions</li>
+            <li>14-day window for annual subscriptions</li>
+            <li>Only if no services have been used</li>
+            <li>Processing fees may apply</li>
+          </ul>
+          <p>Check our detailed Refund Policy for complete information.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Are there any hidden charges?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>No, we believe in transparent pricing:</p>
+          <ul>
+            <li>All prices are clearly displayed before purchase</li>
+            <li>No setup fees or hidden charges</li>
+            <li>Payment gateway fees are included</li>
+            <li>Taxes are calculated and shown upfront</li>
+          </ul>
+          <p>What you see is what you pay - no surprises!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-info">
+      <h3>Still have questions?</h3>
+      <p>If you couldn't find the answer you're looking for, our support team is here to help:</p>
+      <ul>
+        <li>Email: support@12failjob.com</li>
+        <li>Phone: +91-XXXXXXXXXX</li>
+        <li>WhatsApp: +91-XXXXXXXXXX</li>
+        <li>Office Hours: Monday to Saturday, 9:00 AM - 6:00 PM IST</li>
+      </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="index.html" class="back-to-home">← Back to Home</a>
+    </div>
+  </div>
+
+  <div data-include="footer"></div>
+
+  <script src="js/partials-unified.js"></script>
+  <script>
+    // FAQ Accordion Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const answer = question.nextElementSibling;
+          const isActive = question.classList.contains('active');
+          
+          // Close all other FAQs in the same category
+          const category = question.closest('.faq-category');
+          category.querySelectorAll('.faq-question.active').forEach(activeQuestion => {
+            if (activeQuestion !== question) {
+              activeQuestion.classList.remove('active');
+              activeQuestion.nextElementSibling.classList.remove('active');
+            }
+          });
+          
+          // Toggle current FAQ
+          question.classList.toggle('active');
+          answer.classList.toggle('active');
+        });
+      });
+      
+      // Search Functionality
+      const searchInput = document.getElementById('faqSearch');
+      const faqItems = document.querySelectorAll('.faq-item');
+      const faqCategories = document.querySelectorAll('.faq-category');
+      
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        let hasResults = false;
+        
+        faqCategories.forEach(category => {
+          let categoryHasResults = false;
+          const categoryItems = category.querySelectorAll('.faq-item');
+          
+          categoryItems.forEach(item => {
+            const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+            const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+            
+            if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+              item.style.display = 'block';
+              categoryHasResults = true;
+              hasResults = true;
+            } else {
+              item.style.display = 'none';
+            }
+          });
+          
+          // Hide category if no results
+          category.style.display = categoryHasResults ? 'block' : 'none';
+        });
+        
+        // Show no results message
+        if (!hasResults && searchTerm !== '') {
+          if (!document.querySelector('.no-results')) {
+            const noResults = document.createElement('div');
+            noResults.className = 'no-results';
+            noResults.innerHTML = '<h3>No results found</h3><p>Try searching with different keywords.</p>';
+            document.querySelector('.faq-container').insertBefore(noResults, document.querySelector('.faq-category'));
+          }
+        } else {
+          const noResults = document.querySelector('.no-results');
+          if (noResults) {
+            noResults.remove();
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
