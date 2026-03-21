@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refund Policy - 12thFailJobs</title>
+  <link rel="stylesheet" href="styles-new.css" />
+  <style>
+    .policy-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: var(--glass-white);
+      backdrop-filter: blur(12px);
+      border: var(--glass-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--glass-shadow);
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .policy-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .policy-header h1 {
+      color: var(--primary-blue);
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .policy-header p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    
+    .policy-section {
+      margin-bottom: 30px;
+    }
+    
+    .policy-section h2 {
+      color: var(--primary-blue);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--accent-orange);
+      padding-bottom: 5px;
+    }
+    
+    .policy-section h3 {
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 20px 0 10px 0;
+    }
+    
+    .policy-section p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    
+    .policy-section ul {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+    
+    .policy-section li {
+      margin-bottom: 8px;
+    }
+    
+    .highlight {
+      background: rgba(255, 140, 0, 0.1);
+      padding: 15px;
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-orange);
+      margin: 20px 0;
+    }
+    
+    .success-box {
+      background: rgba(40, 167, 69, 0.1);
+      padding: 15px;
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-green);
+      margin: 20px 0;
+    }
+    
+    .info-box {
+      background: rgba(0, 78, 146, 0.1);
+      padding: 15px;
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--primary-blue);
+      margin: 20px 0;
+    }
+    
+    .contact-info {
+      background: rgba(0, 78, 146, 0.05);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      margin-top: 30px;
+    }
+    
+    .back-to-home {
+      display: inline-block;
+      background: var(--primary-blue);
+      color: white;
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .back-to-home:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    
+    .refund-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: var(--glass-white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    
+    .refund-table th {
+      background: var(--primary-blue);
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    .refund-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    
+    .refund-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    
+    .status-eligible {
+      background: rgba(40, 167, 69, 0.2);
+      color: var(--accent-green);
+    }
+    
+    .status-partial {
+      background: rgba(255, 140, 0, 0.2);
+      color: var(--accent-orange);
+    }
+    
+    .status-not-eligible {
+      background: rgba(220, 53, 69, 0.2);
+      color: #dc3545;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="floating-particles"></div>
+  <div data-include="header"></div>
+
+  <div class="policy-container">
+    <div class="policy-header">
+      <h1>Refund Policy</h1>
+      <p>Last updated: December 2024</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>1. Overview</h2>
+      <p>At 12thFailJobs, we strive to provide the best job platform experience for both workers and recruiters. This Refund Policy outlines the conditions under which refunds may be issued for our paid services.</p>
+      
+      <div class="info-box">
+        <strong>Important Note:</strong> Basic job search and application services for workers are completely free. Refunds only apply to premium features and recruiter subscription plans.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>2. Refund Eligibility</h2>
+      
+      <h3>Recruiter Subscription Plans</h3>
+      <table class="refund-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Refund Period</th>
+            <th>Conditions</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monthly Subscription</td>
+            <td>7 days</td>
+            <td>No job postings created</td>
+            <td><span class="status-badge status-eligible">Full Refund</span></td>
+          </tr>
+          <tr>
+            <td>Quarterly Subscription</td>
+            <td>7 days</td>
+            <td>No job postings created</td>
+            <td><span class="status-badge status-eligible">Full Refund</span></td>
+          </tr>
+          <tr>
+            <td>Annual Subscription</td>
+            <td>14 days</td>
+            <td>No job postings created</td>
+            <td><span class="status-badge status-eligible">Full Refund</span></td>
+          </tr>
+          <tr>
+            <td>Featured Job Posts</td>
+            <td>24 hours</td>
+            <td>Job not yet published</td>
+            <td><span class="status-badge status-eligible">Full Refund</span></td>
+          </tr>
+          <tr>
+            <td>Premium Job Posts</td>
+            <td>48 hours</td>
+            <td>Less than 50% of subscription period used</td>
+            <td><span class="status-badge status-partial">Partial Refund</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>3. Non-Refundable Services</h2>
+      <p>The following services are non-refundable:</p>
+      <ul>
+        <li><strong>Used Services:</strong> Any subscription period that has been utilized</li>
+        <li><strong>Published Job Posts:</strong> Jobs that have been live on the platform</li>
+        <li><strong>Database Access:</strong> Worker database access fees</li>
+        <li><strong>Background Verification:</strong> Third-party verification services</li>
+        <li><strong>Processing Fees:</strong> Payment gateway and transaction fees</li>
+        <li><strong>Custom Solutions:</strong> Tailored recruitment services</li>
+      </ul>
+      
+      <div class="highlight">
+        <strong>Exception:</strong> If our platform experiences technical issues that prevent you from using paid features for more than 48 hours, we may offer pro-rated refunds for the downtime period.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>4. Refund Process</h2>
+      
+      <h3>How to Request a Refund</h3>
+      <ol>
+        <li>Contact our support team at refunds@12failjob.com</li>
+        <li>Provide your registered email and subscription details</li>
+        <li>Explain the reason for the refund request</li>
+        <li>Include any relevant screenshots or evidence</li>
+        <li>Wait for our response within 3-5 business days</li>
+      </ol>
+      
+      <h3>Refund Timeline</h3>
+      <ul>
+        <li><strong>Request Processing:</strong> 3-5 business days</li>
+        <li><strong>Approval:</strong> 1-2 business days after review</li>
+        <li><strong>Refund Processing:</strong> 5-7 business days</li>
+        <li><strong>Bank Processing:</strong> Additional 3-5 business days</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>5. Valid Refund Reasons</h2>
+      
+      <h3>Automatic Approval Reasons</h3>
+      <ul>
+        <li>Technical platform issues preventing service use</li>
+        <li>Accidental duplicate purchases</li>
+        <li>Services not delivered as described</li>
+        <li>Request made within the eligible refund period</li>
+      </ul>
+      
+      <h3>Case-by-Case Review</h3>
+      <ul>
+        <li>Account access issues (if verified)</li>
+        <li>Platform downtime exceeding 48 hours</li>
+        <li>Billing errors or overcharges</li>
+        <li>Service quality concerns</li>
+      </ul>
+      
+      <h3>Non-Valid Reasons</h3>
+      <ul>
+        <li>Changed mind after using the service</li>
+        <li>Found cheaper alternatives</li>
+        <li>Business closure or strategy change</li>
+        <li>Not finding suitable candidates</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>6. Partial Refunds</h2>
+      <p>In certain situations, we may offer partial refunds:</p>
+      
+      <h3>Pro-Rated Refunds</h3>
+      <ul>
+        <li>For annual subscriptions with minimal usage</li>
+        <li>When technical issues affect only part of the service</li>
+        <li>For multiple job posting packages with unused credits</li>
+      </ul>
+      
+      <h3>Calculation Method</h3>
+      <p>Partial refunds are calculated based on:</p>
+      <ul>
+        <li>Unused portion of subscription period</li>
+        <li>Number of unused job posting credits</li>
+        <li>Extent of service disruption</li>
+        <li>Minus any processing fees (2-3%)</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>7. Refund Methods</h2>
+      
+      <h3>Original Payment Method</h3>
+      <p>Refunds are typically processed back to the original payment method used:</p>
+      <ul>
+        <li><strong>Credit/Debit Cards:</strong> Refunded to the same card</li>
+        <li><strong>UPI/Wallets:</strong> Refunded to the same UPI ID or wallet</li>
+        <li><strong>Net Banking:</strong> Refunded to the same bank account</li>
+      </ul>
+      
+      <h3>Alternative Methods</h3>
+      <p>If the original payment method is unavailable:</p>
+      <ul>
+        <li>Credit to your 12thFailJobs account wallet</li>
+        <li>Bank transfer to verified account</li>
+        <li>Store credit for future use (with 10% bonus)</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>8. Special Circumstances</h2>
+      
+      <h3>Platform-Wide Issues</h3>
+      <p>If our platform experiences significant technical issues:</p>
+      <ul>
+        <li>Automatic extension of subscription periods</li>
+        <li>Pro-rated refunds for affected users</li>
+        <li>Priority support for affected accounts</li>
+      </ul>
+      
+      <h3>Business Closure</h3>
+      <p>In case of permanent business closure:</p>
+      <ul>
+        <li>Pro-rated refunds for unused subscription periods</li>
+        <li>Data export assistance for affected users</li>
+        <li>30-day notice period before service termination</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>9. Dispute Resolution</h2>
+      
+      <h3>First-Level Resolution</h3>
+      <p>If your refund request is denied, you can:</p>
+      <ul>
+        <li>Request a review by our senior support team</li>
+        <li>Provide additional evidence or documentation</li>
+        <li>Escalate to our customer success manager</li>
+      </ul>
+      
+      <h3>Formal Dispute Process</h3>
+      <ul>
+        <li>Submit a written dispute to disputes@12failjob.com</li>
+        <li>Include all relevant documentation and correspondence</li>
+        <li>Response within 10 business days</li>
+        <li>Option for mediation if unresolved</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>10. Refund Policy Updates</h2>
+      <p>We may update this Refund Policy from time to time. Changes will be:</p>
+      <ul>
+        <li>Posted on our website with effective date</li>
+        <li>Communicated via email to active subscribers</li>
+        <li>Applied prospectively (not retroactively)</li>
+      </ul>
+      
+      <p>Continued use of our services after policy changes constitutes acceptance of the updated terms.</p>
+    </div>
+
+    <div class="success-box">
+      <h3>Our Commitment</h3>
+      <p>We are committed to fair and transparent refund practices. If you have any questions about our refund policy or need assistance with a refund request, our support team is here to help.</p>
+    </div>
+
+    <div class="contact-info">
+      <h3>Contact Information</h3>
+      <p>For refund-related inquiries:</p>
+      <ul>
+        <li>Email: refunds@12failjob.com</li>
+        <li>Support Phone: +91-XXXXXXXXXX</li>
+        <li>Office Hours: Monday to Friday, 9:00 AM - 6:00 PM IST</li>
+        <li>Address: Yuga Yatra Retail Company, [Your Address]</li>
+      </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="index.html" class="back-to-home">← Back to Home</a>
+    </div>
+  </div>
+
+  <div data-include="footer"></div>
+
+  <script src="js/partials-unified.js"></script>
+</body>
+</html>

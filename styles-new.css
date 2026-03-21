@@ -1265,3 +1265,15 @@ main {
     display: none;
   }
 }
+
+/* ================= Footer Links ================= */
+.footer-link:hover {
+  color: var(--primary-blue) !important;
+  text-decoration: underline !important;
+}
+
+.footer-link:focus {
+  color: var(--accent-orange) !important;
+  outline: 2px solid var(--accent-orange);
+  outline-offset: 2px;
+}

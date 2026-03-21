@@ -17,30 +17,30 @@
 
   <main class="page-main">
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <a href="jobs.html" class="btn big-btn">← <span data-i18n="back">Back</span></a>
-      <a href="../index.html" class="btn btn-primary big-btn" data-i18n="btn_change_lang">Change Language</a>
+      <a href="jobs.html" class="btn big-btn">← <span >Back</span></a>
+      <a href="../index.html" class="btn btn-primary big-btn" >Change Language</a>
     </div>
 
     <div id="jobBox" class="card box narrow" style="margin-top:12px;"></div>
 
     <div class="card box narrow" style="margin-top:14px;">
-      <h2 data-i18n="apply_title">Apply (Optional)</h2>
-      <p class="meta" data-i18n="apply_sub">If you can’t read much, just call recruiter using the button above.</p>
+      <h2 >Apply (Optional)</h2>
+      <p class="meta" >If you can’t read much, just call recruiter using the button above.</p>
 
       <form id="applyForm">
         <div class="form-group">
-          <label for="appName" data-i18n="your_name">Your Name</label>
+          <label for="appName" >Your Name</label>
           <input id="appName" type="text" required placeholder="Name" style="width:100%;padding:14px;font-size:18px;border-radius:12px">
         </div>
         <div class="form-group">
-          <label for="appPhone" data-i18n="your_phone">Phone</label>
+          <label for="appPhone" >Phone</label>
           <input id="appPhone" type="text" required placeholder="Phone" style="width:100%;padding:14px;font-size:18px;border-radius:12px">
         </div>
         <div class="form-group">
-          <label for="appMsg" data-i18n="message">Message</label>
+          <label for="appMsg" >Message</label>
           <textarea id="appMsg" placeholder="I need this job" style="width:100%;padding:14px;font-size:18px;border-radius:12px"></textarea>
         </div>
-        <button class="btn btn-primary big-btn btn-block" id="applyBtn" type="button" data-i18n="apply_btn">Submit Application</button>
+        <button class="btn btn-primary big-btn btn-block" id="applyBtn" type="button" >Submit Application</button>
       </form>
     </div>
   </main>
@@ -96,17 +96,17 @@
 
           <hr style="margin:12px 0;">
 
-          <h3 style="margin:0 0 8px;" data-i18n="desc">Description</h3>
+          <h3 style="margin:0 0 8px;" >Description</h3>
           <p style="font-size:18px;line-height:1.4;margin:0 0 10px;">${esc(job.description)}</p>
 
           ${job.requirements ? `
-            <h3 style="margin:14px 0 8px;" data-i18n="req">Requirements</h3>
+            <h3 style="margin:14px 0 8px;" >Requirements</h3>
             <pre style="white-space:pre-wrap;font-size:18px;margin:0;">${esc(job.requirements)}</pre>
           ` : ""}
 
           <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
             ${callBtn}
-            <a class="btn big-btn" href="jobs.html" data-i18n="back_to_jobs">Back to Jobs</a>
+            <a class="btn big-btn" href="jobs.html" >Back to Jobs</a>
           </div>
         `;
       }catch(e){
