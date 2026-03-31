@@ -1,303 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Worker - 12failjob.com</title>
-  <link rel="stylesheet" href="../styles-new.css" />
 
-  <style>
-    .tile-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-    }
-    @media (max-width: 768px) {
-      .tile-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 520px) {
-      .tile-grid { grid-template-columns: 1fr; }
-    }
-    .tile {
-      display: block;
-      text-decoration: none;
-      padding: 18px;
-      border-radius: 14px;
-      cursor: pointer;
-    }
-    .tile-title {
-      font-size: 22px;
-      font-weight: 900;
-      margin: 0;
-    }
-    .tile-sub {
-      margin-top: 6px;
-      font-size: 48px;
-      text-align: center;
-      line-height: 1;
-    }
-    .top-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .top-row a { flex: 1; }
-    .jobs-grid{display:grid;grid-template-columns:1fr;gap:12px}
-    .job-card{padding:16px}
-    .job-title{font-size:22px;font-weight:900;margin:0 0 6px}
-    .job-meta{font-size:16px;margin:4px 0}
-    .back-btn {
-      display: none;
-      margin: 20px 0;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title data-i18n="worker_home_title">Worker - 12failjob.com</title>
+
+<link rel="stylesheet" href="../styles-new.css" />
+
+<!-- Language System -->
+<script defer src="../js/i18n.js"></script>
+
+<style>
+
+.tile-grid{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:12px;
+}
+
+@media(max-width:768px){
+.tile-grid{grid-template-columns:1fr 1fr;}
+}
+
+@media(max-width:520px){
+.tile-grid{grid-template-columns:1fr;}
+}
+
+.tile{
+display:block;
+text-decoration:none;
+padding:18px;
+border-radius:14px;
+cursor:pointer;
+}
+
+.tile-title{
+font-size:22px;
+font-weight:900;
+margin:0;
+}
+
+.tile-sub{
+margin-top:6px;
+font-size:48px;
+text-align:center;
+line-height:1;
+}
+
+.top-row{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+align-items:center;
+}
+
+.top-row a{flex:1}
+
+.jobs-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:12px;
+}
+
+.job-card{padding:16px}
+
+.job-title{
+font-size:22px;
+font-weight:900;
+margin:0 0 6px;
+}
+
+.job-meta{
+font-size:16px;
+margin:4px 0;
+}
+
+.back-btn{
+display:none;
+margin:20px 0;
+}
+
+.lang-select{
+padding:8px;
+border-radius:6px;
+}
+
+</style>
 </head>
 
 <body>
-  <div data-include="header"></div>
 
-  <main class="page-main">
-    <div class="top-row">
-      <a class="btn btn-primary" href="profile.html">My Profile</a>
-      <a class="btn btn-primary" href="applications.html">My Applications</a>
-      <a class="btn btn-primary" href="tracking.html">📊 Tracking</a>
-      <a class="btn btn-primary" href="messages.html">💬 Messages</a>
-      <button class="btn btn-primary" onclick="showAllJobs()">📋 Show All Jobs</button>
-      <button class="btn" id="logoutBtn">Logout</button>
-      <a href="../index.html" class="btn btn-primary">Change Language</a>
-    </div>
+<div data-include="header"></div>
 
-    <h1 class="section-title" style="margin-top:14px;" id="pageTitle">Worker Home</h1>
-    <p class="meta" id="pageSub">Tap a category to see jobs near you</p>
+<main class="page-main">
 
-    <div id="categoriesSection" class="tile-grid mt-2">
-      <div class="card tile" data-category="Carpenter">
-        <p class="tile-title">Carpenter</p>
-        <p class="meta tile-sub">🔨</p>
-      </div>
+<div class="top-row">
 
-      <div class="card tile" data-category="Mason">
-        <p class="tile-title">Mason</p>
-        <p class="meta tile-sub">🧱</p>
-      </div>
+<a class="btn btn-primary" href="profile.html" data-i18n="my_profile">
+My Profile
+</a>
 
-      <div class="card tile" data-category="Plumber">
-        <p class="tile-title">Plumber</p>
-        <p class="meta tile-sub">🔧</p>
-      </div>
+<a class="btn btn-primary" href="applications.html" data-i18n="my_applications">
+My Applications
+</a>
 
-      <div class="card tile" data-category="Electrician">
-        <p class="tile-title">Electrician</p>
-        <p class="meta tile-sub">⚡</p>
-      </div>
+<a class="btn btn-primary" href="tracking.html">
+📊 <span data-i18n="tracking">Tracking</span>
+</a>
 
-      <div class="card tile" data-category="Painter">
-        <p class="tile-title">Painter</p>
-        <p class="meta tile-sub">🎨</p>
-      </div>
+<a class="btn btn-primary" href="messages.html">
+💬 <span data-i18n="messages">Messages</span>
+</a>
 
-      <div class="card tile" data-category="Driver">
-        <p class="tile-title">Driver</p>
-        <p class="meta tile-sub">🚗</p>
-      </div>
+<button class="btn btn-primary" onclick="showAllJobs()">
+📋 <span data-i18n="show_all_jobs">Show All Jobs</span>
+</button>
 
-      <div class="card tile" data-category="Cook">
-        <p class="tile-title">Cook</p>
-        <p class="meta tile-sub">👨‍🍳</p>
-      </div>
+<button class="btn" id="logoutBtn" data-i18n="logout">
+Logout
+</button>
 
-      <div class="card tile" data-category="Cleaner">
-        <p class="tile-title">Cleaner</p>
-        <p class="meta tile-sub">🧹</p>
-      </div>
+<select id="langSelect" class="lang-select">
 
-      <div class="card tile" data-category="Gardener">
-        <p class="tile-title">Gardener</p>
-        <p class="meta tile-sub">🌱</p>
-      </div>
+<option value="english">English</option>
+<option value="hindi">हिन्दी</option>
+<option value="bengali">বাংলা</option>
+<option value="gujarati">ગુજરાતી</option>
+<option value="kannada">ಕನ್ನಡ</option>
+<option value="malayalam">മലയാളം</option>
+<option value="marathi">मराठी</option>
+<option value="odia">ଓଡ଼ିଆ</option>
+<option value="punjabi">ਪੰਜਾਬੀ</option>
+<option value="tamil">தமிழ்</option>
+<option value="telugu">తెలుగు</option>
+<option value="assamese">অসমীয়া</option>
 
-      <div class="card tile" data-category="Security Guard">
-        <p class="tile-title">Security Guard</p>
-        <p class="meta tile-sub">🛡️</p>
-      </div>
+</select>
 
-      <div class="card tile" data-category="General Worker">
-        <p class="tile-title">General Worker</p>
-        <p class="meta tile-sub">👷</p>
-      </div>
+</div>
 
-      <div class="card tile" data-category="Helper">
-        <p class="tile-title">Helper</p>
-        <p class="meta tile-sub">🤝</p>
-      </div>
+<h1 class="section-title" style="margin-top:14px;" id="pageTitle" data-i18n="worker_home">
+Worker Home
+</h1>
 
-      <div class="card tile" data-category="Home Maid">
-        <p class="tile-title">Home Maid</p>
-        <p class="meta tile-sub">🏠</p>
-      </div>
+<center><p class="meta" id="pageSub" data-i18n="tap_category">
+Tap a category to see jobs near you
+</p></center>
 
-      <div class="card tile" data-category="Warehouse Helper">
-        <p class="tile-title">Warehouse Helper</p>
-        <p class="meta tile-sub">📦</p>
-      </div>
 
-      <div class="card tile" data-category="Delivery">
-        <p class="tile-title">Delivery</p>
-        <p class="meta tile-sub">🚚</p>
-      </div>
-    </div>
+<div id="categoriesSection" class="tile-grid mt-2">
 
-    <div class="back-btn">
-      <button class="btn big-btn" id="backBtn">← Back to Categories</button>
-    </div>
+<div class="card tile" data-category="Carpenter">
+<p class="tile-title" data-i18n="job_carpenter">Carpenter</p>
+<p class="meta tile-sub">🔨</p>
+</div>
 
-    <div id="jobsList" class="jobs-grid" style="margin-top:14px;display:none;"></div>
+<div class="card tile" data-category="Mason">
+<p class="tile-title" data-i18n="job_mason">Mason</p>
+<p class="meta tile-sub">🧱</p>
+</div>
 
-    <div class="mt-3" id="browseAllSection">
-      <a href="jobs.html" class="btn btn-primary btn-block">Browse All Jobs</a>
-    </div>
-  </main>
+<div class="card tile" data-category="Plumber">
+<p class="tile-title" data-i18n="job_plumber">Plumber</p>
+<p class="meta tile-sub">🔧</p>
+</div>
 
-  <script src="../js/app.js"></script>
-  <script src="../js/partials-unified.js"></script>
+<div class="card tile" data-category="Electrician">
+<p class="tile-title" data-i18n="job_electrician">Electrician</p>
+<p class="meta tile-sub">⚡</p>
+</div>
 
-  <script>
-    function esc(s){
-      return String(s||"").replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[m]));
-    }
+<div class="card tile" data-category="Painter">
+<p class="tile-title" data-i18n="job_painter">Painter</p>
+<p class="meta tile-sub">🎨</p>
+</div>
 
-    function jobCard(job){
-      return `
-        <div class="card job-card">
-          <div class="job-title">${esc(job.title)}</div>
-          <div class="job-meta"><strong>${esc(job.company)}</strong> • ${esc(job.location)}</div>
-          <div class="job-meta">${esc(job.education || "")} ${job.job_type ? "• " + esc(job.job_type) : ""}</div>
-          ${job.salary ? `<div class="job-meta"><strong>Salary:</strong> ${esc(job.salary)}</div>` : ""}
-          <div style="margin-top:10px;">
-            <a class="btn btn-primary big-btn" href="job-details.html?id=${job.id}">View</a>
-          </div>
-        </div>
-      `;
-    }
+<div class="card tile" data-category="Driver">
+<p class="tile-title" data-i18n="job_driver">Driver</p>
+<p class="meta tile-sub">🚗</p>
+</div>
 
-    async function loadCategoryJobs(category){
-      const list = document.getElementById("jobsList");
-      list.innerHTML = `<p class="meta">Loading jobs...</p>`;
+<div class="card tile" data-category="Cook">
+<p class="tile-title" data-i18n="job_cook">Cook</p>
+<p class="meta tile-sub">👨‍🍳</p>
+</div>
 
-      try{
-        const params = new URLSearchParams();
-        const decodedCategory = decodeURIComponent(category);
-        params.set("category", decodedCategory);
+<div class="card tile" data-category="Cleaner">
+<p class="tile-title" data-i18n="job_cleaner">Cleaner</p>
+<p class="meta tile-sub">🧹</p>
+</div>
 
-        const res = await fetch(API("jobs_list") + `?${params.toString()}`);
-        const data = await res.json();
+<div class="card tile" data-category="Gardener">
+<p class="tile-title" data-i18n="job_gardener">Gardener</p>
+<p class="meta tile-sub">🌱</p>
+</div>
 
-        if (!data.ok){
-          list.innerHTML = `<p class="meta">Failed to load jobs.</p>`;
-          return;
-        }
+<div class="card tile" data-category="Security Guard">
+<p class="tile-title" data-i18n="job_security">Security Guard</p>
+<p class="meta tile-sub">🛡️</p>
+</div>
 
-        const jobs = data.jobs || [];
-        if (jobs.length === 0){
-          list.innerHTML = `<p class="meta">No ${decodedCategory} jobs found.</p>`;
-          return;
-        }
+<div class="card tile" data-category="General Worker">
+<p class="tile-title" data-i18n="job_general_worker">General Worker</p>
+<p class="meta tile-sub">👷</p>
+</div>
 
-        list.innerHTML = jobs.map(jobCard).join("");
-      }catch(e){
-        console.error(e);
-        list.innerHTML = `<p class="meta">Server error. Check XAMPP.</p>`;
-      }
-    }
+<div class="card tile" data-category="Helper">
+<p class="tile-title" data-i18n="job_helper">Helper</p>
+<p class="meta tile-sub">🤝</p>
+</div>
 
-    function showJobs(category) {
-      const decodedCategory = decodeURIComponent(category);
-      document.getElementById("pageTitle").textContent = decodedCategory + " Jobs";
-      document.getElementById("pageSub").textContent = "Showing " + decodedCategory + " jobs posted by recruiters";
-      document.getElementById("categoriesSection").style.display = "none";
-      document.getElementById("browseAllSection").style.display = "none";
-      document.getElementById("jobsList").style.display = "grid";
-      document.querySelector(".back-btn").style.display = "block";
-      
-      loadCategoryJobs(category);
-    }
+<div class="card tile" data-category="Home Maid">
+<p class="tile-title" data-i18n="job_home_maid">Home Maid</p>
+<p class="meta tile-sub">🏠</p>
+</div>
 
-    function showAllJobs() {
-      document.getElementById("pageTitle").textContent = "All Jobs";
-      document.getElementById("pageSub").textContent = "Showing all jobs posted by recruiters from all categories";
-      document.getElementById("categoriesSection").style.display = "none";
-      document.getElementById("browseAllSection").style.display = "none";
-      document.getElementById("jobsList").style.display = "grid";
-      document.querySelector(".back-btn").style.display = "block";
-      
-      loadAllJobs();
-    }
+<div class="card tile" data-category="Warehouse Helper">
+<p class="tile-title" data-i18n="job_warehouse_helper">Warehouse Helper</p>
+<p class="meta tile-sub">📦</p>
+</div>
 
-    async function loadAllJobs() {
-      const list = document.getElementById("jobsList");
-      list.innerHTML = `<p class="meta">Loading all jobs...</p>`;
+<div class="card tile" data-category="Delivery">
+<p class="tile-title" data-i18n="job_delivery">Delivery</p>
+<p class="meta tile-sub">🚚</p>
+</div>
 
-      try{
-        const res = await fetch(API("jobs_list"));
-        const data = await res.json();
+</div>
 
-        if (!data.ok){
-          list.innerHTML = `<p class="meta">Failed to load jobs.</p>`;
-          return;
-        }
+<div class="back-btn">
+<button class="btn big-btn" id="backBtn" data-i18n="back_categories">
+← Back to Categories
+</button>
+</div>
 
-        const jobs = data.jobs || [];
-        if (jobs.length === 0){
-          list.innerHTML = `<p class="meta">No jobs found.</p>`;
-          return;
-        }
+<div id="jobsList" class="jobs-grid" style="margin-top:14px;display:none;"></div>
 
-        list.innerHTML = jobs.map(jobCard).join("");
-      }catch(e){
-        console.error(e);
-        list.innerHTML = `<p class="meta">Server error. Check XAMPP.</p>`;
-      }
-    }
+<div class="mt-3" id="browseAllSection">
 
-    function showCategories() {
-      document.getElementById("pageTitle").textContent = "Worker Home";
-      document.getElementById("pageSub").textContent = "Tap a category to see jobs near you";
-      document.getElementById("categoriesSection").style.display = "grid";
-      document.getElementById("browseAllSection").style.display = "block";
-      document.getElementById("jobsList").style.display = "none";
-      document.querySelector(".back-btn").style.display = "none";
-    }
+<a href="jobs.html" class="btn btn-primary btn-block" data-i18n="browse_all_jobs">
+Browse All Jobs
+</a>
 
-    (function () {
-      const user = getUser();
+</div>
 
-      if (!user) {
-        window.location.href = "login.html";
-        return;
-      }
+</main>
 
-      if (user.role !== "worker") {
-        alert("This section is for Workers only.");
-        window.location.href = "../index.html";
-        return;
-      }
+<script src="../js/app.js"></script>
+<script src="../js/partials-unified.js"></script>
 
-      // Add click handlers to category tiles
-      document.querySelectorAll('.tile').forEach(tile => {
-        tile.addEventListener('click', function() {
-          const category = this.dataset.category;
-          showJobs(category);
-        });
-      });
+<script>
 
-      // Back button handler
-      document.getElementById("backBtn").addEventListener("click", showCategories);
+document.addEventListener("DOMContentLoaded",function(){
 
-      document.getElementById("logoutBtn").addEventListener("click", logout);
-    })();
-  </script>
+let lang=localStorage.getItem("language")||"english";
 
-  <div data-include="footer"></div>
+I18N.loadLanguage(lang);
+
+const select=document.getElementById("langSelect");
+
+if(select){
+
+select.value=lang;
+
+select.addEventListener("change",function(){
+
+localStorage.setItem("language",this.value);
+
+I18N.loadLanguage(this.value);
+
+});
+
+}
+
+});
+
+function esc(s){
+return String(s||"").replace(/[&<>"']/g,m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m]));
+}
+
+function jobCard(job){
+
+return `
+<div class="card job-card">
+
+<div class="job-title">${esc(job.title)}</div>
+
+<div class="job-meta">
+<strong>${esc(job.company)}</strong> • ${esc(job.location)}
+</div>
+
+<div class="job-meta">
+${esc(job.education||"")} ${job.job_type?"• "+esc(job.job_type):""}
+</div>
+
+${job.salary?`<div class="job-meta"><strong>Salary:</strong> ${esc(job.salary)}</div>`:""}
+
+<div style="margin-top:10px;">
+<a class="btn btn-primary big-btn" href="job-details.html?id=${job.id}">View</a>
+</div>
+
+</div>
+`;
+
+}
+
+async function loadCategoryJobs(category){
+
+const list=document.getElementById("jobsList");
+
+list.innerHTML=`<p class="meta">Loading jobs...</p>`;
+
+try{
+
+const params=new URLSearchParams();
+params.set("category",decodeURIComponent(category));
+
+const res=await fetch(API("jobs_list")+`?${params}`);
+
+const data=await res.json();
+
+if(!data.ok){
+
+list.innerHTML=`<p class="meta">Failed to load jobs.</p>`;
+return;
+
+}
+
+const jobs=data.jobs||[];
+
+if(jobs.length===0){
+
+list.innerHTML=`<p class="meta">No jobs found.</p>`;
+return;
+
+}
+
+list.innerHTML=jobs.map(jobCard).join("");
+
+}catch(e){
+
+console.error(e);
+
+list.innerHTML=`<p class="meta">Server error.</p>`;
+
+}
+
+}
+
+function showJobs(category){
+
+document.getElementById("pageTitle").textContent=category+" Jobs";
+
+document.getElementById("pageSub").textContent="Showing "+category+" jobs";
+
+document.getElementById("categoriesSection").style.display="none";
+
+document.getElementById("browseAllSection").style.display="none";
+
+document.getElementById("jobsList").style.display="grid";
+
+document.querySelector(".back-btn").style.display="block";
+
+loadCategoryJobs(category);
+
+}
+
+function showAllJobs(){
+
+document.getElementById("pageTitle").textContent="All Jobs";
+
+document.getElementById("pageSub").textContent="Showing all jobs";
+
+document.getElementById("categoriesSection").style.display="none";
+
+document.getElementById("browseAllSection").style.display="none";
+
+document.getElementById("jobsList").style.display="grid";
+
+document.querySelector(".back-btn").style.display="block";
+
+loadCategoryJobs("");
+
+}
+
+function showCategories(){
+
+document.getElementById("pageTitle").textContent="Worker Home";
+
+document.getElementById("pageSub").textContent="Tap a category";
+
+document.getElementById("categoriesSection").style.display="grid";
+
+document.getElementById("browseAllSection").style.display="block";
+
+document.getElementById("jobsList").style.display="none";
+
+document.querySelector(".back-btn").style.display="none";
+
+}
+
+(function(){
+
+const user=getUser();
+
+if(!user){
+
+window.location.href="login.html";
+return;
+
+}
+
+if(user.role!=="worker"){
+
+alert("Workers only");
+
+window.location.href="../index.html";
+
+return;
+
+}
+
+document.querySelectorAll(".tile").forEach(tile=>{
+
+tile.addEventListener("click",function(){
+
+showJobs(this.dataset.category);
+
+});
+
+});
+
+document.getElementById("backBtn").addEventListener("click",showCategories);
+
+document.getElementById("logoutBtn").addEventListener("click",logout);
+
+})();
+
+</script>
+
+<div data-include="footer"></div>
+
 </body>
 </html>

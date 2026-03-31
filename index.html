@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
   <title>12thFailJobs</title>
@@ -85,31 +86,95 @@
       background: rgba(255, 140, 0, 0.1) !important;
     }
   </style>
+=======
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"/>
+<title>12thFailJobs</title>
+>>>>>>> 0c3d48b (updated project)
 
-  <style>
-    /* Removed the transparent body background to allow styles.css to load the image */
-    .wrap{max-width:980px;margin:0 auto;padding:18px}
-    .hero{
-      background: transparent;
-      color:#111827;border-radius:18px;padding:22px;
-      display:flex;gap:16px;align-items:center;flex-wrap:wrap;
-      justify-content: center;
-    }
-    .hero img{
-      width:120px;height:120px;border-radius:14px;background:transparent;padding:8px;
-      object-fit:contain;
-    }
-    .hero h1{margin:0;font-size:64px;font-weight:900;letter-spacing:0.2px;animation:slideInUp 0.8s ease-out}
-    .hero p{margin:6px 0 0;opacity:0.92;font-size:16px;animation:slideInUp 0.8s ease-out 0.2s both}
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media(max-width:720px){.grid2{grid-template-columns:1fr}}
-    .bigcard{padding:18px;text-decoration:none;display:block;border-radius:16px}
-    .bigtitle{font-size:24px;font-weight:900;margin:0 0 6px}
-    .tag{display:inline-block;margin-top:10px;padding:6px 10px;border-radius:999px;
-      background:transparent;font-weight:700;font-size:13px}
-    .langcard{padding:16px;border-radius:16px;margin-top:14px}
-  </style>
+<link rel="stylesheet" href="styles-new.css" />
+
+<!-- Language System -->
+<script defer src="js/i18n.js"></script>
+
+<style>
+.wrap{max-width:1200px;margin:0 auto;padding:20px}
+
+.hero{
+background:var(--glass-bg);
+backdrop-filter:blur(12px);
+border-radius:var(--radius);
+padding:60px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:6.5rem;
+color:var(--primary);
+margin-bottom:15px;
+}
+
+.hero p{
+color:var(--text-muted);
+margin-bottom:20px;
+}
+
+/* Language Dropdown */
+.lang-box{
+margin-top:20px;
+display:flex;
+justify-content:center;
+}
+
+.lang-box select{
+padding:12px 22px;
+border-radius:40px;
+border:1px solid rgba(255,255,255,0.2);
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+color:#000;
+font-weight:700;
+cursor:pointer;
+}
+
+.lang-box select option{
+background:#fff;
+color:#000;
+}
+
+.section-title{
+text-align:center;
+margin:40px 0 30px;
+font-size:2rem;
+}
+
+.role-cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+}
+
+.role-card{
+padding:20px;
+border-radius:16px;
+text-decoration:none;
+background:var(--glass-bg);
+backdrop-filter:blur(10px);
+box-shadow:var(--glass-shadow);
+color:var(--text);
+}
+
+.role-features{
+margin-top:10px;
+display:flex;
+flex-direction:column;
+gap:5px;
+}
+</style>
 </head>
+
+<body>
+
 
 <body>
   <div class="floating-particles"></div>
@@ -117,42 +182,105 @@
 
   <div class="wrap">
 
+<<<<<<< HEAD
     <section class="hero animate-fade-in-up">
       <div style="text-align: center;">
         <h1 class="gradient-text" >12thFailJobs</h1>
         <p >Empowering India's Real Workforce</p>
+=======
+    
+    <section class="hero">
+      <div>
+        <h1>12thFailJobs</h1>
+        <center><p data-i18n="hero_tagline">Empowering India's Real Workforce</p></center>
+
+        <!-- 🌍 Language Dropdown -->
+        <div class="lang-box">
+          <select id="langSelect" onchange="I18N.loadLanguage(this.value)">
+            <option value="english">🇬🇧 English</option>
+            <option value="hindi">🇮🇳 हिन्दी</option>
+            <option value="bengali">🇧🇩 বাংলা</option>
+            <option value="gujarati">🇮🇳 ગુજરાતી</option>
+            <option value="kannada">🇮🇳 ಕನ್ನಡ</option>
+            <option value="malayalam">🇮🇳 മലയാളം</option>
+            <option value="marathi">🇮🇳 मराठी</option>
+            <option value="odia">🇮🇳 ଓଡ଼ିଆ</option>
+            <option value="punjabi">🇮🇳 ਪੰਜਾਬੀ</option>
+            <option value="tamil">🇮🇳 தமிழ்</option>
+            <option value="telugu">🇮🇳 తెలుగు</option>
+            <option value="assamese">🇮🇳 অসমীয়া</option>
+          </select>
+        </div>
+>>>>>>> 0c3d48b (updated project)
       </div>
     </section>
 
-    <div class="section-chooser">
-      <h2 class="section-title">Choose Your Path</h2>
 
-      <div class="role-cards">
-        <a href="worker/login.html" class="role-card worker">
-          <span class="role-icon">👷</span>
-          <h3 class="role-title" >I am a Worker</h3>
-          <p class="role-description" >Find nearby jobs easily and start working today</p>
-          <div class="role-features">
-            <span class="role-feature">� Simple Apply</span>
-            <span class="role-feature">� Direct Call</span>
-            <span class="role-feature">⚡ Quick Jobs</span>
-          </div>
-        </a>
+ <div class="section-chooser">
 
-        <a href="recruiter/login.html" class="role-card recruiter">
-          <span class="role-icon">👔</span>
-          <h3 class="role-title" >I am a Recruiter</h3>
-          <p class="role-description" >Hire trusted workers fast and grow your business</p>
-          <div class="role-features">
-            <span class="role-feature">📝 Post Jobs</span>
-            <span class="role-feature">👥 Manage Applications</span>
-            <span class="role-feature">🎯 Hire Smart</span>
-          </div>
-        </a>
+  <h2 class="section-title" data-i18n="choose_path">
+    Choose Your Path
+  </h2>
+
+  <div class="role-cards">
+
+    <a href="worker/login.html" class="role-card worker">
+      <span class="role-icon">👷</span>
+
+      <h3 class="role-title" data-i18n="worker_title">
+        I am a Worker
+      </h3>
+
+      <p class="role-description" data-i18n="worker_desc">
+        Find nearby jobs easily and start working today
+      </p>
+
+      <div class="role-features">
+        <span class="role-feature" data-i18n="feature_apply">
+          ⚡ Simple Apply
+        </span>
+
+        <span class="role-feature" data-i18n="feature_call">
+          📞 Direct Call
+        </span>
+
+        <span class="role-feature" data-i18n="feature_quick">
+          ⚡ Quick Jobs
+        </span>
       </div>
-    </div>
-  </div>
+    </a>
 
+
+    <a href="recruiter/login.html" class="role-card recruiter">
+      <span class="role-icon">👔</span>
+
+      <h3 class="role-title" data-i18n="recruiter_title">
+        I am a Recruiter
+      </h3>
+
+      <p class="role-description" data-i18n="recruiter_desc">
+        Hire trusted workers fast and grow your business
+      </p>
+
+      <div class="role-features">
+
+        <span class="role-feature" data-i18n="feature_post">
+          📝 Post Jobs
+        </span>
+
+        <span class="role-feature" data-i18n="feature_manage">
+          👥 Manage Applications
+        </span>
+
+        <span class="role-feature" data-i18n="feature_hire">
+          🎯 Hire Smart
+        </span>
+
+      </div>
+    </a>
+
+  </div>
+</div>
   <div data-include="footer"></div>
 
   
@@ -227,3 +355,6 @@
   </script>
 </body>
 </html>
+
+
+

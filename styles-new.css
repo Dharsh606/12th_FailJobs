@@ -45,7 +45,7 @@
   --radius-full: 50%;
   
   /* Typography */
-  --font-primary: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-primary: 'Noto Sans', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -231,9 +231,13 @@ main {
 
 /* ================= Header ================= */
 .site-header {
+  overflow: visible !important;
   position: sticky;
   top: 0;
   z-index: 1000;
+
+  isolation: isolate;   /* 👈 ADD THIS LINE */
+
   background: var(--glass-white);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -241,7 +245,6 @@ main {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .header-inner {
   display: flex;
   justify-content: space-between;
@@ -557,17 +560,19 @@ main {
 }
 
 .role-title {
-  font-size: 1.25rem;
-  font-weight: var(--font-weight-extrabold);
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-black);
   margin-bottom: var(--spacing-sm);
   color: var(--primary-blue);
+  letter-spacing: 0.5px;
 }
 
 .role-description {
-  color: var(--text-secondary);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
   margin-bottom: var(--spacing-md);
-  line-height: 1.5;
-  font-size: 0.875rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
 .role-features {
@@ -577,59 +582,90 @@ main {
 }
 
 .role-feature {
-  font-size: 0.875rem;
-  color: var(--text-light);
-  background: rgba(0, 78, 146, 0.1);
+  font-size: 0.9rem;
+  color: var(--primary-blue);
+  font-weight: var(--font-weight-semibold);
+  background: rgba(0, 78, 146, 0.15);
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-sm);
 }
 
 /* ================= Language Section ================= */
-.language-section {
-  text-align: center;
-  margin-bottom: var(--spacing-lg);
-  padding: var(--spacing-md);
-  background: var(--glass-white);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.language-label {
-  display: block;
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--spacing-md);
-  color: var(--text-primary);
-}
+/* ================= HEADER LANGUAGE SELECTOR FINAL FIX ================= */
 
 .language-select {
   width: 100%;
-  padding: var(--spacing-md);
-  border: 2px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.5);
-  color: var(--text-primary);
-  font-size: 1rem;
+  max-width: 220px;
+  padding: 10px 14px;
+
+  background: #ffffff;
+  color: #00050e;
+
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  outline: none;
   cursor: pointer;
-  transition: all var(--transition-normal);
+
+  transition: all 0.2s ease;
 }
 
 .language-select:focus {
-  outline: none;
   border-color: var(--primary-blue);
-  box-shadow: 0 0 0 3px rgba(0, 78, 146, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 78, 146, 0.15);
 }
 
-.language-hint {
-  font-size: 0.875rem;
-  color: var(--text-light);
-  margin-top: var(--spacing-sm);
+
+.language-current {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #004e92, #003366);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid #004e92;
+  box-shadow: 0 4px 12px rgba(0, 78, 146, 0.3);
+  transition: all 0.3s ease;
 }
 
+.language-current:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #003366, #004e92);
+}
+
+.language-arrow {
+  font-size: 12px;
+}
+
+/* 🔥 IMPORTANT FIX HERE */
+/* ===== FORCE LANGUAGE DROPDOWN VISIBILITY ===== */
+
+.language-dropdown {
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.language-option {
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 600 !important;
+}
+
+.language-option:hover {
+  background: #004e92 !important;
+  color: #ffffff !important;
+}
+
+.language-option .name {
+  color: #2d3748;
+}
 /* ================= Cards ================= */
 .card {
   background: var(--glass-white);
@@ -1119,6 +1155,7 @@ main {
 /* ================= Responsive Design ================= */
 @media (max-width: 768px) {
   .header-inner {
+    overflow: visible !important;
     flex-direction: column;
     gap: var(--spacing-sm);
   }
@@ -1266,6 +1303,7 @@ main {
   }
 }
 
+<<<<<<< HEAD
 /* ================= Footer Links ================= */
 .footer-link:hover {
   color: var(--primary-blue) !important;
@@ -1277,3 +1315,10 @@ main {
   outline: 2px solid var(--accent-orange);
   outline-offset: 2px;
 }
+=======
+
+
+
+
+
+>>>>>>> 0c3d48b (updated project)

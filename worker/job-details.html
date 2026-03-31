@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Job Details - Worker</title>
+  <title data-i18n="job_details">Job Details - Worker</title>
   <link rel="stylesheet" href="../styles-new.css" />
+
   <style>
     .big-btn{padding:14px 16px;font-size:18px;border-radius:12px}
     .title{font-size:28px;font-weight:900;margin:0}
@@ -12,179 +13,278 @@
     .box{padding:16px}
   </style>
 </head>
+
 <body>
-  <div data-include="header"></div>
 
-  <main class="page-main">
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <a href="jobs.html" class="btn big-btn">← <span >Back</span></a>
-      <a href="../index.html" class="btn btn-primary big-btn" >Change Language</a>
-    </div>
+<div data-include="header"></div>
 
-    <div id="jobBox" class="card box narrow" style="margin-top:12px;"></div>
+<main class="page-main">
 
-    <div class="card box narrow" style="margin-top:14px;">
-      <h2 >Apply (Optional)</h2>
-      <p class="meta" >If you can’t read much, just call recruiter using the button above.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+<a href="jobs.html" class="btn big-btn">← <span data-i18n="back_btn">Back</span></a>
+</div>
 
-      <form id="applyForm">
-        <div class="form-group">
-          <label for="appName" >Your Name</label>
-          <input id="appName" type="text" required placeholder="Name" style="width:100%;padding:14px;font-size:18px;border-radius:12px">
-        </div>
-        <div class="form-group">
-          <label for="appPhone" >Phone</label>
-          <input id="appPhone" type="text" required placeholder="Phone" style="width:100%;padding:14px;font-size:18px;border-radius:12px">
-        </div>
-        <div class="form-group">
-          <label for="appMsg" >Message</label>
-          <textarea id="appMsg" placeholder="I need this job" style="width:100%;padding:14px;font-size:18px;border-radius:12px"></textarea>
-        </div>
-        <button class="btn btn-primary big-btn btn-block" id="applyBtn" type="button" >Submit Application</button>
-      </form>
-    </div>
-  </main>
+<div id="jobBox" class="card box narrow" style="margin-top:12px;"></div>
 
-  <script src="../js/app.js"></script>
-  <script src="../js/partials-unified.js"></script>
-  <script>
-    function esc(s){
-      return String(s||"").replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[m]));
-    }
-    function getParam(name){
-      return new URLSearchParams(location.search).get(name) || "";
-    }
-    function extractPhone(contact){
-      // Extract digits; if 10+ digits, use last 10 (India)
-      const digits = String(contact||"").replace(/\D/g,"");
-      if (digits.length >= 10) return digits.slice(-10);
-      return "";
-    }
+<div class="card box narrow" style="margin-top:14px;">
 
-    const jobId = Number(getParam("id"));
+<h2 data-i18n="apply_optional">Apply (Optional)</h2>
 
-    async function loadJob(){
-      const box = document.getElementById("jobBox");
-      box.innerHTML = `<p class="meta">Loading...</p>`;
+<p class="meta" data-i18n="apply_help">
+If you can’t read much, just call recruiter using the button above.
+</p>
 
-      if (!jobId){
-        box.innerHTML = `<p class="meta">No job selected.</p>`;
-        return;
-      }
+<form id="applyForm">
 
-      try{
-        const res = await fetch(API("job_get") + `?id=${encodeURIComponent(jobId)}`);
-        const data = await res.json();
+<div class="form-group">
+<label for="appName" data-i18n="your_name">Your Name</label>
+<input id="appName"
+type="text"
+required
+placeholder="Name"
+data-i18n-placeholder="name"
+style="width:100%;padding:14px;font-size:18px;border-radius:12px">
+</div>
 
-        if (!data.ok){
-          box.innerHTML = `<p class="meta">Job not found.</p>`;
-          return;
-        }
+<div class="form-group">
+<label for="appPhone" data-i18n="phone">Phone</label>
+<input id="appPhone"
+type="text"
+required
+placeholder="Phone"
+data-i18n-placeholder="phone"
+style="width:100%;padding:14px;font-size:18px;border-radius:12px">
+</div>
 
-        const job = data.job;
-        const phone = extractPhone(job.contact);
-        const callBtn = phone
-          ? `<a class="btn btn-primary big-btn" href="tel:${phone}">📞 Call Recruiter</a>`
-          : (job.contact ? `<div class="meta2"><strong>Contact:</strong> ${esc(job.contact)}</div>` : "");
+<div class="form-group">
+<label for="appMsg" data-i18n="message">Message</label>
+<textarea id="appMsg"
+placeholder="I need this job"
+data-i18n-placeholder="apply_message"
+style="width:100%;padding:14px;font-size:18px;border-radius:12px"></textarea>
+</div>
 
-        box.innerHTML = `
-          <div class="title">${esc(job.title)}</div>
-          <div class="meta2"><strong>${esc(job.company)}</strong> • ${esc(job.location)}</div>
-          <div class="meta2">${esc(job.education || "")} ${job.job_type ? "• " + esc(job.job_type) : ""}</div>
-          ${job.salary ? `<div class="meta2"><strong>Salary:</strong> ${esc(job.salary)}</div>` : ""}
-          ${job.category ? `<div class="meta2"><strong>Category:</strong> ${esc(job.category)}</div>` : ""}
+<button class="btn btn-primary big-btn btn-block"
+id="applyBtn"
+type="button"
+data-i18n="submit_application">
+Submit Application
+</button>
 
-          <hr style="margin:12px 0;">
+</form>
 
-          <h3 style="margin:0 0 8px;" >Description</h3>
-          <p style="font-size:18px;line-height:1.4;margin:0 0 10px;">${esc(job.description)}</p>
+</div>
 
-          ${job.requirements ? `
-            <h3 style="margin:14px 0 8px;" >Requirements</h3>
-            <pre style="white-space:pre-wrap;font-size:18px;margin:0;">${esc(job.requirements)}</pre>
-          ` : ""}
+</main>
 
-          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-            ${callBtn}
-            <a class="btn big-btn" href="jobs.html" >Back to Jobs</a>
-          </div>
-        `;
-      }catch(e){
-        console.error(e);
-        box.innerHTML = `<p class="meta">Server error. Check XAMPP.</p>`;
-      }
-    }
+<script src="../js/app.js"></script>
+<script src="../js/partials-unified.js"></script>
 
-    document.getElementById("applyBtn").addEventListener("click", async function(){
-      const btn = this;
-      btn.disabled = true;
-      btn.textContent = "Submitting...";
-      
-      // Get current user
-      const user = getUser();
-      if (!user) {
-        alert("Please login to apply for jobs");
-        btn.disabled = false;
-        btn.textContent = "Submit Application";
-        return;
-      }
-      
-      // Validate form
-      const name = document.getElementById("appName").value.trim();
-      const phone = document.getElementById("appPhone").value.trim();
-      
-      if (!name) {
-        alert("Please enter your name");
-        btn.disabled = false;
-        btn.textContent = "Submit Application";
-        return;
-      }
-      
-      if (!phone) {
-        alert("Please enter your phone number");
-        btn.disabled = false;
-        btn.textContent = "Submit Application";
-        return;
-      }
-      
-      const payload = {
-        job_id: Number(jobId),
-        user_id: user.id,
-        applicant_name: name,
-        applicant_phone: phone,
-        applicant_email: "",
-        message: document.getElementById("appMsg").value.trim()
-      };
+<script>
 
-      console.log('Sending application payload:', payload);
+function esc(s){
+return String(s||"").replace(/[&<>"']/g,
+m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;" }[m]));
+}
 
-      try{
-        const data = await postJSON("apply_create", payload);
-        console.log('Application response:', data);
+function getParam(name){
+return new URLSearchParams(location.search).get(name) || "";
+}
 
-        if (!data.ok){
-          alert(data.message || "Failed to apply");
-          btn.disabled = false;
-          btn.textContent = "Submit Application";
-          return;
-        }
+function extractPhone(contact){
+const digits = String(contact||"").replace(/\D/g,"");
+if (digits.length >= 10) return digits.slice(-10);
+return "";
+}
 
-        alert(data.duplicate ? "You already applied for this job." : "Applied successfully ✅");
-        document.getElementById("applyForm").reset();
-      }catch(e){
-        console.error('Application error:', e);
-        alert("Server error: " + e.message);
-      }finally{
-        btn.disabled = false;
-        btn.textContent = "Submit Application";
-      }
-    });
+const jobId = Number(getParam("id"));
 
-    (async function(){
-      await loadLang();
-      applyI18n();
-      loadJob();
-    })();
-  </script>
+async function loadJob(){
+
+const box = document.getElementById("jobBox");
+
+box.innerHTML = `<p class="meta" data-i18n="loading_job">Loading...</p>`;
+applyI18n();
+
+if (!jobId){
+
+box.innerHTML =
+`<p class="meta" data-i18n="no_job_selected">No job selected.</p>`;
+applyI18n();
+
+return;
+}
+
+try{
+
+const res = await fetch(API("job_get") + `?id=${encodeURIComponent(jobId)}`);
+const data = await res.json();
+
+if (!data.ok){
+
+box.innerHTML =
+`<p class="meta" data-i18n="job_not_found">Job not found.</p>`;
+applyI18n();
+
+return;
+}
+
+const job = data.job;
+const phone = extractPhone(job.contact);
+
+const callBtn = phone
+? `<a class="btn btn-primary big-btn" href="tel:${phone}" data-i18n="call_recruiter">📞 Call Recruiter</a>`
+: (job.contact
+? `<div class="meta2"><strong data-i18n="contact">Contact:</strong> ${esc(job.contact)}</div>`
+: "");
+
+box.innerHTML = `
+
+<div class="title">${esc(job.title)}</div>
+
+<div class="meta2">
+<strong>${esc(job.company)}</strong> • ${esc(job.location)}
+</div>
+
+<div class="meta2">
+${esc(job.education || "")}
+${job.job_type ? "• " + esc(job.job_type) : ""}
+</div>
+
+${job.salary ?
+`<div class="meta2">
+<strong data-i18n="salary">Salary:</strong>
+${esc(job.salary)}
+</div>` : ""}
+
+${job.category ?
+`<div class="meta2">
+<strong data-i18n="category">Category:</strong>
+${esc(job.category)}
+</div>` : ""}
+
+<hr style="margin:12px 0;">
+
+<h3 data-i18n="description">Description</h3>
+
+<p style="font-size:18px;line-height:1.4;margin:0 0 10px;">
+${esc(job.description)}
+</p>
+
+${job.requirements ? `
+<h3 data-i18n="requirements">Requirements</h3>
+<pre style="white-space:pre-wrap;font-size:18px;margin:0;">
+${esc(job.requirements)}
+</pre>
+` : ""}
+
+<div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+${callBtn}
+<a class="btn big-btn" href="jobs.html" data-i18n="back_to_jobs">Back to Jobs</a>
+</div>
+
+`;
+
+applyI18n();
+
+}catch(e){
+
+console.error(e);
+
+box.innerHTML =
+`<p class="meta" data-i18n="server_error">Server error. Check XAMPP.</p>`;
+applyI18n();
+
+}
+
+}
+
+document.getElementById("applyBtn").addEventListener("click", async function(){
+
+const btn = this;
+
+btn.disabled = true;
+btn.textContent = "Submitting...";
+
+const user = getUser();
+
+if (!user){
+alert("Please login to apply for jobs");
+btn.disabled = false;
+btn.textContent = "Submit Application";
+return;
+}
+
+const name = document.getElementById("appName").value.trim();
+const phone = document.getElementById("appPhone").value.trim();
+
+if (!name){
+alert("Please enter your name");
+btn.disabled = false;
+btn.textContent = "Submit Application";
+return;
+}
+
+if (!phone){
+alert("Please enter your phone number");
+btn.disabled = false;
+btn.textContent = "Submit Application";
+return;
+}
+
+const payload = {
+
+job_id: Number(jobId),
+user_id: user.id,
+applicant_name: name,
+applicant_phone: phone,
+applicant_email: "",
+message: document.getElementById("appMsg").value.trim()
+
+};
+
+try{
+
+const data = await postJSON("apply_create", payload);
+
+if (!data.ok){
+
+alert(data.message || "Failed to apply");
+
+btn.disabled = false;
+btn.textContent = "Submit Application";
+return;
+}
+
+alert(data.duplicate
+? "You already applied for this job."
+: "Applied successfully ✅");
+
+document.getElementById("applyForm").reset();
+
+}catch(e){
+
+console.error("Application error:", e);
+alert("Server error: " + e.message);
+
+}finally{
+
+btn.disabled = false;
+btn.textContent = "Submit Application";
+
+}
+
+});
+
+(async function(){
+
+await loadLang();
+applyI18n();
+loadJob();
+
+})();
+
+</script>
+
 </body>
 </html>

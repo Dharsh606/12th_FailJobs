@@ -11,38 +11,42 @@
 
   <main class="page-main">
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <a href="home.html" class="btn">← Back</a>
-      <button class="btn" id="logoutBtn">Logout</button>
+      <a href="home.html" class="btn" data-i18n="back_btn">← Back</a>
+      <button class="btn" id="logoutBtn" data-i18n="logout">Logout</button>
     </div>
 
-    <h1 class="section-title" style="margin-top:14px;">My Profile</h1>
-    <p class="meta mb-2">View and update your profile information</p>
+    <h1 class="section-title" style="margin-top:14px;" data-i18n="my_profile">My Profile</h1>
+    <p class="meta mb-2" data-i18n="profile_view_update">View and update your profile information</p>
 
     <div class="card" style="padding:20px;">
       <div id="profileInfo">
-        <p class="meta">Loading profile...</p>
+        <p class="meta" data-i18n="loading_profile">Loading profile...</p>
       </div>
     </div>
 
     <div class="card" style="padding:20px; margin-top:20px;">
-      <h2 style="margin:0 0 15px;">Update Profile</h2>
+      <h2 style="margin:0 0 15px;" data-i18n="update_profile">Update Profile</h2>
       <form id="profileForm">
+
         <div class="form-group">
-          <label for="name">Name</label>
+          <label for="name" data-i18n="name">Name</label>
           <input type="text" id="name" required>
         </div>
+
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email" data-i18n="email">Email</label>
           <input type="email" id="email" required>
         </div>
+
         <div class="form-group">
-          <label for="phone">Phone</label>
+          <label for="phone" data-i18n="phone">Phone</label>
           <input type="tel" id="phone" required>
         </div>
+
         <div class="form-group">
-          <label for="education">Education</label>
+          <label for="education" data-i18n="education">Education</label>
           <select id="education" required>
-            <option value="">Select</option>
+            <option value="" data-i18n="select">Select</option>
             <option value="8th Pass">8th Pass</option>
             <option value="10th Pass">10th Pass</option>
             <option value="12th Pass">12th Pass</option>
@@ -50,21 +54,39 @@
             <option value="Graduate">Graduate</option>
           </select>
         </div>
+
         <div class="form-group">
-          <label for="skills">Skills</label>
+          <label for="skills" data-i18n="skills">Skills</label>
           <input type="text" id="skills" placeholder="e.g. Driving, Cooking, Cleaning">
         </div>
+
         <div class="form-group">
-          <label for="experience">Experience</label>
+          <label for="experience" data-i18n="experience">Experience</label>
           <input type="text" id="experience" placeholder="e.g. 2 years, Fresher">
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
+
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="update_profile_btn">
+          Update Profile
+        </button>
+
       </form>
     </div>
   </main>
 
   <script src="../js/app.js"></script>
   <script src="../js/partials-unified.js"></script>
+
+  <!-- LANGUAGE SYSTEM -->
+  <script src="../js/i18n.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem("lang") || "en";
+      if (window.I18N) {
+        I18N.loadLanguage(savedLang);
+      }
+    });
+  </script>
 
   <script>
     (function () {
@@ -91,20 +113,19 @@
 
       function loadProfile() {
         const profileInfo = document.getElementById("profileInfo");
-        
+
         profileInfo.innerHTML = `
           <div style="display:grid;gap:10px;">
-            <p><strong>Name:</strong> ${esc(user.name || '')}</p>
-            <p><strong>Email:</strong> ${esc(user.email || '')}</p>
-            <p><strong>Phone:</strong> ${esc(user.phone || '')}</p>
-            <p><strong>Education:</strong> ${esc(user.education || '')}</p>
-            <p><strong>Skills:</strong> ${esc(user.skills || '')}</p>
-            <p><strong>Experience:</strong> ${esc(user.experience || '')}</p>
-            <p><strong>Member Since:</strong> ${new Date(user.created_at).toLocaleDateString()}</p>
+            <p><strong data-i18n="name">Name:</strong> ${esc(user.name || '')}</p>
+            <p><strong data-i18n="email">Email:</strong> ${esc(user.email || '')}</p>
+            <p><strong data-i18n="phone">Phone:</strong> ${esc(user.phone || '')}</p>
+            <p><strong data-i18n="education">Education:</strong> ${esc(user.education || '')}</p>
+            <p><strong data-i18n="skills">Skills:</strong> ${esc(user.skills || '')}</p>
+            <p><strong data-i18n="experience">Experience:</strong> ${esc(user.experience || '')}</p>
+            <p><strong data-i18n="member_since">Member Since:</strong> ${new Date(user.created_at).toLocaleDateString()}</p>
           </div>
         `;
 
-        // Fill form with current data
         document.getElementById("name").value = user.name || '';
         document.getElementById("email").value = user.email || '';
         document.getElementById("phone").value = user.phone || '';
@@ -126,10 +147,7 @@
         };
 
         try {
-          // Note: This would need a backend endpoint to update profile
-          // For now, just show success message
           alert("Profile updated successfully! ✅");
-          // In a real implementation, you would call an API here
         } catch (error) {
           alert("Error updating profile: " + error.message);
         }
