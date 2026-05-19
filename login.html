@@ -1,123 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>12thFailJobs - Choose Your Role</title>
-  <link rel="stylesheet" href="styles-new.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12thFailJobs - Choose Your Role</title>
+
+<link rel="stylesheet" href="styles-new.css">
+
+<!-- Language System -->
+<script defer src="js/i18n.js"></script>
+
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="logo-container">
-        <a href="index.html" class="logo-link">
-          <img src="assets/logo.png" alt="12thFailJobs Logo">
-        </a>
-        <div class="site-title">
-          <span>12thFailJobs</span>
-          <div class="slogan">Empowering India's Real Workforce</div>
-        </div>
-      </div>
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="worker/login.html">Worker Login</a></li>
-          <li><a href="recruiter/login.html">Recruiter Login</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <main class="auth-page">
-    <div class="auth-card">
-      <!-- Logo Section -->
-      <div style="text-align: center; margin-bottom: var(--spacing-xl);">
-        <img src="assets/logo.png" alt="12thFailJobs" style="height: 60px; margin-bottom: var(--spacing);">
-        <h1 style="font-size: 1.5rem; color: var(--primary); margin-bottom: var(--spacing-sm);">Welcome to 12thFailJobs</h1>
-        <p style="color: var(--text-light); margin-bottom: var(--spacing-lg);">Choose your role to get started</p>
-      </div>
+<header class="site-header">
+<div class="header-inner">
 
-      <!-- Role Selection -->
-      <div class="grid grid-2" style="margin-bottom: var(--spacing-xl);">
-        <a href="worker/login.html" class="card animate-slide-in-left" style="text-decoration: none; display: block;">
-          <div style="text-align: center; padding: var(--spacing-lg) 0;">
-            <div style="font-size: 3rem; margin-bottom: var(--spacing);">👷</div>
-            <h3 style="font-size: 1.25rem; color: var(--primary); margin-bottom: var(--spacing-sm);">I'm a Worker</h3>
-            <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: var(--spacing);">Find jobs, apply easily, connect with recruiters</p>
-            <div class="tag">Jobs • Apply • Connect</div>
-          </div>
-        </a>
+<div class="logo-container">
+<a href="index.html" class="logo-link">
+<img src="assets/logo.png" alt="12thFailJobs Logo">
+</a>
 
-        <a href="recruiter/login.html" class="card animate-slide-in-right" style="text-decoration: none; display: block;">
-          <div style="text-align: center; padding: var(--spacing-lg) 0;">
-            <div style="font-size: 3rem; margin-bottom: var(--spacing);">👔</div>
-            <h3 style="font-size: 1.25rem; color: var(--accent); margin-bottom: var(--spacing-sm);">I'm a Recruiter</h3>
-            <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: var(--spacing);">Post jobs, manage applications, hire trusted workers</p>
-            <div class="tag" style="background: var(--accent-light); color: var(--accent);">Post • Manage • Hire</div>
-          </div>
-        </a>
-      </div>
+<div class="site-title">
+<span data-i18n="site_title">12thFailJobs</span>
+<div class="slogan" data-i18n="hero_tagline">
+Empowering India's Real Workforce
+</div>
+</div>
+</div>
 
-      <!-- Quick Stats -->
-      <div style="text-align: center; padding: var(--spacing-lg); border-top: 1px solid var(--border); margin-top: var(--spacing-lg);">
-        <div style="display: flex; justify-content: space-around; gap: var(--spacing-lg);">
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">500+</div>
-            <div style="font-size: 0.875rem; color: var(--text-light);">Active Jobs</div>
-          </div>
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">1000+</div>
-            <div style="font-size: 0.875rem; color: var(--text-light);">Workers</div>
-          </div>
-        </div>
-      </div>
+<nav>
+<ul class="nav-menu">
 
-      <!-- Language Selection -->
-      <div style="text-align: center;">
-        <label style="font-weight: 600; margin-bottom: var(--spacing-sm); display: block;">Choose Language</label>
-        <select id="langSelect" style="padding: var(--spacing); border-radius: var(--radius); border: 2px solid var(--border); width: 100%; max-width: 200px;">
-          <option value="en">English</option>
-          <option value="hi">हिंदी</option>
-          <option value="ta">தமிழ்</option>
-          <option value="te">తెలుగు</option>
-          <option value="ml">മലയാളം</option>
-          <option value="kn">ಕನ್ನಡ</option>
-          <option value="bn">বাংলা</option>
-          <option value="mr">मराठी</option>
-          <option value="gu">ગુજરાતી</option>
-          <option value="pa">ਪੰਜਾਬੀ</option>
-          <option value="or">ଓଡ଼ିଆ</option>
-          <option value="as">অসমীয়া</option>
-        </select>
-        <p style="color: var(--text-light); font-size: 0.875rem; margin-top: var(--spacing-sm);">Language preference will be saved</p>
-      </div>
-    </div>
-  </main>
+<li>
+<a href="index.html" data-i18n="nav_home">
+Home
+</a>
+</li>
 
-  <footer class="site-footer">
-    <p>&copy; 2024 12thFailJobs. Empowering India's Real Workforce.</p>
-    <p>
-      <a href="index.html" style="color: var(--primary);">Home</a> •
-      <a href="worker/login.html" style="color: var(--primary);">Worker Login</a> •
-      <a href="recruiter/login.html" style="color: var(--primary);">Recruiter Login</a>
-    </p>
-  </footer>
+<li>
+<a href="worker/login.html" data-i18n="nav_worker_login">
+Worker Login
+</a>
+</li>
 
-  
-  <script src="js/partials-unified.js"></script>
-  <script>
-    (async function(){
-      // Load language preference
-      await loadLangRoot();
-      applyI18n();
+<li>
+<a href="recruiter/login.html" data-i18n="nav_recruiter_login">
+Recruiter Login
+</a>
+</li>
 
-      // Set language dropdown
-      const sel = document.getElementById("langSelect");
-      if (sel) {
-        sel.value = getLang();
-        sel.addEventListener("change", () => setLang(sel.value));
-      }
-    })();
-  </script>
+</ul>
+</nav>
+
+</div>
+</header>
+
+
+<main class="auth-page">
+
+<div class="auth-card">
+
+<!-- Logo Section -->
+<div style="text-align:center;margin-bottom:var(--spacing-xl);">
+
+<img src="assets/logo.png" alt="12thFailJobs" style="height:60px;margin-bottom:var(--spacing);">
+
+<h1 style="font-size:1.5rem;color:var(--primary);margin-bottom:var(--spacing-sm);" data-i18n="welcome_title">
+Welcome to 12thFailJobs
+</h1>
+
+<p style="color:var(--text-light);margin-bottom:var(--spacing-lg);" data-i18n="choose_role">
+Choose your role to get started
+</p>
+
+</div>
+
+
+<!-- Role Selection -->
+<div class="grid grid-2" style="margin-bottom:var(--spacing-xl);">
+
+<a href="worker/login.html" class="card animate-slide-in-left" style="text-decoration:none;display:block;">
+
+<div style="text-align:center;padding:var(--spacing-lg) 0;">
+
+<div style="font-size:3rem;margin-bottom:var(--spacing);">👷</div>
+
+<h3 style="font-size:1.25rem;color:var(--primary);margin-bottom:var(--spacing-sm);" data-i18n="worker_title">
+I'm a Worker
+</h3>
+
+<p style="color:var(--text-light);font-size:0.95rem;margin-bottom:var(--spacing);" data-i18n="worker_desc">
+Find jobs, apply easily, connect with recruiters
+</p>
+
+<div class="tag" data-i18n="worker_features">
+Jobs • Apply • Connect
+</div>
+
+</div>
+
+</a>
+
+
+
+<a href="recruiter/login.html" class="card animate-slide-in-right" style="text-decoration:none;display:block;">
+
+<div style="text-align:center;padding:var(--spacing-lg) 0;">
+
+<div style="font-size:3rem;margin-bottom:var(--spacing);">👔</div>
+
+<h3 style="font-size:1.25rem;color:var(--accent);margin-bottom:var(--spacing-sm);" data-i18n="recruiter_title">
+I'm a Recruiter
+</h3>
+
+<p style="color:var(--text-light);font-size:0.95rem;margin-bottom:var(--spacing);" data-i18n="recruiter_desc">
+Post jobs, manage applications, hire trusted workers
+</p>
+
+<div class="tag" style="background:var(--accent-light);color:var(--accent);" data-i18n="recruiter_features">
+Post • Manage • Hire
+</div>
+
+</div>
+
+</a>
+
+</div>
+
+
+<!-- Quick Stats -->
+<div style="text-align:center;padding:var(--spacing-lg);border-top:1px solid var(--border);margin-top:var(--spacing-lg);">
+
+<div style="display:flex;justify-content:space-around;gap:var(--spacing-lg);">
+
+<div>
+<div style="font-size:1.5rem;font-weight:700;color:var(--primary);">500+</div>
+<div style="font-size:0.875rem;color:var(--text-light);" data-i18n="active_jobs">
+Active Jobs
+</div>
+</div>
+
+<div>
+<div style="font-size:1.5rem;font-weight:700;color:var(--accent);">1000+</div>
+<div style="font-size:0.875rem;color:var(--text-light);" data-i18n="workers">
+Workers
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- Language Selection -->
+<div style="text-align:center;">
+
+<label style="font-weight:600;margin-bottom:var(--spacing-sm);display:block;" data-i18n="choose_language">
+Choose Language
+</label>
+
+<select id="langSelect" class="language-select">
+
+<option value="english">English</option>
+<option value="hindi">हिंदी</option>
+<option value="tamil">தமிழ்</option>
+<option value="telugu">తెలుగు</option>
+<option value="malayalam">മലയാളം</option>
+<option value="kannada">ಕನ್ನಡ</option>
+<option value="bengali">বাংলা</option>
+<option value="marathi">मराठी</option>
+<option value="gujarati">ગુજરાતી</option>
+<option value="punjabi">ਪੰਜਾਬੀ</option>
+<option value="odia">ଓଡ଼ିଆ</option>
+<option value="assamese">অসমীয়া</option>
+
+</select>
+
+<p style="color:var(--text-light);font-size:0.875rem;margin-top:var(--spacing-sm);" data-i18n="language_saved">
+Language preference will be saved
+</p>
+
+</div>
+
+</div>
+
+</main>
+
+
+<footer class="site-footer">
+
+<p data-i18n="footer_text">
+© 2024 12thFailJobs. Empowering India's Real Workforce.
+</p>
+
+<p>
+<a href="index.html" style="color:var(--primary);" data-i18n="nav_home">Home</a> •
+<a href="worker/login.html" style="color:var(--primary);" data-i18n="nav_worker_login">Worker Login</a> •
+<a href="recruiter/login.html" style="color:var(--primary);" data-i18n="nav_recruiter_login">Recruiter Login</a>
+</p>
+
+</footer>
+
+
+<script src="js/partials-unified.js"></script>
+
+
+<!-- Auto Language Detection -->
+<script>
+
+document.addEventListener("DOMContentLoaded",function(){
+
+const langMap={
+hi:"hindi",
+ta:"tamil",
+te:"telugu",
+kn:"kannada",
+ml:"malayalam",
+mr:"marathi",
+bn:"bengali",
+gu:"gujarati",
+pa:"punjabi",
+or:"odia",
+as:"assamese",
+en:"english"
+};
+
+let lang=localStorage.getItem("language");
+
+if(!lang){
+
+let browser=navigator.language.slice(0,2);
+
+if(langMap[browser]){
+lang=langMap[browser];
+}else{
+lang="english";
+}
+
+localStorage.setItem("language",lang);
+}
+
+I18N.loadLanguage(lang);
+
+const select=document.getElementById("langSelect");
+
+if(select){
+select.value=lang;
+
+select.addEventListener("change",function(){
+
+localStorage.setItem("language",this.value);
+
+I18N.loadLanguage(this.value);
+
+});
+}
+
+});
+
+</script>
+
 </body>
 </html>

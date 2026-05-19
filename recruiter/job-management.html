@@ -37,127 +37,117 @@
 
   <main class="page-main">
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <a href="dashboard.html" class="btn">← Back</a>
-      <button class="btn" id="logoutBtn">Logout</button>
+      <a href="dashboard.html" class="btn" data-i18n="back_btn">← Back</a>
+      <button class="btn" id="logoutBtn" data-i18n="logout_btn">Logout</button>
     </div>
 
-    <h1 class="section-title" style="margin-top:14px;">Advanced Job Management</h1>
-    <p class="meta mb-2">Manage your job postings with powerful tools and analytics</p>
+    <h1 class="section-title" style="margin-top:14px;" data-i18n="advanced_job_management">Advanced Job Management</h1>
+    <p class="meta mb-2" data-i18n="manage_jobs_desc">Manage your job postings with powerful tools and analytics</p>
 
-    <!-- Statistics Overview -->
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-number" id="totalJobs">0</div>
-        <div class="stat-label">Total Jobs Posted</div>
+        <div class="stat-label" data-i18n="total_jobs_posted">Total Jobs Posted</div>
       </div>
       <div class="stat-card">
         <div class="stat-number" id="activeJobs">0</div>
-        <div class="stat-label">Active Jobs</div>
+        <div class="stat-label" data-i18n="active_jobs">Active Jobs</div>
       </div>
       <div class="stat-card">
         <div class="stat-number" id="totalViews">0</div>
-        <div class="stat-label">Total Views</div>
+        <div class="stat-label" data-i18n="total_views">Total Views</div>
       </div>
       <div class="stat-card">
         <div class="stat-number" id="totalApplications">0</div>
-        <div class="stat-label">Total Applications</div>
+        <div class="stat-label" data-i18n="total_applications">Total Applications</div>
       </div>
       <div class="stat-card">
         <div class="stat-number" id="conversionRate">0%</div>
-        <div class="stat-label">Application Rate</div>
+        <div class="stat-label" data-i18n="application_rate">Application Rate</div>
       </div>
       <div class="stat-card">
         <div class="stat-number" id="avgTimeToHire">0d</div>
-        <div class="stat-label">Avg. Time to Hire</div>
+        <div class="stat-label" data-i18n="avg_time_to_hire">Avg. Time to Hire</div>
       </div>
     </div>
 
     <div class="management-grid">
-      <!-- Sidebar -->
       <div class="sidebar">
-        <!-- Quick Actions -->
         <div class="bulk-actions">
-          <h3 style="margin:0 0 15px;">Quick Actions</h3>
+          <h3 style="margin:0 0 15px;" data-i18n="quick_actions">Quick Actions</h3>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <button class="btn btn-primary" onclick="bulkPostJobs()">📝 Post Multiple Jobs</button>
-            <button class="btn" onclick="duplicateJob()">📋 Duplicate Job</button>
-            <button class="btn" onclick="exportJobs()">📊 Export Jobs</button>
-            <button class="btn" onclick="importJobs()">📥 Import Jobs</button>
+            <button class="btn btn-primary" onclick="bulkPostJobs()" data-i18n="post_multiple_jobs">📝 Post Multiple Jobs</button>
+            <button class="btn" onclick="duplicateJob()" data-i18n="duplicate_job">📋 Duplicate Job</button>
+            <button class="btn" onclick="exportJobs()" data-i18n="export_jobs">📊 Export Jobs</button>
+            <button class="btn" onclick="importJobs()" data-i18n="import_jobs">📥 Import Jobs</button>
           </div>
         </div>
 
-        <!-- Job Templates -->
         <div class="card">
-          <h3 style="margin:0 0 15px;">Job Templates</h3>
+          <h3 style="margin:0 0 15px;" data-i18n="job_templates">Job Templates</h3>
           <div id="templatesList">
             <div class="template-card" onclick="useTemplate('security')">
-              <div class="template-title">Security Guard</div>
-              <div class="template-preview">Standard security position template</div>
+              <div class="template-title" data-i18n="security_guard">Security Guard</div>
+              <div class="template-preview" data-i18n="security_template_desc">Standard security position template</div>
             </div>
             <div class="template-card" onclick="useTemplate('driver')">
-              <div class="template-title">Driver</div>
-              <div class="template-preview">Transportation job template</div>
+              <div class="template-title" data-i18n="driver">Driver</div>
+              <div class="template-preview" data-i18n="driver_template_desc">Transportation job template</div>
             </div>
             <div class="template-card" onclick="useTemplate('general')">
-              <div class="template-title">General Worker</div>
-              <div class="template-preview">Multi-purpose worker template</div>
+              <div class="template-title" data-i18n="general_worker">General Worker</div>
+              <div class="template-preview" data-i18n="general_template_desc">Multi-purpose worker template</div>
             </div>
           </div>
-          <button class="btn btn-primary" style="margin-top:10px;width:100%;" onclick="createTemplate()">+ Create Template</button>
+          <button class="btn btn-primary" style="margin-top:10px;width:100%;" onclick="createTemplate()" data-i18n="create_template">+ Create Template</button>
         </div>
 
-        <!-- Pricing Plans -->
         <div class="card">
-          <h3 style="margin:0 0 15px;">Pricing Plans</h3>
+          <h3 style="margin:0 0 15px;" data-i18n="pricing_plans">Pricing Plans</h3>
           <div style="display:flex;flex-direction:column;gap:10px;">
             <div style="padding:10px;border:1px solid #ddd;border-radius:6px;">
-              <div style="font-weight:bold;">Free Plan</div>
-              <div style="font-size:12px;color:var(--text-muted);">3 active jobs</div>
+              <div style="font-weight:bold;" data-i18n="free_plan">Free Plan</div>
+              <div style="font-size:12px;color:var(--text-muted);" data-i18n="free_plan_desc">3 active jobs</div>
             </div>
             <div style="padding:10px;border:2px solid var(--accent-orange);border-radius:6px;background:#fff8f0;">
-              <div style="font-weight:bold;">Premium Plan</div>
-              <div style="font-size:12px;color:var(--text-muted);">Unlimited jobs • Analytics</div>
-              <button class="btn btn-primary" style="margin-top:5px;width:100%;">Upgrade</button>
+              <div style="font-weight:bold;" data-i18n="premium_plan">Premium Plan</div>
+              <div style="font-size:12px;color:var(--text-muted);" data-i18n="premium_plan_desc">Unlimited jobs • Analytics</div>
+              <button class="btn btn-primary" style="margin-top:5px;width:100%;" data-i18n="upgrade">Upgrade</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Main Content -->
+
       <div class="main-content">
-        <!-- Filters -->
         <div class="filter-section">
-          <h3 style="margin:0 0 15px;">Filter Jobs</h3>
+          <h3 style="margin:0 0 15px;" data-i18n="filter_jobs">Filter Jobs</h3>
           <div class="filter-row">
-            <input type="text" id="searchJobs" placeholder="Search jobs..." style="flex:1;">
+            <input type="text" id="searchJobs" placeholder="Search jobs..." style="flex:1;" data-i18n-placeholder="search_jobs">
             <select id="statusFilter">
-              <option value="">All Status</option>
-              <option value="active">Active</option>
-              <option value="closed">Closed</option>
-              <option value="expired">Expired</option>
+              <option value="" data-i18n="all_status">All Status</option>
+              <option value="active" data-i18n="active">Active</option>
+              <option value="closed" data-i18n="closed">Closed</option>
+              <option value="expired" data-i18n="expired">Expired</option>
             </select>
             <select id="categoryFilter">
-              <option value="">All Categories</option>
+              <option value="" data-i18n="all_categories">All Categories</option>
               <option value="Security Guard">Security Guard</option>
               <option value="Driver">Driver</option>
               <option value="Cook">Cook</option>
               <option value="General Worker">General Worker</option>
             </select>
-            <button class="btn" onclick="applyFilters()">Apply</button>
+            <button class="btn" onclick="applyFilters()" data-i18n="apply">Apply</button>
           </div>
         </div>
 
-        <!-- Jobs List -->
         <div id="jobsList">
-          <p class="meta">Loading jobs...</p>
+          <p class="meta" data-i18n="loading_jobs">Loading jobs...</p>
         </div>
 
-        <!-- Performance Chart -->
         <div class="performance-chart">
-          <h3 style="margin:0 0 15px;">Job Performance</h3>
-          <div class="chart-bar" id="performanceChart">
-            <!-- Chart will be generated here -->
-          </div>
+          <h3 style="margin:0 0 15px;" data-i18n="job_performance">Job Performance</h3>
+          <div class="chart-bar" id="performanceChart"></div>
         </div>
       </div>
     </div>
@@ -224,22 +214,21 @@
               <strong>Conversion:</strong> ${job.views ? Math.round((job.application_count / job.views) * 100) : 0}%
             </div>
             <div class="action-buttons">
-              <button class="btn btn-primary" onclick="editJob(${job.id})">✏️ Edit</button>
-              <button class="btn" onclick="duplicateJob(${job.id})">📋 Duplicate</button>
-              <button class="btn" onclick="viewApplications(${job.id})">👥 Applications</button>
-              <button class="btn" onclick="viewAnalytics(${job.id})">📊 Analytics</button>
+              <button class="btn btn-primary" onclick="editJob(${job.id})" data-i18n="edit">✏️ Edit</button>
+<button class="btn" onclick="duplicateJob(${job.id})" data-i18n="duplicate_job">📋 Duplicate</button>
+<button class="btn" onclick="viewApplications(${job.id})" data-i18n="applications">👥 Applications</button>
+<button class="btn" onclick="viewAnalytics(${job.id})" data-i18n="analytics">📊 Analytics</button>
               ${job.status === 'active' ? 
-                `<button class="btn" onclick="updateJobStatus(${job.id}, 'closed')">🔒 Close</button>` :
-                `<button class="btn" onclick="updateJobStatus(${job.id}, 'active')">✅ Activate</button>`
-              }
-              <button class="btn" onclick="deleteJob(${job.id})">🗑️ Delete</button>
+                `<button class="btn" onclick="updateJobStatus(${job.id}, 'closed')" data-i18n="close">🔒 Close</button>` :
+`<button class="btn" onclick="updateJobStatus(${job.id}, 'active')" data-i18n="activate">✅ Activate</button>`
+}
+<button class="btn" onclick="deleteJob(${job.id})" data-i18n="delete">🗑️ Delete</button>
             </div>
           </div>
         `;
       }
 
       function loadJobs() {
-        // Mock job data
         jobs = [
           {
             id: 1,
@@ -291,7 +280,7 @@
         document.getElementById('totalViews').textContent = totalViews;
         document.getElementById('totalApplications').textContent = totalApplications;
         document.getElementById('conversionRate').textContent = conversionRate + '%';
-        document.getElementById('avgTimeToHire').textContent = '7d'; // Mock data
+        document.getElementById('avgTimeToHire').textContent = '7d';
       }
 
       function renderJobs() {
@@ -408,25 +397,74 @@
       function updateJobStatus(jobId, newStatus) {
         if (confirm(`Change job status to ${newStatus}?`)) {
           alert(`Job ${jobId} status updated to ${newStatus}`);
-          loadJobs(); // Reload to show updated status
+          loadJobs();
         }
       }
 
       function deleteJob(jobId) {
         if (confirm('Are you sure you want to delete this job? This action cannot be undone.')) {
           alert(`Job ${jobId} deleted successfully`);
-          loadJobs(); // Reload to show updated list
+          loadJobs();
         }
       }
 
-      // Event listeners
       document.getElementById('searchJobs').addEventListener('input', applyFilters);
       document.getElementById('statusFilter').addEventListener('change', applyFilters);
       document.getElementById('categoryFilter').addEventListener('change', applyFilters);
 
-      // Initialize
       loadJobs();
     })();
+
+    const I18N = {
+      currentLang: localStorage.getItem("lang") || "english",
+      translations: {},
+
+      async init() {
+        await this.loadLanguage(this.currentLang);
+        this.bindLanguageSelector();
+      },
+
+      async loadLanguage(lang) {
+        try {
+          const response = await fetch(`/i18n/${lang}.json`);
+          this.translations = await response.json();
+
+          document.querySelectorAll("[data-i18n]").forEach(el => {
+            const key = el.getAttribute("data-i18n");
+            if (this.translations[key]) {
+              el.innerText = this.translations[key];
+            }
+          });
+
+          document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+            const key = el.getAttribute("data-i18n-placeholder");
+            if (this.translations[key]) {
+              el.setAttribute("placeholder", this.translations[key]);
+            }
+          });
+
+          localStorage.setItem("lang", lang);
+          document.documentElement.lang = lang;
+          this.currentLang = lang;
+
+        } catch (error) {
+          console.error("Language loading failed:", error);
+        }
+      },
+
+      bindLanguageSelector() {
+        document.querySelectorAll("[data-lang]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const lang = btn.getAttribute("data-lang");
+            this.loadLanguage(lang);
+          });
+        });
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      I18N.init();
+    });
   </script>
 
   <div data-include="footer"></div>

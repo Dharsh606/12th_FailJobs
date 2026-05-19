@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Messages - Worker</title>
+  <title data-i18n="Messages - Worker">Messages - Worker</title>
+
   <link rel="stylesheet" href="../styles-new.css" />
+
   <style>
     .message-list{display:grid;gap:12px}
     .message-card{padding:16px;cursor:pointer;transition:all 0.3s}
@@ -20,282 +22,309 @@
     .chat-input{padding:15px;border-top:1px solid #eee;display:flex;gap:10px}
     .chat-input input{flex:1;padding:8px;border:1px solid #ddd;border-radius:20px}
     .chat-input button{background:var(--accent-orange);color:white;border:none;padding:8px 16px;border-radius:20px;cursor:pointer}
-    .notification-badge{background:var(--action-green);color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold}
   </style>
 </head>
+
 <body>
-  <div data-include="header"></div>
 
-  <main class="page-main">
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <a href="home.html" class="btn">← Back</a>
-      <button class="btn" id="logoutBtn">Logout</button>
-    </div>
+<div data-include="header"></div>
 
-    <h1 class="section-title" style="margin-top:14px;">Messages</h1>
-    <p class="meta mb-2">Communicate with recruiters about your applications</p>
+<main class="page-main">
 
-    <div class="card" style="padding:20px;margin-bottom:20px;">
-      <div style="display:flex;gap:10px;align-items:center;">
-        <input type="text" id="searchMessages" placeholder="Search messages..." style="flex:1;padding:8px;border:1px solid #ddd;border-radius:8px;">
-        <select id="filterMessages" style="padding:8px;border:1px solid #ddd;border-radius:8px;">
-          <option value="all">All Messages</option>
-          <option value="unread">Unread</option>
-          <option value="recruiters">From Recruiters</option>
-          <option value="system">System Messages</option>
-        </select>
-      </div>
-    </div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+<a href="home.html" class="btn" data-i18n="Back">← Back</a>
+<button class="btn" id="logoutBtn" data-i18n="Logout">Logout</button>
+</div>
 
-    <div id="messageList" class="message-list">
-      <p class="meta">Loading messages...</p>
-    </div>
-  </main>
+<h1 class="section-title" style="margin-top:14px;" data-i18n="messages">Messages</h1>
 
-  <!-- Chat Container -->
-  <div id="chatContainer" class="chat-container">
-    <div class="chat-header">
-      <span id="chatRecipient">Recruiter Name</span>
-      <button onclick="closeChat()" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;">×</button>
-    </div>
-    <div id="chatMessages" class="chat-messages">
-      <!-- Messages will be loaded here -->
-    </div>
-    <div class="chat-input">
-      <input type="text" id="messageInput" placeholder="Type your message...">
-      <button onclick="sendMessage()">Send</button>
-    </div>
-  </div>
+<p class="meta mb-2" data-i18n="Communicate with recruiters about your applications">
+Communicate with recruiters about your applications
+</p>
 
-  <script src="../js/app.js"></script>
-  <script src="../js/partials-unified.js"></script>
+<div class="card" style="padding:20px;margin-bottom:20px;">
+<div style="display:flex;gap:10px;align-items:center;">
 
-  <script>
-    (function () {
-      const user = getUser();
+<input
+type="text"
+id="searchMessages"
+placeholder="Search messages..."
+style="flex:1;padding:8px;border:1px solid #ddd;border-radius:8px;"
+/>
 
-      if (!user) {
-        window.location.href = "login.html";
-        return;
-      }
+<select id="filterMessages" style="padding:8px;border:1px solid #ddd;border-radius:8px;">
+<option value="all" data-i18n="All Messages">All Messages</option>
+<option value="unread" data-i18n="Unread">Unread</option>
+<option value="recruiters" data-i18n="From Recruiters">From Recruiters</option>
+<option value="system" data-i18n="System Messages">System Messages</option>
+</select>
 
-      if (user.role !== "worker") {
-        alert("Worker access only.");
-        window.location.href = "../index.html";
-        return;
-      }
+</div>
+</div>
 
-      document.getElementById("logoutBtn").addEventListener("click", logout);
+<div id="messageList" class="message-list">
+<p class="meta" data-i18n="Loading messages...">Loading messages...</p>
+</div>
 
-      let currentChat = null;
-      let messages = [];
+</main>
 
-      function esc(s) {
-        return String(s || "").replace(/[&<>"']/g, m => ({
-          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
-        })[m]);
-      }
+<!-- CHAT -->
 
-      function formatTime(date) {
-        return new Date(date).toLocaleString('en-US', { 
-          month: 'short', 
-          day: 'numeric', 
-          hour: '2-digit', 
-          minute: '2-digit' 
-        });
-      }
+<div id="chatContainer" class="chat-container">
 
-      function messageCard(message) {
-        const isUnread = !message.read_at;
-        const isSystem = message.sender_type === 'system';
-        
-        return `
-          <div class="card message-card ${isUnread ? 'unread' : ''}" onclick="openChat(${message.recruiter_id}, '${esc(message.recruiter_name)}')">
-            <div class="message-header">
-              <div>
-                <span class="message-sender">${esc(message.recruiter_name || 'System')}</span>
-                ${isSystem ? '<span style="background:var(--primary);color:white;padding:2px 6px;border-radius:4px;font-size:10px;margin-left:8px;">System</span>' : ''}
-              </div>
-              <div class="message-time">${formatTime(message.created_at)}</div>
-            </div>
-            <div class="message-preview">${esc(message.message || message.subject)}</div>
-            ${message.job_title ? `<div class="meta">Re: ${esc(message.job_title)}</div>` : ''}
-          </div>
-        `;
-      }
+<div class="chat-header">
+<span id="chatRecipient">Recruiter Name</span>
+<button onclick="closeChat()" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;">×</button>
+</div>
 
-      function openChat(recruiterId, recruiterName) {
-        currentChat = { id: recruiterId, name: recruiterName };
-        
-        const chatContainer = document.getElementById('chatContainer');
-        const chatRecipient = document.getElementById('chatRecipient');
-        const chatMessages = document.getElementById('chatMessages');
-        
-        chatContainer.style.display = 'block';
-        chatRecipient.textContent = recruiterName;
-        chatMessages.innerHTML = '<p class="meta">Loading conversation...</p>';
-        
-        loadChatMessages(recruiterId);
-      }
+<div id="chatMessages" class="chat-messages"></div>
 
-      function closeChat() {
-        document.getElementById('chatContainer').style.display = 'none';
-        currentChat = null;
-      }
+<div class="chat-input">
+<input type="text" id="messageInput" placeholder="Type your message...">
+<button onclick="sendMessage()" data-i18n="Send">Send</button>
+</div>
 
-      function loadChatMessages(recruiterId) {
-        // Simulate loading chat messages
-        const chatMessages = document.getElementById('chatMessages');
-        
-        // Mock chat messages
-        const mockMessages = [
-          { 
-            sender: 'recruiter', 
-            message: 'Hi! We reviewed your application and would like to schedule an interview.',
-            time: new Date(Date.now() - 3600000).toISOString()
-          },
-          { 
-            sender: 'worker', 
-            message: 'Thank you! I am available this week for an interview.',
-            time: new Date(Date.now() - 1800000).toISOString()
-          }
-        ];
+</div>
 
-        chatMessages.innerHTML = mockMessages.map(msg => `
-          <div style="margin-bottom:15px;">
-            <div style="font-size:12px;color:var(--text-muted);margin-bottom:5px;">
-              ${msg.sender === 'worker' ? 'You' : currentChat.name} • ${formatTime(msg.time)}
-            </div>
-            <div style="background:${msg.sender === 'worker' ? 'var(--accent-orange)' : '#f1f3f4'};color:${msg.sender === 'worker' ? 'white' : 'black'};padding:10px;border-radius:12px;max-width:80%;">
-              ${esc(msg.message)}
-            </div>
-          </div>
-        `).join('');
-        
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }
 
-      function sendMessage() {
-        const input = document.getElementById('messageInput');
-        const message = input.value.trim();
-        
-        if (!message || !currentChat) return;
-        
-        const chatMessages = document.getElementById('chatMessages');
-        const messageHtml = `
-          <div style="margin-bottom:15px;">
-            <div style="font-size:12px;color:var(--text-muted);margin-bottom:5px;">
-              You • ${formatTime(new Date().toISOString())}
-            </div>
-            <div style="background:var(--accent-orange);color:white;padding:10px;border-radius:12px;max-width:80%;">
-              ${esc(message)}
-            </div>
-          </div>
-        `;
-        
-        chatMessages.innerHTML += messageHtml;
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        input.value = '';
-        
-        // Simulate sending to server
-        console.log('Sending message:', { recruiterId: currentChat.id, message });
-      }
+<script src="../js/app.js"></script>
+<script src="../js/partials-unified.js"></script>
 
-      function loadMessages() {
-        const messageList = document.getElementById('messageList');
-        
-        // Mock messages data
-        messages = [
-          {
-            id: 1,
-            recruiter_id: 1,
-            recruiter_name: 'Priya Sharma',
-            job_title: 'Security Guard',
-            message: 'Your application has been received. We will review it shortly.',
-            created_at: new Date(Date.now() - 86400000).toISOString(),
-            read_at: null,
-            sender_type: 'recruiter'
-          },
-          {
-            id: 2,
-            recruiter_id: 2,
-            recruiter_name: 'Rahul Kumar',
-            job_title: 'Driver',
-            message: 'Interview scheduled for tomorrow at 10 AM',
-            created_at: new Date(Date.now() - 3600000).toISOString(),
-            read_at: new Date().toISOString(),
-            sender_type: 'recruiter'
-          },
-          {
-            id: 3,
-            recruiter_id: null,
-            recruiter_name: 'System',
-            message: 'Your profile is 80% complete. Add more skills to get better job matches.',
-            created_at: new Date(Date.now() - 7200000).toISOString(),
-            read_at: null,
-            sender_type: 'system'
-          }
-        ];
-        
-        if (messages.length === 0) {
-          messageList.innerHTML = `
-            <div class="card" style="padding:20px;text-align:center;">
-              <p class="meta">No messages yet.</p>
-              <p class="meta">Start applying to jobs to receive messages from recruiters!</p>
-            </div>
-          `;
-          return;
-        }
+<!-- PROFESSIONAL GLOBAL LANGUAGE SYSTEM -->
+<script>
 
-        messageList.innerHTML = messages.map(messageCard).join('');
-      }
+const I18N = {
 
-      function filterMessages() {
-        const filterValue = document.getElementById('filterMessages').value;
-        const searchValue = document.getElementById('searchMessages').value.toLowerCase();
-        
-        let filteredMessages = messages;
-        
-        if (filterValue !== 'all') {
-          filteredMessages = filteredMessages.filter(msg => {
-            if (filterValue === 'unread') return !msg.read_at;
-            if (filterValue === 'recruiters') return msg.sender_type === 'recruiter';
-            if (filterValue === 'system') return msg.sender_type === 'system';
-            return true;
-          });
-        }
-        
-        if (searchValue) {
-          filteredMessages = filteredMessages.filter(msg => 
-            msg.message.toLowerCase().includes(searchValue) ||
-            msg.recruiter_name.toLowerCase().includes(searchValue) ||
-            (msg.job_title && msg.job_title.toLowerCase().includes(searchValue))
-          );
-        }
-        
-        const messageList = document.getElementById('messageList');
-        if (filteredMessages.length === 0) {
-          messageList.innerHTML = `
-            <div class="card" style="padding:20px;text-align:center;">
-              <p class="meta">No messages found matching your criteria.</p>
-            </div>
-          `;
-        } else {
-          messageList.innerHTML = filteredMessages.map(messageCard).join('');
-        }
-      }
+currentLang: localStorage.getItem("lang") || "english",
 
-      // Event listeners
-      document.getElementById('searchMessages').addEventListener('input', filterMessages);
-      document.getElementById('filterMessages').addEventListener('change', filterMessages);
-      document.getElementById('messageInput').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-      });
+translations: {},
 
-      loadMessages();
-    })();
-  </script>
+async init() {
 
-  <div data-include="footer"></div>
+await this.loadLanguage(this.currentLang);
+
+this.bindLanguageSelector();
+
+},
+
+async loadLanguage(lang) {
+
+try {
+
+const response = await fetch(`/i18n/${lang}.json`);
+
+this.translations = await response.json();
+
+document.querySelectorAll("[data-i18n]").forEach(el => {
+
+const key = el.getAttribute("data-i18n");
+
+if (this.translations[key]) {
+
+el.innerText = this.translations[key];
+
+}
+
+});
+
+localStorage.setItem("lang", lang);
+
+document.documentElement.lang = lang;
+
+this.currentLang = lang;
+
+} catch (error) {
+
+console.error("Language loading failed:", error);
+
+}
+
+},
+
+bindLanguageSelector() {
+
+document.querySelectorAll("[data-lang]").forEach(btn => {
+
+btn.addEventListener("click", () => {
+
+const lang = btn.getAttribute("data-lang");
+
+this.loadLanguage(lang);
+
+});
+
+});
+
+},
+
+t(key) {
+
+return this.translations[key] || key;
+
+}
+
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+
+I18N.init();
+
+});
+
+</script>
+
+
+<script>
+
+(function () {
+
+const user = getUser();
+
+if (!user) {
+
+window.location.href = "login.html";
+
+return;
+
+}
+
+if (user.role !== "worker") {
+
+alert(I18N.t("Worker access only."));
+
+window.location.href = "../index.html";
+
+return;
+
+}
+
+document.getElementById("logoutBtn").addEventListener("click", logout);
+
+let currentChat = null;
+
+let messages = [];
+
+function esc(s) {
+
+return String(s || "").replace(/[&<>"']/g, m => ({
+
+"&": "&amp;",
+
+"<": "&lt;",
+
+">": "&gt;",
+
+'"': "&quot;",
+
+"'": "&#039;"
+
+})[m]);
+
+}
+
+function formatTime(date) {
+
+return new Date(date).toLocaleString();
+
+}
+
+function messageCard(message) {
+
+const isUnread = !message.read_at;
+
+return `
+
+<div class="card message-card ${isUnread ? 'unread' : ''}" onclick="openChat(${message.recruiter_id}, '${esc(message.recruiter_name)}')">
+
+<div class="message-header">
+
+<div>
+
+<span class="message-sender">${esc(message.recruiter_name)}</span>
+
+</div>
+
+<div class="message-time">${formatTime(message.created_at)}</div>
+
+</div>
+
+<div class="message-preview">${esc(message.message)}</div>
+
+</div>
+
+`;
+
+}
+
+function openChat(recruiterId, recruiterName) {
+
+currentChat = { id: recruiterId, name: recruiterName };
+
+const chatContainer = document.getElementById('chatContainer');
+
+const chatRecipient = document.getElementById('chatRecipient');
+
+chatContainer.style.display = 'block';
+
+chatRecipient.textContent = recruiterName;
+
+}
+
+function closeChat() {
+
+document.getElementById('chatContainer').style.display = 'none';
+
+currentChat = null;
+
+}
+
+function sendMessage() {
+
+const input = document.getElementById('messageInput');
+
+const message = input.value.trim();
+
+if (!message || !currentChat) return;
+
+input.value = "";
+
+}
+
+function loadMessages() {
+
+const messageList = document.getElementById('messageList');
+
+messages = [
+
+{
+
+id: 1,
+
+recruiter_id: 1,
+
+recruiter_name: 'Priya Sharma',
+
+message: I18N.t('msg_application_received'),
+
+created_at: new Date().toISOString(),
+
+read_at: null
+
+}
+
+];
+
+messageList.innerHTML = messages.map(messageCard).join('');
+
+}
+
+loadMessages();
+
+})();
+
+</script>
+
+<div data-include="footer"></div>
+
 </body>
 </html>

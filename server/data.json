@@ -59,6 +59,45 @@
       "experience": "",
       "company": "",
       "created_at": "2026-02-24T06:24:39.230Z"
+    },
+    {
+      "id": 6,
+      "name": "gowtham",
+      "email": "sgf@gmail",
+      "password": "$2a$10$s0vVsFNFeeWzJRp9zA5HZebDgAgr0MlcGhDP6Q.GqAkJGcdP63Hy.",
+      "role": "worker",
+      "phone": "",
+      "education": "",
+      "skills": "",
+      "experience": "",
+      "company": "",
+      "created_at": "2026-03-04T16:01:46.754Z"
+    },
+    {
+      "id": 7,
+      "name": "gowtham",
+      "email": "gowthamr.ai23@bmsce.ac.in",
+      "password": "$2a$10$P3wBx5kwbQCD6pFtWFpfaOX5btSWNFCxiLmZ4qcG/xJGSOlN5Eyz.",
+      "role": "recruiter",
+      "phone": "",
+      "education": "",
+      "skills": "",
+      "experience": "",
+      "company": "",
+      "created_at": "2026-03-19T14:26:03.361Z"
+    },
+    {
+      "id": 8,
+      "name": "gowtham",
+      "email": "gowthamr.ai23@bmsce.ac",
+      "password": "$2a$10$iVZdVmuXjWUEON4F2.yL9uN2y0tE1chqeXO.lRefSYT5HAt6m79nq",
+      "role": "recruiter",
+      "phone": "",
+      "education": "",
+      "skills": "",
+      "experience": "",
+      "company": "",
+      "created_at": "2026-03-22T13:31:07.844Z"
     }
   ],
   "jobs": [
@@ -121,6 +160,21 @@
       "status": "active",
       "posted_by": 4,
       "created_at": "2026-02-24T07:03:34.833Z"
+    },
+    {
+      "id": 6,
+      "title": "Mason",
+      "company": "hghjkjh",
+      "description": "ffsgsg",
+      "requirements": "",
+      "salary": "100000",
+      "location": "Bengaluru, Karnataka, India",
+      "education": "18+",
+      "job_type": "Contract",
+      "category": "Mason",
+      "status": "active",
+      "posted_by": 8,
+      "created_at": "2026-03-23T02:17:52.001Z"
     }
   ],
   "applications": [
@@ -162,6 +216,17 @@
       "message": "I am interested in this Security Guard job.",
       "status": "pending",
       "applied_at": "2026-02-24T06:53:45.650Z"
+    },
+    {
+      "id": 6,
+      "job_id": 2,
+      "user_id": 6,
+      "applicant_name": "Gowtham R",
+      "applicant_phone": "698569856",
+      "applicant_email": "",
+      "message": "",
+      "status": "pending",
+      "applied_at": "2026-03-10T04:28:23.459Z"
     }
   ]
 }

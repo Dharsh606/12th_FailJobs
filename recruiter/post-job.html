@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Post Job - Recruiter</title>
+  <title data-i18n="post_job_title">Post Job - Recruiter</title>
   <link rel="stylesheet" href="../styles-new.css" />
 </head>
 <body>
@@ -11,19 +11,19 @@
 
   <main>
     <div class="hero" style="text-align: left; padding: var(--spacing-xl) var(--spacing-lg); margin-bottom: var(--spacing-lg);">
-      <h1 style="margin-bottom: var(--spacing-md); background: linear-gradient(135deg, var(--primary-blue), var(--accent-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Post a Job</h1>
-      <p class="meta" style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 0;">Find the perfect worker for your needs. Fill in the details below to post your job opening.</p>
+      <h1 data-i18n="post_job_heading" style="margin-bottom: var(--spacing-md); background: linear-gradient(135deg, var(--primary-blue), var(--accent-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Post a Job</h1>
+      <p class="meta" data-i18n="post_job_desc" style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 0;">Find the perfect worker for your needs. Fill in the details below to post your job opening.</p>
     </div>
 
     <div class="card" style="max-width: 600px; margin: 0 auto; padding: var(--spacing-xl);">
       <form id="postJobForm">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
           <div class="form-group">
-            <label for="category" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+            <label data-i18n="category_label" for="category" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
               <span>🏷️</span> Category *
             </label>
             <select id="category" required style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
-              <option value="">Select category</option>
+              <option value="" data-i18n="select_category">Select category</option>
               <option value="Carpenter">🔨 Carpenter</option>
               <option value="Mason">🧱 Mason</option>
               <option value="Plumber">🔧 Plumber</option>
@@ -44,45 +44,45 @@
           </div>
 
           <div class="form-group">
-            <label for="jobType" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+            <label data-i18n="job_type_label" for="jobType" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
               <span>⏰</span> Job Type *
             </label>
             <select id="jobType" required style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
-              <option value="Full-time">Full-time</option>
-              <option value="Part-time">Part-time</option>
-              <option value="Contract">Contract</option>
+              <option value="Full-time" data-i18n="full_time">Full-time</option>
+              <option value="Part-time" data-i18n="part_time">Part-time</option>
+              <option value="Contract" data-i18n="contract">Contract</option>
             </select>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="jobTitle" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+          <label data-i18n="job_title_label" for="jobTitle" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
             <span>📝</span> Job Title *
           </label>
-          <input type="text" id="jobTitle" required placeholder="e.g. Home Maid - Morning Shift" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
+          <input type="text" id="jobTitle" required placeholder="e.g. Home Maid - Morning Shift" data-i18n-placeholder="job_title_placeholder" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
         </div>
 
         <div class="form-group">
-          <label for="companyName" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+          <label data-i18n="company_label" for="companyName" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
             <span>🏢</span> Recruiter/Company Name *
           </label>
-          <input type="text" id="companyName" required placeholder="Your name or company" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
+          <input type="text" id="companyName" required placeholder="Your name or company" data-i18n-placeholder="company_placeholder" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
         </div>
 
         <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--spacing-md);">
           <div class="form-group">
-            <label for="location" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+            <label data-i18n="location_label" for="location" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
               <span>📍</span> Location *
             </label>
-            <input type="text" id="location" required placeholder="e.g. Chennai, Velachery" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
+            <input type="text" id="location" required placeholder="e.g. Chennai, Velachery" data-i18n-placeholder="location_placeholder" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
           </div>
 
           <div class="form-group">
-            <label for="education" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+            <label data-i18n="education_label" for="education" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
               <span>🎓</span> Education *
             </label>
             <select id="education" required style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary);">
-              <option value="">Select</option>
+              <option value="" data-i18n="select">Select</option>
               <option value="18+">18+ student</option>
               <option value="12th">12th fail</option>
               <option value="18+/12th">18+ or 12th fail</option>
@@ -91,37 +91,37 @@
         </div>
 
         <div class="form-group">
-          <label for="salary" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--accent-orange); font-weight: var(--font-weight-semibold);">
+          <label data-i18n="salary_label" for="salary" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--accent-orange); font-weight: var(--font-weight-semibold);">
             <span>💰</span> Salary Range
           </label>
-          <input type="text" id="salary" placeholder="₹10,000 - ₹14,000" style="background: var(--glass-white); border: 2px solid var(--accent-orange); color: var(--text-primary);">
+          <input type="text" id="salary" placeholder="₹10,000 - ₹14,000" data-i18n-placeholder="salary_placeholder" style="background: var(--glass-white); border: 2px solid var(--accent-orange); color: var(--text-primary);">
         </div>
 
         <div class="form-group">
-          <label for="description" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+          <label data-i18n="description_label" for="description" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
             <span>📋</span> Job Description *
           </label>
-          <textarea id="description" required placeholder="Describe the work details, responsibilities, and what the worker will be doing..." style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary); min-height: 100px;"></textarea>
+          <textarea id="description" required placeholder="Describe the work details, responsibilities, and what the worker will be doing..." data-i18n-placeholder="description_placeholder" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary); min-height: 100px;"></textarea>
         </div>
 
         <div class="form-group">
-          <label for="requirements" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
+          <label data-i18n="requirements_label" for="requirements" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--primary-blue); font-weight: var(--font-weight-semibold);">
             <span>✅</span> Requirements
           </label>
-          <textarea id="requirements" placeholder="List requirements (one per line)&#10;Good behavior&#10;Basic experience&#10;Hardworking" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary); min-height: 80px;"></textarea>
+          <textarea id="requirements" placeholder="List requirements (one per line)&#10;Good behavior&#10;Basic experience&#10;Hardworking" data-i18n-placeholder="requirements_placeholder" style="background: var(--glass-white); border: 2px solid var(--glass-border); color: var(--text-primary); min-height: 80px;"></textarea>
         </div>
 
         <div class="form-group">
-          <label for="contact" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--accent-green); font-weight: var(--font-weight-semibold);">
+          <label data-i18n="contact_label" for="contact" style="display: flex; align-items: center; gap: var(--spacing-xs); color: var(--accent-green); font-weight: var(--font-weight-semibold);">
             <span>📞</span> Contact (Phone Preferred) *
           </label>
-          <input type="text" id="contact" required placeholder="e.g. 9876543210" style="background: var(--glass-white); border: 2px solid var(--accent-green); color: var(--text-primary);">
+          <input type="text" id="contact" required placeholder="e.g. 9876543210" data-i18n-placeholder="contact_placeholder" style="background: var(--glass-white); border: 2px solid var(--accent-green); color: var(--text-primary);">
         </div>
 
         <div style="display: flex; gap: var(--spacing-md); margin-top: var(--spacing-xl);">
-          <button type="button" class="btn btn-outline" onclick="window.location.href='dashboard.html'" style="flex: 1;">Cancel</button>
+          <button type="button" class="btn btn-outline" onclick="window.location.href='dashboard.html'" style="flex: 1;" data-i18n="cancel_btn">Cancel</button>
           <button type="submit" class="btn btn-primary" style="flex: 2; background: linear-gradient(135deg, var(--primary-blue), var(--accent-orange));">
-            <span style="margin-right: var(--spacing-xs);">🚀</span> Post Job
+            <span style="margin-right: var(--spacing-xs);">🚀</span> <span data-i18n="post_job_btn">Post Job</span>
           </button>
         </div>
       </form>
@@ -149,7 +149,6 @@
     .addEventListener("submit", async function(e){
       e.preventDefault();
 
-      // Validate required fields
       const category = document.getElementById("category").value;
       const title = document.getElementById("jobTitle").value.trim();
       const company = document.getElementById("companyName").value.trim();
@@ -215,6 +214,59 @@
       }
     });
 })();
+</script>
+
+<script>
+const I18N = {
+    currentLang: localStorage.getItem("lang") || "en",
+    translations: {},
+
+    async init() {
+        await this.loadLanguage(this.currentLang);
+        this.bindLanguageSelector();
+    },
+
+    async loadLanguage(lang) {
+        try {
+            const response = await fetch(`/i18n/${lang}.json`);
+            this.translations = await response.json();
+
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (this.translations[key]) {
+                    el.innerText = this.translations[key];
+                }
+            });
+
+            document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+                const key = el.getAttribute("data-i18n-placeholder");
+                if (this.translations[key]) {
+                    el.setAttribute("placeholder", this.translations[key]);
+                }
+            });
+
+            localStorage.setItem("lang", lang);
+            document.documentElement.lang = lang;
+            this.currentLang = lang;
+
+        } catch (error) {
+            console.error("Language loading failed:", error);
+        }
+    },
+
+    bindLanguageSelector() {
+        document.querySelectorAll("[data-lang]").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const lang = btn.getAttribute("data-lang");
+                this.loadLanguage(lang);
+            });
+        });
+    }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    I18N.init();
+});
 </script>
 
   <div data-include="footer"></div>

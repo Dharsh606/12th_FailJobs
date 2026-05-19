@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Applications - Worker</title>
   <link rel="stylesheet" href="../styles-new.css" />
+
+  <!-- Language System -->
+  <script src="../js/i18n.js"></script>
+
   <style>
     .app-card{padding:16px}
     .app-title{font-size:20px;font-weight:900;margin:0 0 8px}
@@ -16,20 +20,30 @@
   </style>
 </head>
 <body>
+
   <div data-include="header"></div>
 
   <main class="page-main">
+
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <a href="home.html" class="btn">← Back</a>
-      <button class="btn" id="logoutBtn">Logout</button>
+      <a href="home.html" class="btn" data-i18n="back_btn">← Back</a>
+      <button class="btn" id="logoutBtn" data-i18n="logout">Logout</button>
     </div>
 
-    <h1 class="section-title" style="margin-top:14px;">My Applications</h1>
-    <p class="meta mb-2">Track all your job applications</p>
+    <h1 class="section-title" style="margin-top:14px;" data-i18n="my_applications">
+      My Applications
+    </h1>
+
+    <p class="meta mb-2" data-i18n="applications_desc">
+      Track all your job applications
+    </p>
 
     <div id="applicationsList" class="grid" style="margin-top:14px;">
-      <p class="meta">Loading your applications...</p>
+      <p class="meta" data-i18n="loading_applications">
+        Loading your applications...
+      </p>
     </div>
+
   </main>
 
   <script src="../js/app.js"></script>
@@ -37,6 +51,7 @@
 
   <script>
     (function () {
+
       const user = getUser();
 
       if (!user) {
@@ -54,71 +69,150 @@
 
       function esc(s) {
         return String(s || "").replace(/[&<>"']/g, m => ({
-          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
         })[m]);
       }
 
       function getStatusBadge(status) {
-        const statusClass = status === 'pending' ? 'status-pending' : 
-                           status === 'accepted' ? 'status-accepted' : 'status-rejected';
-        const statusText = status.charAt(0).toUpperCase() + status.slice(1);
+
+        const statusClass =
+          status === 'pending'
+            ? 'status-pending'
+            : status === 'accepted'
+            ? 'status-accepted'
+            : 'status-rejected';
+
+        const statusText =
+          status.charAt(0).toUpperCase() + status.slice(1);
+
         return `<span class="status-badge ${statusClass}">${statusText}</span>`;
       }
 
       function applicationCard(app) {
-        const appliedDate = new Date(app.applied_at).toLocaleDateString();
-        
+
+        const appliedDate =
+          new Date(app.applied_at).toLocaleDateString();
+
         return `
           <div class="card app-card">
-            <div class="app-title">${esc(app.job ? app.job.title : 'Unknown Job')}</div>
-            <div class="app-meta"><strong>Company:</strong> ${esc(app.job ? app.job.company : 'Unknown')}</div>
-            <div class="app-meta"><strong>Location:</strong> ${esc(app.job ? app.job.location : 'Unknown')}</div>
-            <div class="app-meta"><strong>Applied:</strong> ${appliedDate}</div>
-            <div class="app-meta"><strong>Status:</strong> ${getStatusBadge(app.status)}</div>
-            ${app.message ? `<div class="app-meta"><strong>Your Message:</strong> ${esc(app.message)}</div>` : ''}
-            <div style="margin-top:12px;">
-              <a class="btn btn-primary" href="job-details.html?id=${app.job_id}">View Job</a>
+
+            <div class="app-title">
+              ${esc(app.job ? app.job.title : 'Unknown Job')}
             </div>
+
+            <div class="app-meta">
+              <strong data-i18n="company">Company:</strong>
+              ${esc(app.job ? app.job.company : 'Unknown')}
+            </div>
+
+            <div class="app-meta">
+              <strong data-i18n="location">Location:</strong>
+              ${esc(app.job ? app.job.location : 'Unknown')}
+            </div>
+
+            <div class="app-meta">
+              <strong data-i18n="applied">Applied:</strong>
+              ${appliedDate}
+            </div>
+
+            <div class="app-meta">
+              <strong data-i18n="status">Status:</strong>
+              ${getStatusBadge(app.status)}
+            </div>
+
+            ${
+              app.message
+                ? `<div class="app-meta">
+                     <strong data-i18n="your_message">Your Message:</strong>
+                     ${esc(app.message)}
+                   </div>`
+                : ""
+            }
+
+            <div style="margin-top:12px;">
+              <a class="btn btn-primary"
+                 href="job-details.html?id=${app.job_id}"
+                 data-i18n="view_job">
+                 View Job
+              </a>
+            </div>
+
           </div>
         `;
       }
 
       async function loadApplications() {
-        const listElement = document.getElementById("applicationsList");
-        
+
+        const listElement =
+          document.getElementById("applicationsList");
+
         try {
-          const response = await fetch(API("applications_list") + `?user_id=${encodeURIComponent(user.id)}`);
+
+          const response =
+            await fetch(
+              API("applications_list") +
+              `?user_id=${encodeURIComponent(user.id)}`
+            );
+
           const data = await response.json();
 
           if (!data.ok) {
-            listElement.innerHTML = `<p class="meta">Failed to load applications.</p>`;
+
+            listElement.innerHTML =
+              `<p class="meta" data-i18n="load_failed">
+                 Failed to load applications.
+               </p>`;
+
             return;
           }
 
           const applications = data.applications || [];
-          
+
           if (applications.length === 0) {
+
             listElement.innerHTML = `
               <div class="card" style="padding:20px;text-align:center;">
-                <p class="meta">You haven't applied to any jobs yet.</p>
-                <a href="home.html" class="btn btn-primary" style="margin-top:10px;">Browse Jobs</a>
+                <p class="meta" data-i18n="no_applications">
+                  You haven't applied to any jobs yet.
+                </p>
+
+                <a href="home.html"
+                   class="btn btn-primary"
+                   style="margin-top:10px;"
+                   data-i18n="browse_jobs">
+
+                   Browse Jobs
+                </a>
               </div>
             `;
+
             return;
           }
 
-          listElement.innerHTML = applications.map(applicationCard).join("");
-          
+          listElement.innerHTML =
+            applications.map(applicationCard).join("");
+
         } catch (error) {
+
           console.error('Error loading applications:', error);
-          listElement.innerHTML = `<p class="meta">Server error. Please try again.</p>`;
+
+          listElement.innerHTML =
+            `<p class="meta" data-i18n="server_error">
+               Server error. Please try again.
+             </p>`;
         }
       }
 
       loadApplications();
+
     })();
   </script>
 
   <div data-include="footer"></div>
+
 </body>
 </html>

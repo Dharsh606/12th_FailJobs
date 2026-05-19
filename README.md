@@ -299,3 +299,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **"Every job seeker deserves a chance to showcase their true potential"** 💼✨
 
 **Built with ❤️ for India's Real Workforce**
+
+
+
+
+
+
+
+
+
+
+
+
+
+

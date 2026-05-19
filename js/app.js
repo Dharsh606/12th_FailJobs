@@ -8,20 +8,17 @@ const API = (file) => `${BASE}/backend/${file}`;
 
 // Security enhancements
 const SECURITY = {
-  // Rate limiting
   rateLimit: {
     maxRequests: 100,
-    windowMs: 60000, // 1 minute
+    windowMs: 60000,
     attempts: {}
   },
-  
-  // Session management
+
   session: {
-    timeout: 3600000, // 1 hour in milliseconds
-    refreshThreshold: 300000 // 5 minutes before expiry
+    timeout: 3600000,
+    refreshThreshold: 300000
   },
-  
-  // Input validation patterns
+
   patterns: {
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     phone: /^[+]?[0-9]{10,15}$/,
@@ -30,7 +27,6 @@ const SECURITY = {
   }
 };
 
-// Enhanced security functions
 function validateInput(input, type) {
   const pattern = SECURITY.patterns[type];
   return pattern ? pattern.test(input) : false;
@@ -40,29 +36,27 @@ function sanitizeInput(input) {
   return String(input || '')
     .replace(/[<>]/g, '')
     .trim()
-    .substring(0, 500); // Limit length
+    .substring(0, 500);
 }
 
 function checkRateLimit(identifier) {
   const now = Date.now();
   const window = SECURITY.rateLimit.windowMs;
   const maxRequests = SECURITY.rateLimit.maxRequests;
-  
+
   if (!SECURITY.rateLimit.attempts[identifier]) {
     SECURITY.rateLimit.attempts[identifier] = [];
   }
-  
-  // Clean old attempts
-  SECURITY.rateLimit.attempts[identifier] = SECURITY.rateLimit.attempts[identifier].filter(
-    timestamp => now - timestamp < window
-  );
-  
-  // Check if under limit
+
+  SECURITY.rateLimit.attempts[identifier] =
+    SECURITY.rateLimit.attempts[identifier].filter(
+      timestamp => now - timestamp < window
+    );
+
   if (SECURITY.rateLimit.attempts[identifier].length >= maxRequests) {
     return false;
   }
-  
-  // Add current attempt
+
   SECURITY.rateLimit.attempts[identifier].push(now);
   return true;
 }
@@ -70,10 +64,10 @@ function checkRateLimit(identifier) {
 function isSessionValid() {
   const user = getUser();
   if (!user) return false;
-  
+
   const lastActivity = localStorage.getItem('lastActivity');
   if (!lastActivity) return true;
-  
+
   const timeSinceActivity = Date.now() - parseInt(lastActivity);
   return timeSinceActivity < SECURITY.session.timeout;
 }
@@ -82,7 +76,6 @@ function updateSessionActivity() {
   localStorage.setItem('lastActivity', Date.now().toString());
 }
 
-// XSS Protection
 function escapeHtml(unsafe) {
   return String(unsafe)
     .replace(/&/g, "&amp;")
@@ -96,12 +89,14 @@ function escapeHtml(unsafe) {
 function roleKey(role){
   return role==="worker"?"failjob_user_worker":(role==="recruiter"?"failjob_user_recruiter":"failjob_user")
 }
+
 function pathRole(){
   const p=(location.pathname||"").toLowerCase();
   if(p.indexOf("/worker/")!==-1)return"worker";
   if(p.indexOf("/recruiter/")!==-1)return"recruiter";
   return null
 }
+
 function setUser(user){
   try{
     localStorage.setItem("failjob_user",JSON.stringify(user));
@@ -109,6 +104,7 @@ function setUser(user){
     if(k)localStorage.setItem(k,JSON.stringify(user))
   }catch(e){}
 }
+
 function getUser(){
   try{
     const r=pathRole();
@@ -130,6 +126,7 @@ function getUser(){
     return null
   }
 }
+
 function clearUser(){
   try{
     const r=pathRole();
@@ -137,6 +134,7 @@ function clearUser(){
     localStorage.removeItem("failjob_user")
   }catch(e){}
 }
+
 function logout(){
   try{
     const r=pathRole();
@@ -165,7 +163,7 @@ function requireEmployer(redirectTo = "post-job.html") {
   if (!u) return null;
 
   if (u.role !== "employer" && u.role !== "recruiter") {
-    alert("Only employers/recruiters can post jobs. Please login as Employer or Recruiter.");
+    alert("Only employers/recruiters can post jobs.");
     window.location.href = `login.html?redirect=${encodeURIComponent(redirectTo)}`;
     return null;
   }
@@ -177,7 +175,7 @@ function requireRecruiter(redirectTo = "dashboard.html") {
   if (!u) return null;
 
   if (u.role !== "recruiter") {
-    alert("Only recruiters can access this page. Please login as Recruiter.");
+    alert("Only recruiters can access this page.");
     window.location.href = `login.html?redirect=${encodeURIComponent(redirectTo)}`;
     return null;
   }
@@ -192,12 +190,63 @@ async function postJSON(endpoint, payload) {
     body: JSON.stringify(payload),
   });
 
-  // if server prints warnings, it may break JSON. This helps debugging.
   const text = await res.text();
   try {
     return JSON.parse(text);
   } catch (e) {
     console.error("Invalid JSON from server:", text);
-    return { ok: false, message: "Server returned invalid response. Check server logs." };
+    return { ok: false, message: "Server returned invalid response." };
   }
+}
+
+
+
+
+
+
+// ===============================
+// LANGUAGE SYSTEM (Added only)
+// ===============================
+
+let LANG_DATA = {};
+
+function setLang(lang){
+  localStorage.setItem("lang", lang);
+  location.reload();
+}
+
+async function loadLang(){
+
+  const lang = localStorage.getItem("lang") || "en";
+
+  try{
+
+    const res = await fetch(`../lang/${lang}.json`);
+    LANG_DATA = await res.json();
+
+  }catch(e){
+
+    console.error("Language load error:", e);
+    LANG_DATA = {};
+
+  }
+
+}
+
+function applyI18n(){
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(LANG_DATA[key]){
+      el.textContent = LANG_DATA[key];
+    }
+  });
+
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
+    const key = el.getAttribute("data-i18n-placeholder");
+    if(LANG_DATA[key]){
+      el.placeholder = LANG_DATA[key];
+    }
+  });
+
 }
